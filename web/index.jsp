@@ -7,56 +7,65 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="form-group">
-                        <p>Building Name: </p><input class="form-control" type="text" name="buildingName" required>
+                        <p>Building Name * </p><input class="form-control" type="text" name="buildingName" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group">
-                        <p>Owner name: </p><input class="form-control" type="text" name="ownerName" required>
+                        <p>Owner name * </p><input class="form-control" type="text" name="ownerName" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group">
-                        <p>Address: </p><input class="form-control" type="text" name="buildingAddress" required>
+                        <p>Address * </p><input class="form-control" type="text" name="buildingAddress" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group">
-                        <p>City: </p><input class="form-control" type="text" name="buildingCity" required>
+                        <p>City *</p><input class="form-control" type="text" name="buildingCity" required>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Zipcode: </p><input class="form-control" type="text" name="buildingZipcode" required>
+                        <p>Zipcode *</p><input class="form-control" type="text" name="buildingZipcode" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Building year: </p><input class="form-control" type="text" name="buildingYear" required>
+                        <p>Building year *</p><input class="form-control" type="text" name="buildingYear" required>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Nr. of floors: </p><input class="form-control" type="text" name="nrOfFloors" required>
+                        <p>Nr. of floors *</p><input class="form-control" type="text" name="nrOfFloors" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Total m2: </p><input class="form-control" type="text" name="totalM2" required>
+                        <p>Total m2 *</p><input class="form-control" type="text" name="totalM2" required>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <div class="form-group">
-                        <p>Building condition: </p><input class="form-control" type="text" name="conditionLevel" required>
+                        <p>Building condition (from 0 - 3) * </p>
                     </div>
                 </div>
-                <div class="col-md-12">
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="conditionLevel" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
                     <table class="table table-bordered">
                         <thead>
                             <tr>

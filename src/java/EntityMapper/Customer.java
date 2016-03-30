@@ -10,20 +10,20 @@ package EntityMapper;
  *
  * @author admin
  */
-public class Costumer {
+public class Customer {
     private int customerId;
     private String customerName;
 
-    public Costumer(int customerId, String customerName) {
+    public Customer(int customerId, String customerName) {
         this.customerId = customerId;
         this.customerName = customerName;
     }
 
-    public Costumer(String customerName) {
+    public Customer(String customerName) {
         this.customerName = customerName;
     }
 
-    public Costumer() {
+    public Customer() {
     }
     
     

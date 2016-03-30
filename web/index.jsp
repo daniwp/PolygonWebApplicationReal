@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <br>
-                    <button class="btn btn-primary col-md-4 col-md-offset-4 ">Add building</button>
+                    <button type="submit" class="btn btn-primary col-md-4 col-md-offset-4 ">Add building</button>
                     <br><br>
                     <br><br>
                     <br><br>

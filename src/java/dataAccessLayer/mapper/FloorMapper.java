@@ -21,12 +21,10 @@ public class FloorMapper {
                 
                 ps.executeUpdate();
             }
-
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
         }
         return true;
     }
-
 }

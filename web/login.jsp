@@ -1,14 +1,6 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1"> 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-        <link rel="stylesheet" type="text/css" href="main.css">
-    </head>
-    <body>
-        <div class="container well">
+<jsp:include page="header.jsp" />
+
+<div class="container well">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <h1 class="page-header">Login page</h1>
@@ -24,6 +16,7 @@
             </form>
         </div>
     </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
-    </body>
-</html>
+
+<jsp:include page="footer.jsp" />

@@ -14,7 +14,7 @@
         <link rel="stylesheet" type="text/css" href="main.css">
     </head>
     <body>
-        <div class="container">
+        <div class="container well">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <h1 class="page-header">Create customer</h1>

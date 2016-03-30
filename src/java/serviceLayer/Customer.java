@@ -1,4 +1,4 @@
-package EntityMapper;
+package serviceLayer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,24 +10,22 @@ package EntityMapper;
  *
  * @author admin
  */
-public class costumer {
+public class Customer {
     private int customerId;
     private String customerName;
 
-    public costumer(int customerId, String customerName) {
+    public Customer(int customerId, String customerName) {
         this.customerId = customerId;
         this.customerName = customerName;
     }
 
-    public costumer(String customerName) {
+    public Customer(String customerName) {
         this.customerName = customerName;
     }
 
-    public costumer() {
+    public Customer() {
     }
     
-    
-
     public int getCustomerId() {
         return customerId;
     }

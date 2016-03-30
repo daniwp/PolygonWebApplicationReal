@@ -1,4 +1,4 @@
-package EntityMapper;
+package serviceLayer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,7 +10,7 @@ package EntityMapper;
  *
  * @author admin
  */
-public class building {
+public class Building {
     
     private int buildingId;
     private String name;
@@ -24,7 +24,7 @@ public class building {
     private int buildingCondition;
     private int costumerId;
 
-    public building(int buildingId, String name, String address, int zipcodes, String city, int buildingYear, int floors, double totalSize, String BuildingOwner, int buildingCondition, int costumerId) {
+    public Building(int buildingId, String name, String address, int zipcodes, String city, int buildingYear, int floors, double totalSize, String BuildingOwner, int buildingCondition, int costumerId) {
         this.buildingId = buildingId;
         this.name = name;
         this.address = address;
@@ -38,7 +38,7 @@ public class building {
         this.costumerId = costumerId;
     }
 
-    public building(String name, String address, int zipcodes, String city, int buildingYear, int floors, double totalSize, String BuildingOwner, int buildingCondition, int costumerId) {
+    public Building(String name, String address, int zipcodes, String city, int buildingYear, int floors, double totalSize, String BuildingOwner, int buildingCondition, int costumerId) {
         this.name = name;
         this.address = address;
         this.zipcodes = zipcodes;
@@ -51,7 +51,7 @@ public class building {
         this.costumerId = costumerId;
     }
 
-    public building() {
+    public Building() {
     }
 
     

@@ -1,4 +1,4 @@
-package EntityMapper;
+package serviceLayer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,27 +10,27 @@ package EntityMapper;
  *
  * @author admin
  */
-public class floor {
+public class Floor {
     
     private int floorId;
     private int floor;
     private double size;
     private  int buildingId;
 
-    public floor(int floorId, int floor, double size, int buildingId) {
+    public Floor(int floorId, int floor, double size, int buildingId) {
         this.floorId = floorId;
         this.floor = floor;
         this.size = size;
         this.buildingId = buildingId;
     }
 
-    public floor(int floor, double size, int buildingId) {
+    public Floor(int floor, double size, int buildingId) {
         this.floor = floor;
         this.size = size;
         this.buildingId = buildingId;
     }
 
-    public floor() {
+    public Floor() {
     }
 
     

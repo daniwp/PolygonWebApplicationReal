@@ -5,14 +5,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import serviceLayer.entity.Building;
 
 public class BuildingMapper {
 
-    public void addBuilding(Building b) throws SQLException, ClassNotFoundException {
-        try {
+    public void addBuilding(Building b)  {
 
-            String query = "INSERT INTO building (buildingName, adress, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, customerId) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        try {
+            String query = "INSERT INTO building (buildingName, address, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, customerId) VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setString(1, b.getName());
@@ -29,7 +31,7 @@ public class BuildingMapper {
             ps.executeUpdate();
 
             ps.close();
-        } catch (SQLException sqle) {
+        } catch (SQLException ee) {
             
         }
     }

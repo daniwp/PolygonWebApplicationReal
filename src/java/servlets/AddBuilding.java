@@ -1,28 +1,50 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
+import serviceLayer.entity.Controller;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author danie
- */
 @WebServlet(name = "AddBuilding", urlPatterns = {"/addbuilding"})
 public class AddBuilding extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
+        RequestDispatcher rd = null;
+        try {
+
+        HttpSession session = request.getSession();
+        session.setMaxInactiveInterval(30 * 60);
+
+            Controller controller = new Controller();
+
+            String buildingName = request.getParameter("buildingName");
+            String ownerName = request.getParameter("ownerName");
+            String buildingAddress = request.getParameter("buildingAddress");
+            String buildingCity = request.getParameter("buildingCity");
+            int buildingZipcode = Integer.parseInt(request.getParameter("buildingZipcode"));
+            int buildingYear = Integer.parseInt(request.getParameter("buildingYear"));
+            int nrOfFloors = Integer.parseInt(request.getParameter("nrOfFloors"));
+            double totalM2 = Double.parseDouble(request.getParameter("totalM2"));
+            int conditionLevel = Integer.parseInt(request.getParameter("conditionLevel"));
+
+            controller.addBuilding(buildingName, buildingAddress, buildingZipcode, buildingCity, buildingYear, nrOfFloors, totalM2, ownerName, conditionLevel, 1);
+            
+            rd = request.getRequestDispatcher("addFloor.jsp");
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+            rd = request.getRequestDispatcher("addBuilding.jsp");
+        }
         
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -37,7 +59,10 @@ public class AddBuilding extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+        }
     }
 
     /**
@@ -51,7 +76,10 @@ public class AddBuilding extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+        }
     }
 
     /**

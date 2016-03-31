@@ -3,7 +3,7 @@
 <div class="container well">
     <div class="col-md-8 col-md-offset-2">
         <h1 class="page-header">Add building</h1>
-        <form action="#" method="POST">
+        <form action="addbuilding" method="POST">
             <div class="col-md-12">
                 <div class="row">
                     <div class="form-group">

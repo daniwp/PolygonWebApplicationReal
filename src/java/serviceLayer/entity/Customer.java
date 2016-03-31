@@ -5,32 +5,31 @@ package serviceLayer.entity;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author admin
  */
 public class Customer {
-    
+
     private int customerId;
     private String customerFirstName;
     private String customerLastName;
-    private String userName;
-    private String passWord;
+    private String customerUserName;
+    private String customerPassWord;
 
-    public Customer(int customerId, String customerFirstName, String customerLastName, String userName, String passWord) {
+    public Customer(int customerId, String customerFirstName, String customerLastName, String customerUserName, String customerPassWord) {
         this.customerId = customerId;
         this.customerFirstName = customerFirstName;
         this.customerLastName = customerLastName;
-        this.userName = userName;
-        this.passWord = passWord;
+        this.customerUserName = customerUserName;
+        this.customerPassWord = customerPassWord;
     }
 
-    public Customer(String customerFirstName, String customerLastName, String userName, String passWord) {
+    public Customer(String customerFirstName, String customerLastName, String customerUserName, String customerPassWord) {
         this.customerFirstName = customerFirstName;
         this.customerLastName = customerLastName;
-        this.userName = userName;
-        this.passWord = passWord;
+        this.customerUserName = customerUserName;
+        this.customerPassWord = customerPassWord;
     }
 
     public Customer() {
@@ -60,22 +59,20 @@ public class Customer {
         this.customerLastName = customerLastName;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getCustomerUserName() {
+        return customerUserName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setCustomerUserName(String customerUserName) {
+        this.customerUserName = customerUserName;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getCustomerPassWord() {
+        return customerPassWord;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setCustomerPassWord(String customerPassWord) {
+        this.customerPassWord = customerPassWord;
     }
-    
-    
-    
+
 }

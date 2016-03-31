@@ -3,7 +3,7 @@
 <div class="container well">
     <div class="col-md-8 col-md-offset-2">
         <h1 class="page-header">Add building</h1>
-        <form action="#">
+        <form action="#" method="POST">
             <div class="col-md-12">
                 <div class="row">
                     <div class="form-group">
@@ -29,24 +29,24 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Zipcode *</p><input class="form-control" type="text" name="buildingZipcode" required>
+                        <p>Zipcode *</p><input class="form-control" type="number" maxlength="4" name="buildingZipcode" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Building year *</p><input class="form-control" type="text" name="buildingYear" required>
+                        <p>Building year *</p><input class="form-control" type="number" maxlength="4" name="buildingYear" required>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Nr. of floors *</p><input class="form-control" type="text" name="nrOfFloors" required>
+                        <p>Nr. of floors *</p><input class="form-control" type="number" maxlength="2" name="nrOfFloors" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Total m2 *</p><input class="form-control" type="text" name="totalM2" required>
+                        <p>Total m2 *</p><input class="form-control" type="number" maxlength="10" name="totalM2" required>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-group">
-                        <input class="form-control" type="text" name="conditionLevel" required>
+                        <input class="form-control" type="number" maxlength="1" name="conditionLevel" required>
                     </div>
                 </div>
             </div>

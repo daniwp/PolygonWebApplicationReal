@@ -20,11 +20,11 @@ public class Building {
     private int buildingYear;
     private int floors;
     private double totalSize;
-    private String BuildingOwner;
+    private String buildingOwner;
     private int buildingCondition;
     private int customerId;
 
-    public Building(int buildingId, String name, String address, int zipcodes, String city, int buildingYear, int floors, double totalSize, String BuildingOwner, int buildingCondition, int costumerId) {
+    public Building(int buildingId, String name, String address, int zipcodes, String city, int buildingYear, int floors, double totalSize, String buildingOwner, int buildingCondition, int costumerId) {
         this.buildingId = buildingId;
         this.name = name;
         this.address = address;
@@ -33,12 +33,12 @@ public class Building {
         this.buildingYear = buildingYear;
         this.floors = floors;
         this.totalSize = totalSize;
-        this.BuildingOwner = BuildingOwner;
+        this.buildingOwner = buildingOwner;
         this.buildingCondition = buildingCondition;
         this.customerId = costumerId;
     }
 
-    public Building(String name, String address, int zipcodes, String city, int buildingYear, int floors, double totalSize, String BuildingOwner, int buildingCondition, int costumerId) {
+    public Building(String name, String address, int zipcodes, String city, int buildingYear, int floors, double totalSize, String buildingOwner, int buildingCondition, int costumerId) {
         this.name = name;
         this.address = address;
         this.zipcodes = zipcodes;
@@ -46,7 +46,7 @@ public class Building {
         this.buildingYear = buildingYear;
         this.floors = floors;
         this.totalSize = totalSize;
-        this.BuildingOwner = BuildingOwner;
+        this.buildingOwner = buildingOwner;
         this.buildingCondition = buildingCondition;
         this.customerId = costumerId;
     }
@@ -121,11 +121,11 @@ public class Building {
     }
 
     public String getBuildingOwner() {
-        return BuildingOwner;
+        return buildingOwner;
     }
 
     public void setBuildingOwner(String BuildingOwner) {
-        this.BuildingOwner = BuildingOwner;
+        this.buildingOwner = BuildingOwner;
     }
 
     public int getBuildingCondition() {

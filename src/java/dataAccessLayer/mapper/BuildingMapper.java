@@ -9,12 +9,12 @@ import serviceLayer.entity.Building;
 
 public class BuildingMapper {
 
-    public boolean addBuilding(Building b) throws SQLException, ClassNotFoundException {
+    public void addBuilding(Building b) throws SQLException, ClassNotFoundException {
         try {
 
             String query = "INSERT INTO building (buildingName, adress, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, customerId) VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
-            
+
             ps.setString(1, b.getName());
             ps.setString(2, b.getAddress());
             ps.setInt(3, b.getZipcodes());
@@ -30,9 +30,7 @@ public class BuildingMapper {
 
             ps.close();
         } catch (SQLException sqle) {
-            sqle.printStackTrace();
+            
         }
-        return true;
     }
-
 }

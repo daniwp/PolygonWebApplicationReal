@@ -2,18 +2,18 @@
 <div class="container well">
     <div class="col-md-8 col-md-offset-2">
         <h1 class="page-header">Add floors</h1>
-        <form action="#">
+        <form action="#" method="POST">
             <% if (request.getParameter("nrOfFloors") != null)
                             for (int i = 0; i < Integer.parseInt(request.getParameter("nrOfFloors")); i++) { %>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Floor Nr.: </p><input class="list-item" type="text" name="floorNr" required>
+                        <p>Floor Nr.: </p><input class="list-item" type="text" name="floorNr<%=i+1%>" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Floor m2: </p><input class="form-control" type="text" name="floorM2" required>
+                        <p>Floor m2: </p><input class="form-control" type="text" name="floorM2<%=i+1%>" required>
                     </div>
                 </div>
             </div>

@@ -11,21 +11,31 @@ package serviceLayer.entity;
  * @author admin
  */
 public class Customer {
+    
     private int customerId;
-    private String customerName;
+    private String customerFirstName;
+    private String customerLastName;
+    private String userName;
+    private String passWord;
 
-    public Customer(int customerId, String customerName) {
+    public Customer(int customerId, String customerFirstName, String customerLastName, String userName, String passWord) {
         this.customerId = customerId;
-        this.customerName = customerName;
+        this.customerFirstName = customerFirstName;
+        this.customerLastName = customerLastName;
+        this.userName = userName;
+        this.passWord = passWord;
     }
 
-    public Customer(String customerName) {
-        this.customerName = customerName;
+    public Customer(String customerFirstName, String customerLastName, String userName, String passWord) {
+        this.customerFirstName = customerFirstName;
+        this.customerLastName = customerLastName;
+        this.userName = userName;
+        this.passWord = passWord;
     }
 
     public Customer() {
     }
-    
+
     public int getCustomerId() {
         return customerId;
     }
@@ -34,12 +44,36 @@ public class Customer {
         this.customerId = customerId;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getCustomerFirstName() {
+        return customerFirstName;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setCustomerFirstName(String customerFirstName) {
+        this.customerFirstName = customerFirstName;
+    }
+
+    public String getCustomerLastName() {
+        return customerLastName;
+    }
+
+    public void setCustomerLastName(String customerLastName) {
+        this.customerLastName = customerLastName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
     
     

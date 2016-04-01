@@ -1,24 +1,39 @@
 <jsp:include page="header.jsp" />
+
 <div class="container well">
     <div class="col-md-8 col-md-offset-2">
         <h1 class="page-header">Add floors</h1>
         <form action="#" method="POST">
-            <% if (request.getParameter("nrOfFloors") != null)
-                            for (int i = 0; i < Integer.parseInt(request.getParameter("nrOfFloors")); i++) { %>
-            <div class="row">
-                <div class="col-md-6">
+            <% if (request.getParameter("nrOfFloors") != null) {
+                    for (int i = 0; i < Integer.parseInt(request.getParameter("nrOfFloors")); i++) {%> 
+            <div class="row well flooritem">
+                <div class="col-md-2">
+                    <h4 class="vtop"><%= i + 1%>. </h4>
+                </div>
+                <div class="vcenter col-md-4">
                     <div class="form-group">
-                        <p>Floor Nr.: </p><input class="list-item" type="text" name="floorNr<%=i+1%>" required>
+                        <div class="col-md-6">
+                            <p>Floor nr.: </p>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="floorNr<%=i + 1%>" required>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Floor m2: </p><input class="form-control" type="text" name="floorM2<%=i+1%>" required>
+                        <div class="col-md-4">
+                            <p>Floor size: </p>
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-control" type="text" name="floorSize<%=i + 1%>" required>
+                        </div>
                     </div>
                 </div>
             </div>
-            <% }
-                    else {%>
+            <% } %>
+            <button type="submit" class="btn btn-primary col-md-2 col-md-offset-5">Submit</button>
+            <% } else {%>
             <br><br>
             <div class="alert alert-danger">
                 <p class="text-center">Something went wrong ): <br> Please try again</p>
@@ -26,7 +41,7 @@
             <br><br>
             <a href="index.jsp" class="btn btn-primary col-md-2 col-md-offset-5">Add building</a>
             <% }%>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br>
         </form>
     </div>
 </div>

@@ -8,7 +8,6 @@
         <link rel="stylesheet" type="text/css" href="main.css">
     </head>
     <body>
-
         <nav class="navbar navbar-inverse">
             <div class="container">
 
@@ -22,7 +21,7 @@
                     <!-- Brand name button -->
                     <a href="index.jsp" class="navbar-brand">Polygon Dauda</a>
                 </div>
-
+                
                 <!-- Menu Items -->
                 <div class="collapse navbar-collapse" id="mainNavBar">
                     <ul class="nav navbar-nav">

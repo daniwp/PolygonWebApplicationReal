@@ -35,7 +35,7 @@ public class AddBuilding extends HttpServlet {
             int nrOfFloors = Integer.parseInt(request.getParameter("nrOfFloors"));
             double totalM2 = Double.parseDouble(request.getParameter("totalM2"));
             int conditionLevel = Integer.parseInt(request.getParameter("conditionLevel"));
-
+            
             controller.addBuilding(buildingName, buildingAddress, buildingZipcode, buildingCity, buildingYear, nrOfFloors, totalM2, ownerName, conditionLevel, 1);
             
             rd = request.getRequestDispatcher("addFloor.jsp");
@@ -43,7 +43,6 @@ public class AddBuilding extends HttpServlet {
             ex.printStackTrace();
             rd = request.getRequestDispatcher("addBuilding.jsp");
         }
-        
         rd.forward(request, response);
     }
 

@@ -15,6 +15,7 @@ public class Controller {
     public Controller() {
     }
     
+    // Creates a building and then inserts it into the database
     public void addBuilding(String name, String address, int zipcodes, String city, int buildingYear, int floors, double totalSize, String buildingOwner, int buildingCondition, int costumerId) throws SQLException, ClassNotFoundException{
         Building building = new Building(name, address, zipcodes, city, buildingYear, floors, totalSize,buildingOwner, buildingCondition,costumerId);
         currentBuilding = building;
@@ -22,13 +23,12 @@ public class Controller {
         buildingMapper.addBuilding(building);
     }
     
+    //Takes a list of floor objects and adds them to the database
     public void addFloors(List<Floor> floors) {
-        
         FloorMapper floorMapper = new FloorMapper();
         floorMapper.addFloors(floors);
         
         currentBuilding = null;
-        
     }
     
     

@@ -36,7 +36,7 @@ public class BuildingMapper {
 
         }
     }
-
+    
     // In this method we get all the information about the building up from the database.
     public List<Building> getAllBuildings(int customerId) {
         List<Building> buildings = new ArrayList();

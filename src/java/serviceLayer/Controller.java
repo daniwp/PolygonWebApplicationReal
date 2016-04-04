@@ -1,11 +1,13 @@
 package serviceLayer;
 
 import dataAccessLayer.mapper.BuildingMapper;
+import dataAccessLayer.mapper.CustomerMapper;
 import dataAccessLayer.mapper.FloorMapper;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import serviceLayer.entity.Building;
+import serviceLayer.entity.Customer;
 import serviceLayer.entity.Floor;
 
 public class Controller {
@@ -31,5 +33,10 @@ public class Controller {
         currentBuilding = null;
     }
     
-    
+    public void addCustomer(String firstName, String lastName, String userName, String passWord)throws SQLException, ClassNotFoundException{
+        Customer customer = new Customer(firstName, lastName, userName, passWord);
+        CustomerMapper customerMapper = new CustomerMapper();
+        customerMapper.addCustomer(customer);
+        
+    }
 }

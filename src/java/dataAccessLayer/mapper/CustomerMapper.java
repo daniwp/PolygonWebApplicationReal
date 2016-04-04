@@ -10,7 +10,7 @@ public class CustomerMapper {
     public void addCustomer(Customer c)  {
 
         try {
-            String query = "INSERT INTO building (companyName, customerOwnerFirstName, customerOwnerLastName, customerUsername, customerPassword) VALUES (?,?,?,?,?)";
+            String query = "INSERT INTO customer (companyName, customerOwnerFirstName, customerOwnerLastName, customerUsername, customerPassword) VALUES (?,?,?,?,?)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setString(1, c.getCompanyName());

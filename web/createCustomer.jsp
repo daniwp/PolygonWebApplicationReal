@@ -9,7 +9,13 @@
                     <p>Company name: </p><input class="form-control" type="text" name="companyName" required>
                 </div>
                 <div class="form-group">
-                    <p>Company owner: </p><input class="form-control" type="text" name="companyOwner" required>
+                    <p>First Name: </p><input class="form-control" type="text" name="companyOwnerFirstName" required>
+                </div>
+                <div class="form-group">
+                    <p> Last Name: </p><input class="form-control" type="text" name="companyOwnerLastName" required>
+                </div>
+                <div class="form-group">
+                    <p> Email: </p><input class="form-control" type="text" name="customerEmail" required>
                 </div>
                 <div class="form-group">
                     <p>Username: </p><input class="form-control" type="text" name="customerUsername" required>

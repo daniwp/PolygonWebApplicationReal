@@ -78,7 +78,7 @@ public class BuildingMapper {
     //made by Lasse
     public void deleteBuildingByBuildingId(int buildingId){
         try {
-            String query = "DELETE * FROM building WHERE (buildingId) = ?";
+            String query = "DELETE FROM building WHERE (buildingId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, buildingId);
@@ -87,7 +87,7 @@ public class BuildingMapper {
 
             ps.close();
         } catch (SQLException ee) {
-            
+            ee.printStackTrace();
         }
     }
 }

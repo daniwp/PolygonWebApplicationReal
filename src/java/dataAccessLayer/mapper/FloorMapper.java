@@ -25,6 +25,8 @@ public class FloorMapper {
 
                 ps.executeUpdate();
             }
+            
+            ps.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
@@ -35,7 +37,7 @@ public class FloorMapper {
     //Made by Nicolai
     public void deleteFloorsByBuildingId(int buildingId) {
         try {
-            String query = "DELETE * FROM floor WHERE (buildingId) = ?";
+            String query = "DELETE FROM floor WHERE buildingId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, buildingId);
@@ -44,6 +46,7 @@ public class FloorMapper {
 
             ps.close();
         } catch (SQLException ee) {
+            ee.printStackTrace();
         }
     }
 
@@ -68,6 +71,8 @@ public class FloorMapper {
                 
                 ps.executeQuery();
             }
+            
+            ps.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

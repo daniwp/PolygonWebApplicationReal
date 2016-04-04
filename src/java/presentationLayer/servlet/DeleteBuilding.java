@@ -6,8 +6,6 @@
 package presentationLayer.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,15 +14,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import serviceLayer.Controller;
-import serviceLayer.entity.Floor;
 
 /**
  *
- * @author danie
+ * @author Daniel
  */
-@WebServlet(name = "AddFloors", urlPatterns = {"/addfloor"})
-public class AddFloors extends HttpServlet {
+@WebServlet(name = "DeleteBuilding", urlPatterns = {"/deletebuilding"})
+public class DeleteBuilding extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher rd = null;
@@ -33,35 +39,19 @@ public class AddFloors extends HttpServlet {
 
         try {
             Controller controller = new Controller();
-            Floor floor;
-            List<Floor> floors = new ArrayList();
 
-            String fNr = "";
-            String fSize = "";
+            int buildingId =  Integer.parseInt(request.getParameter("buildingId"));
             
-            for (int i = 0; i < controller.getCurrentBuilding().getFloors(); i++) {
-                
-                fNr = "floorNr" + (i + 1)  + "";
-                fSize = "floorSize" + (i + 1) + "";
-                
-                System.out.println(fNr);
-                System.out.println(fSize);
-                
-                int floorNr = Integer.parseInt(request.getParameter(fNr.toString()));
-                int floorSize = Integer.parseInt(request.getParameter(fSize.toString()));
-                int buildingId = controller.getCurrentBuilding().getFloors();
+            controller.deleteBuildingAndFloorsByBuildingId(buildingId);
+            System.out.println("does not work");
 
-                floor = new Floor(floorNr, floorSize, buildingId);
-                floors.add(floor);
-
-            }
-            controller.addFloors(floors);
-            rd = request.getRequestDispatcher("index.jsp");
         } catch (Exception e) {
             e.printStackTrace();
-            rd = request.getRequestDispatcher("addFloor.jsp");
         }
+
+        rd = request.getRequestDispatcher("viewBuildings.jsp");
         rd.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

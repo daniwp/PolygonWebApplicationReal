@@ -46,7 +46,7 @@ public class BuildingMapper {
             String query = "Select * from building WHERE customerId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setInt(1, customerId);
-            ps.executeQuery();
+            rs = ps.executeQuery(); 
 
             while (rs.next()) {
 
@@ -65,9 +65,11 @@ public class BuildingMapper {
                 building = new Building(buildingId, buildingName, buildingAddress, buildingZip, buildingCity, buildingYear,buildingFloor, buildingSize, buildingOwner, buildingCondition, buildingcustomerId);
                 
                 buildings.add(building);
+                
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return buildings;
     }

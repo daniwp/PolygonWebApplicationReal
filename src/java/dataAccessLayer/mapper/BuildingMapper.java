@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import serviceLayer.entity.Building;
 
 public class BuildingMapper {
-
+    //made by Lasse
     public void addBuilding(Building b)  {
 
         try {
@@ -28,6 +28,21 @@ public class BuildingMapper {
             ps.setInt(9, b.getBuildingCondition());
             ps.setInt(10, b.getCustomerId());
 
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException ee) {
+            
+        }
+    }
+    //made by Lasse
+    public void deleteBuildingByBuildingId(int buildingId){
+        try {
+            String query = "DELETE * FROM building WHERE (buildingId) = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+
+            ps.setInt(1, buildingId);
+            
             ps.executeUpdate();
 
             ps.close();

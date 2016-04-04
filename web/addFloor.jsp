@@ -16,7 +16,7 @@
                             <p>Floor nr.: </p>
                         </div>
                         <div class="col-md-6">
-                            <input class="form-control" type="text" name="floorNr<%=i + 1%>" required>
+                            <input class="form-control" type="number" maxlength="3" name="floorNr<%=i + 1%>" required>
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                             <p>Floor size: </p>
                         </div>
                         <div class="col-md-4">
-                            <input class="form-control" type="text" name="floorSize<%=i + 1%>" required>
+                            <input class="form-control" type="number" maxlength="4" name="floorSize<%=i + 1%>" required>
                         </div>
                     </div>
                 </div>

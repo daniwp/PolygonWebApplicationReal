@@ -57,7 +57,7 @@
             </div>
         </div>
         <% }%>
-        <a class="btn btn-primary" href="viewBuildings.jsp">Back</a>
+        <a class="btn btn-primary" href="viewBuildings.jsp"><i class="fa fa-fw fa-angle-double-left"></i> Back</a>
     </div>
 </div>
 

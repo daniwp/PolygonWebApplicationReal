@@ -3,36 +3,52 @@
 <%@page import="dataAccessLayer.mapper.BuildingMapper"%>
 <jsp:include page="header.jsp" />
 
-<div class="container well">
+<div class="container page-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <%
+                BuildingMapper buildingMapper = new BuildingMapper();
+                List<Building> buildings = buildingMapper.getAllBuildings(1);
+            %>    
+            <%
+                for (Building building : buildings) {
+            %>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-building fa-fw"></i>&nbsp;&nbsp;<%= building.getName()%></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>Street: <strong><%= building.getAddress()%></strong></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Zipcode: <strong><%= building.getZipcodes()%></strong></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>City: <strong><%= building.getCity()%></strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div style="min-height: 55px" class="panel-footer">
+                    <form action="viewbuilding" method="POST">
+                        <input type="hidden" name="buildingId" value="<%=building.getBuildingId()%>">
+                        <button class="btn btn-primary pull-left" type="submit"><i class="fa fa-fw fa-eye"></i> View</button>
+                    </form>
+                        <form action="#" method="POST">
+                        <input type="hidden" name="buildingId" value="<%=building.getBuildingId()%>">
+                        <button style="margin-left: 5px" class="btn btn-success pull-left" type="submit"><i class="fa fa-fw fa-pencil-square-o"></i> Edit</button>
+                    </form>
+                    <form action="deletebuilding" method="POST">
+                        <input type="hidden" name="buildingId" value="<%=building.getBuildingId()%>">
+                        <button class="btn btn-danger pull-right" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
+                    </form>
+                </div>
+            </div>
 
-    <%
-        BuildingMapper buildingMapper = new BuildingMapper();
-        List<Building> buildings = buildingMapper.getAllBuildings(1);
-    %>    
-    <%
-        for (Building building : buildings) {
-    %>
-
-    <div class="well col-sm-8 col-sm-offset-2 buildingitem"> 
-        <div class="row">
-            <div class="col-sm-4 text-center">
-                <h3><%= building.getName()%></h3>
-            </div>
-            <div class="col-sm-2 col-md-offset-4 text-center">
-                <form action="viewbuilding" method="POST">
-                    <input type="hidden" name="buildingId" value="<%=building.getBuildingId()%>">
-                    <button class="btn btn-primary btn-lg" type="submit">View</button>
-                </form>
-            </div>
-            <div class="col-sm-2 text-center">
-                <form action="deletebuilding" method="POST">
-                    <input type="hidden" name="buildingId" value="<%=building.getBuildingId()%>">
-                    <input class="btn btn-danger btn-lg" type="submit" value="Delete">
-                </form>
-            </div>
+            <% }%>
         </div>
     </div>
-    <% }%>
 </div>
 
 <jsp:include page="footer.jsp" />

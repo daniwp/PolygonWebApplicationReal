@@ -1,0 +1,102 @@
+p {
+    margin-bottom: 0;
+}
+
+table {
+    background-color: white;
+}
+
+.flooritem {
+    background-color: white;
+}
+
+.buildingitem {
+    background-color: white;
+}
+
+.buildingitem > div > p{
+    font-size: 12px;
+}
+
+.wrapper {
+    min-height: 100vh;
+}
+
+.page-wrapper {
+    margin-top: 40px;
+}
+
+.border {
+    border-bottom: 1px solid lightgrey;
+}
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0 !important;
+}
+
+.navbar-brand svg {
+    margin-top: -9px;
+}
+
+.section-hero {
+    padding-top: 120px;
+    padding-bottom: 120px;
+    background-color: #e7e7e7;
+    background-image: url('../img/bg.jpg');
+    position: relative;
+    background-size: cover;
+    background-position: center top;
+}
+
+.section-hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.section-hero .hero h1 {
+    color: #f7f7f7;
+    margin-top: 0;
+}
+
+.section-hero .hero p {
+    color: #f7f7f7;
+}
+
+.section-hero .hero .btn-clear {
+    background-color: transparent;
+    border: 2px solid #f7f7f7;
+    color: #f7f7f7;
+}
+
+.section-hero .hero {
+    background-color: rgba(0,0,0,0.3);
+    padding: 30px;
+}
+
+.panel-primary {
+    border-color: #e7e7e7;
+}
+
+.panel-primary .panel-heading {
+    background-color: #e7e7e7;
+    border-color: #e7e7e7;
+}
+
+.panel-primary .panel-heading i {
+    color: #009fe3;
+}
+
+.panel-primary .panel-heading h3 {
+    color: #252525;
+}
+
+
+
+
+
+

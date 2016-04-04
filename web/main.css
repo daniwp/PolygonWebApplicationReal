@@ -18,4 +18,8 @@ table {
     min-height: 100vh;
 }
 
+.border {
+    border-bottom: 1px solid lightgrey;
+}
+
 

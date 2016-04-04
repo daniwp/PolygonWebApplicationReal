@@ -8,11 +8,13 @@
                 <div class="form-group">
                     <p>Company name: </p><input class="form-control" type="text" name="companyName" required>
                 </div>
-                <div class="form-group">
-                    <p>First Name: </p><input class="form-control" type="text" name="companyOwnerFirstName" required>
-                </div>
-                <div class="form-group">
-                    <p> Last Name: </p><input class="form-control" type="text" name="companyOwnerLastName" required>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <p>First Name: </p><input class="form-control" type="text" name="companyOwnerFirstName" required>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <p> Last Name: </p><input class="form-control" type="text" name="companyOwnerLastName" required>
+                    </div>
                 </div>
                 <div class="form-group">
                     <p> Email: </p><input class="form-control" type="text" name="customerEmail" required>

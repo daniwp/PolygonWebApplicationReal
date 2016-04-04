@@ -9,8 +9,10 @@ import java.util.List;
 import serviceLayer.entity.Building;
 
 public class BuildingMapper {
+
     //made by Lasse
-    public void addBuilding(Building b)  {
+
+    public void addBuilding(Building b) {
 
         try {
             String query = "INSERT INTO building (buildingName, address, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, customerId) VALUES (?,?,?,?,?,?,?,?,?,?)";
@@ -31,12 +33,11 @@ public class BuildingMapper {
 
             ps.close();
         } catch (SQLException ee) {
-            
+
         }
     }
-    
+
     // In this method we get all the information about the building up from the database.
-    
     public List<Building> getAllBuildings(int customerId) {
         List<Building> buildings = new ArrayList();
         Building building;
@@ -46,7 +47,7 @@ public class BuildingMapper {
             String query = "Select * from building WHERE customerId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setInt(1, customerId);
-            rs = ps.executeQuery(); 
+            rs = ps.executeQuery();
 
             while (rs.next()) {
 
@@ -61,11 +62,11 @@ public class BuildingMapper {
                 String buildingOwner = rs.getString("buildingOwner");
                 int buildingCondition = rs.getInt("buildingCondition");
                 int buildingcustomerId = rs.getInt("customerId");
-                
-                building = new Building(buildingId, buildingName, buildingAddress, buildingZip, buildingCity, buildingYear,buildingFloor, buildingSize, buildingOwner, buildingCondition, buildingcustomerId);
-                
+
+                building = new Building(buildingId, buildingName, buildingAddress, buildingZip, buildingCity, buildingYear, buildingFloor, buildingSize, buildingOwner, buildingCondition, buildingcustomerId);
+
                 buildings.add(building);
-                
+
             }
             ps.close();
         } catch (Exception e) {
@@ -74,20 +75,53 @@ public class BuildingMapper {
         return buildings;
     }
 
-
     //made by Lasse
-    public void deleteBuildingByBuildingId(int buildingId){
+    public void deleteBuildingByBuildingId(int buildingId) {
         try {
             String query = "DELETE FROM building WHERE (buildingId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, buildingId);
-            
+
             ps.executeUpdate();
 
             ps.close();
         } catch (SQLException ee) {
             ee.printStackTrace();
         }
+    }
+
+    // Daniel
+    public Building getBuildingByBuildingId(int buildingId) {
+        Building building = null;
+        ResultSet rs = null;
+        
+        try {
+            String query = "SELECT * FROM building WHERE buildingId = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+
+            ps.setInt(1, buildingId);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                String buildingName = rs.getString("buildingName");
+                String buildingAddress = rs.getString("address");
+                int buildingZip = rs.getInt("zipcode");
+                String buildingCity = rs.getString("city");
+                int buildingYear = rs.getInt("buildingYear");
+                int buildingFloor = rs.getInt("floors");
+                double buildingSize = rs.getDouble("totalSize");
+                String buildingOwner = rs.getString("buildingOwner");
+                int buildingCondition = rs.getInt("buildingCondition");
+                int buildingcustomerId = rs.getInt("customerId");
+                
+                building = new Building(buildingName, buildingAddress, buildingZip, buildingCity, buildingYear, buildingFloor, buildingSize, buildingOwner, buildingCondition, buildingcustomerId);
+            }
+
+            ps.close();
+        } catch (SQLException ee) {
+            ee.printStackTrace();
+        }
+        return building;
     }
 }

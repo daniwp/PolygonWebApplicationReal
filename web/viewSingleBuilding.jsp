@@ -1,48 +1,63 @@
+<%@page import="dataAccessLayer.mapper.BuildingMapper"%>
+<%@page import="serviceLayer.entity.Building"%>
 <jsp:include page="header.jsp" />
 
+<% BuildingMapper buildingMapper = new BuildingMapper();
+    Building building = buildingMapper.getBuildingByBuildingId(Integer.parseInt(request.getParameter("buildingId"))); %>
+
 <div class="container well">
-    <div class="col-md-8 col-md-offset-2">
-        <h1 class="page-header">Add floors</h1>
-        <form action="addfloor" method="POST">
-            <% if (request.getParameter("nrOfFloors") != null) {
-                    for (int i = 0; i < Integer.parseInt(request.getParameter("nrOfFloors")); i++) {%> 
-            <div class="row well flooritem">
-                <div class="col-md-2">
-                    <h4 class="vtop"><%= i + 1%>. </h4>
-                </div>
-                <div class="vcenter col-md-4">
-                    <div class="form-group">
-                        <div class="col-md-6">
-                            <p>Floor nr.: </p>
-                        </div>
-                        <div class="col-md-6">
-                            <input class="form-control" type="text" name="floorNr<%=i + 1%>" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="col-md-4">
-                            <p>Floor size: </p>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="form-control" type="text" name="floorSize<%=i + 1%>" required>
-                        </div>
-                    </div>
+    <div class="col-md-10 col-md-offset-1">
+
+        <%if (building != null) {%>
+
+        <div class="row">
+            <h1 class="page-header"><%= building.getName()%></h1>
+        </div>
+        <div class="well buildingitem">
+            <div class="row">
+                <h3 class="page-header col-md-12">Building info:</h3>
+            </div>
+            <div class="row border">
+                <div class="col-md-4">
+                    <p>Building owner: <strong><%= building.getBuildingOwner()%></strong></p>
                 </div>
             </div>
-            <% } %>
-            <button type="submit" class="btn btn-primary col-md-2 col-md-offset-5">Submit</button>
-            <% } else {%>
-            <br><br>
-            <div class="alert alert-danger">
-                <p class="text-center">Something went wrong ): <br> Please try again</p>
+            <br>
+            <div class="row border">
+                <div class="col-md-4">
+                    <p>Street: <strong><%= building.getAddress()%></strong></p>
+                </div>
+                <div class="col-md-4">
+                    <p>Zipcode: <strong><%= building.getZipcodes()%></strong></p>
+                </div>
+                <div class="col-md-4">
+                    <p>City: <strong><%= building.getCity()%></strong></p>
+                </div>
             </div>
-            <br><br>
-            <a href="index.jsp" class="btn btn-primary col-md-2 col-md-offset-5">Add building</a>
-            <% }%>
-            <br><br><br><br><br><br><br><br>
-        </form>
+            <br>
+            <div class="row border">
+                <div class="col-md-4">
+                    <p>Number of floors: <strong><%= building.getFloors()%></strong></p>
+                </div>
+                <div class="col-md-4">
+                    <p>Total m2: <strong><%= building.getTotalSize()%></strong></p>
+                </div>
+            </div>
+            <br>
+            <div class="row border">
+                <div class="col-md-4">
+                    <p>Building year: <strong><%= building.getBuildingYear()%></strong></p>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <p>Building condition: <strong><%= building.getBuildingCondition()%></strong></p>
+                </div>
+            </div>
+        </div>
+        <% }%>
+        <a class="btn btn-primary" href="viewBuildings.jsp">Back</a>
     </div>
 </div>
 

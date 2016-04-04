@@ -38,12 +38,12 @@ public class DeleteBuilding extends HttpServlet {
         session.setMaxInactiveInterval(30 * 60);
 
         try {
+            
             Controller controller = new Controller();
-
-            int buildingId =  Integer.parseInt(request.getParameter("buildingId"));
+            
+            int buildingId = Integer.parseInt(request.getParameter("buildingId"));
             
             controller.deleteBuildingAndFloorsByBuildingId(buildingId);
-            System.out.println("does not work");
 
         } catch (Exception e) {
             e.printStackTrace();

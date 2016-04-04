@@ -67,7 +67,7 @@ public class BuildingMapper {
                 buildings.add(building);
                 
             }
-
+            ps.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

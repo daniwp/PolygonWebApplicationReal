@@ -1,12 +1,11 @@
 package dataAccessLayer.mapper;
 
 import dataAccessLayer.DBConnector;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 import serviceLayer.entity.Building;
 
 public class BuildingMapper {
@@ -35,6 +34,44 @@ public class BuildingMapper {
             
         }
     }
+    
+    // In this method we get all the information about the building up from the database.
+    
+    public List<Building> getAllBuildings(int customerId) {
+        List<Building> buildings = new ArrayList();
+        Building building;
+        ResultSet rs = null;
+        try {
+
+            String query = "Select * from building WHERE customerId = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            ps.executeQuery();
+
+            while (rs.next()) {
+
+                int buildingId = rs.getInt("buildingId");
+                String buildingName = rs.getString("buildingName");
+                String buildingAddress = rs.getString("address");
+                int buildingZip = rs.getInt("zipcode");
+                String buildingCity = rs.getString("city");
+                int buildingYear = rs.getInt("buildingYear");
+                int buildingFloor = rs.getInt("floors");
+                double buildingSize = rs.getDouble("totalSize");
+                String buildingOwner = rs.getString("buildingOwner");
+                int buildingCondition = rs.getInt("buildingCondition");
+                int buildingcustomerId = rs.getInt("customerId");
+                
+                building = new Building(buildingId, buildingName, buildingAddress, buildingZip, buildingCity, buildingYear,buildingFloor, buildingSize, buildingOwner, buildingCondition, buildingcustomerId);
+                
+                buildings.add(building);
+            }
+
+        } catch (Exception e) {
+        }
+        return buildings;
+    }
+
+
     //made by Lasse
     public void deleteBuildingByBuildingId(int buildingId){
         try {

@@ -17,23 +17,25 @@ public class Customer {
     private String customerLastName;
     private String customerUsername;
     private String customerPassword;
-    
+    private String customerEmail;
 
-    public Customer(int customerId, String companyName, String customerFirstName, String customerLastName, String customerUsername, String customerPassword) {
+    public Customer(int customerId, String companyName, String customerFirstName, String customerLastName, String customerUsername, String customerPassword, String customerEmail) {
         this.customerId = customerId;
         this.companyName = companyName;
         this.customerFirstName = customerFirstName;
         this.customerLastName = customerLastName;
         this.customerUsername = customerUsername;
         this.customerPassword = customerPassword;
+        this.customerEmail = customerEmail;
     }
 
-    public Customer(String companyName, String customerFirstName, String customerLastName, String customerUsername, String customerPassword) {
+    public Customer(String companyName, String customerFirstName, String customerLastName, String customerUsername, String customerPassword, String customerEmail) {
         this.companyName = companyName;
         this.customerFirstName = customerFirstName;
         this.customerLastName = customerLastName;
         this.customerUsername = customerUsername;
         this.customerPassword = customerPassword;
+        this.customerEmail = customerEmail;
     }
 
     public Customer() {
@@ -85,6 +87,14 @@ public class Customer {
 
     public void setCustomerPassword(String customerPassword) {
         this.customerPassword = customerPassword;
+    }
+
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
     }
 
   

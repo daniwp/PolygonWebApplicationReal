@@ -34,11 +34,16 @@ public class AddFloors extends HttpServlet {
             Controller controller = new Controller();
             Floor floor;
             List<Floor> floors = new ArrayList();
+            String floorNrS = "";
+            String floorSizeS = "";
 
-            for (int i = 0; i < Integer.parseInt(request.getParameter("nrOfFloors")); i++) {
+            for (int i = 0; i < Integer.parseInt((String) session.getAttribute("nrOfFloors")); i++) {
 
-                int floorNr = Integer.parseInt(request.getParameter("floorNr" + i + 1));
-                int floorSize = Integer.parseInt(request.getParameter("floorSize" + i + 1));
+                floorNrS = "floorNr" + i + 1 + "";
+                floorNrS = "floorSize" + i + 1 + "";
+
+                int floorNr = Integer.parseInt(request.getParameter(floorNrS));
+                int floorSize = Integer.parseInt(request.getParameter(floorSizeS));
                 int buildingId = controller.getCurrentBuilding().getBuildingId();
 
                 floor = new Floor(floorNr, floorSize, buildingId);
@@ -48,6 +53,7 @@ public class AddFloors extends HttpServlet {
             controller.addFloors(floors);
             rd = request.getRequestDispatcher("index.jsp");
         } catch (Exception e) {
+            e.printStackTrace();
             rd = request.getRequestDispatcher("addFloor.jsp");
         }
         rd.forward(request, response);

@@ -45,6 +45,7 @@ public class BuildingMapper {
 
             String query = "Select * from building WHERE customerId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            ps.setInt(1, customerId);
             ps.executeQuery();
 
             while (rs.next()) {

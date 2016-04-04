@@ -12,24 +12,27 @@ package serviceLayer.entity;
 public class Customer {
 
     private int customerId;
+    private String companyName;
     private String customerFirstName;
     private String customerLastName;
-    private String customerUserName;
-    private String customerPassWord;
+    private String customerUsername;
+    private String customerPassword;
 
     public Customer(int customerId, String customerFirstName, String customerLastName, String customerUserName, String customerPassWord) {
         this.customerId = customerId;
+        this.companyName = companyName;
         this.customerFirstName = customerFirstName;
         this.customerLastName = customerLastName;
-        this.customerUserName = customerUserName;
-        this.customerPassWord = customerPassWord;
+        this.customerUsername = customerUsername;
+        this.customerPassword = customerPassword;
     }
 
-    public Customer(String customerFirstName, String customerLastName, String customerUserName, String customerPassWord) {
+    public Customer(String customerFirstName, String customerLastName, String customerUsername, String customerPassword) {
+        this.companyName = companyName;
         this.customerFirstName = customerFirstName;
         this.customerLastName = customerLastName;
-        this.customerUserName = customerUserName;
-        this.customerPassWord = customerPassWord;
+        this.customerUsername = customerUsername;
+        this.customerPassword = customerPassword;
     }
 
     public Customer() {
@@ -37,6 +40,16 @@ public class Customer {
 
     public int getCustomerId() {
         return customerId;
+    }
+
+    public String getCompanyName()
+    {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName)
+    {
+        this.companyName = companyName;
     }
 
     public void setCustomerId(int customerId) {
@@ -59,20 +72,20 @@ public class Customer {
         this.customerLastName = customerLastName;
     }
 
-    public String getCustomerUserName() {
-        return customerUserName;
+    public String getCustomerUsername() {
+        return customerUsername;
     }
 
-    public void setCustomerUserName(String customerUserName) {
-        this.customerUserName = customerUserName;
+    public void setCustomerUsername(String customerUsername) {
+        this.customerUsername = customerUsername;
     }
 
-    public String getCustomerPassWord() {
-        return customerPassWord;
+    public String getCustomerPassword() {
+        return customerPassword;
     }
 
-    public void setCustomerPassWord(String customerPassWord) {
-        this.customerPassWord = customerPassWord;
+    public void setCustomerPassword(String customerPassword) {
+        this.customerPassword = customerPassword;
     }
 
 }

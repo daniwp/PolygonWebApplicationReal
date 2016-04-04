@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import serviceLayer.entity.Customer;
 
 public class CustomerMapper {
+    //made by Lasse and Nicolai
     public void addCustomer(Customer c)  {
 
         try {

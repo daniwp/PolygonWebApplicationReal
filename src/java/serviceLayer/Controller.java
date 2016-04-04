@@ -32,9 +32,9 @@ public class Controller {
         
         currentBuilding = null;
     }
-    
-    public void addCustomer(String firstName, String lastName, String userName, String passWord)throws SQLException, ClassNotFoundException{
-        Customer customer = new Customer(firstName, lastName, userName, passWord);
+    // creates a customer and inserts it into the database
+    public void addCustomer(String companyName, String firstName, String lastName, String userName, String passWord)throws SQLException, ClassNotFoundException{
+        Customer customer = new Customer(companyName, firstName, lastName, userName, passWord);
         CustomerMapper customerMapper = new CustomerMapper();
         customerMapper.addCustomer(customer);
         

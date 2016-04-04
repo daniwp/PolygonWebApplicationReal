@@ -18,7 +18,7 @@ public class Customer {
     private String customerUsername;
     private String customerPassword;
 
-    public Customer(int customerId, String customerFirstName, String customerLastName, String customerUserName, String customerPassWord) {
+    public Customer(int customerId, String companyName, String customerFirstName, String customerLastName, String customerUsername, String customerPassword) {
         this.customerId = customerId;
         this.companyName = companyName;
         this.customerFirstName = customerFirstName;
@@ -27,7 +27,7 @@ public class Customer {
         this.customerPassword = customerPassword;
     }
 
-    public Customer(String customerFirstName, String customerLastName, String customerUsername, String customerPassword) {
+    public Customer(String companyName, String customerFirstName, String customerLastName, String customerUsername, String customerPassword) {
         this.companyName = companyName;
         this.customerFirstName = customerFirstName;
         this.customerLastName = customerLastName;
@@ -42,18 +42,16 @@ public class Customer {
         return customerId;
     }
 
-    public String getCompanyName()
-    {
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getCompanyName() {
         return companyName;
     }
 
-    public void setCompanyName(String companyName)
-    {
+    public void setCompanyName(String companyName) {
         this.companyName = companyName;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
     }
 
     public String getCustomerFirstName() {
@@ -88,4 +86,7 @@ public class Customer {
         this.customerPassword = customerPassword;
     }
 
-}
+  
+    }
+
+    

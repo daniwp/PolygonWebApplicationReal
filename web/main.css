@@ -6,4 +6,12 @@ table {
     background-color: white;
 }
 
+.buildingitem {
+    background-color: white;
+}
+
+.buildingitem > div > p{
+    font-size: 12px;
+}
+
 

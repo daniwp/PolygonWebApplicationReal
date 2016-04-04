@@ -16,6 +16,14 @@ public class Controller {
 
     public Controller() {
     }
+
+    public Building getCurrentBuilding() {
+        return currentBuilding;
+    }
+
+    public void setCurrentBuilding(Building currentBuilding) {
+        this.currentBuilding = currentBuilding;
+    }
     
     // Creates a building and then inserts it into the database
     public void addBuilding(String name, String address, int zipcodes, String city, int buildingYear, int floors, double totalSize, String buildingOwner, int buildingCondition, int costumerId) throws SQLException, ClassNotFoundException{

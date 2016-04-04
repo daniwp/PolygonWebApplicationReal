@@ -3,7 +3,7 @@
 <div class="container well">
     <div class="col-md-8 col-md-offset-2">
         <h1 class="page-header">Add floors</h1>
-        <form action="#" method="POST">
+        <form action="addfloor" method="POST">
             <% if (request.getParameter("nrOfFloors") != null) {
                     for (int i = 0; i < Integer.parseInt(request.getParameter("nrOfFloors")); i++) {%> 
             <div class="row well flooritem">

@@ -21,8 +21,8 @@ public class AddBuilding extends HttpServlet {
         RequestDispatcher rd = null;
         try {
 
-        HttpSession session = request.getSession();
-        session.setMaxInactiveInterval(30 * 60);
+            HttpSession session = request.getSession();
+            session.setMaxInactiveInterval(30 * 60);
 
             Controller controller = new Controller();
 

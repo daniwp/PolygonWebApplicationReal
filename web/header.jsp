@@ -38,6 +38,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="createCustomer.jsp">Create customer</a></li>
                                 <li><a href="index.jsp">Add building</a></li>
+                                <li><a href="viewBuildings.jsp">View my buildings</a></li>
                             </ul>
                         </li> 
                     </ul>

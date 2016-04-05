@@ -1,6 +1,7 @@
 package dataAccessLayer.mapper;
 
 import dataAccessLayer.DBConnector;
+import exceptions.UserAlreadyExistsException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,9 +10,15 @@ import serviceLayer.entity.Customer;
 public class CustomerMapper {
 
     //made by Lasse and Nicolai
-    public void addCustomer(Customer c) {
+    public void addCustomer(Customer c) throws UserAlreadyExistsException {
 
         try {
+            
+            if (checkIfCustomerExistsByUsername(c.getCustomerUsername()) != null) {
+                System.out.println("DAFUQ");
+                throw new UserAlreadyExistsException("A customer with that username already exists!");
+            }
+            
             String query = "INSERT INTO customer (companyName, companyOwnerFirstName, companyOwnerLastName, customerUsername, customerPassword, customerEmail) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
@@ -61,29 +68,32 @@ public class CustomerMapper {
         return customer;
     }
 
-    public Customer getUserByUsername(String username) {
+    // Daniel
+    // Returns null if a user with the username already exists
+    public Customer checkIfCustomerExistsByUsername(String username) throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Customer customer = null;
 
         try {
-            String query = "SELECT * FROM user WHERE uName = (?)";
+            String query = "SELECT * FROM customer WHERE customerUsername = ?";
             ps = DBConnector.getConnection().prepareStatement(query);
-            
             ps.setString(1, username);
 
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                customer = new Customer("","","", rs.getString("customerUsername"),"","");
+                System.out.println("DAFUQ2");
+                customer = new Customer("", "", "", rs.getString("customerUsername"), "", "");
             }
 
-            ps.close();
-            rs.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
+        } finally {
+            ps.close();
+            rs.close();
         }
-            return customer;
+        return customer;
     }
 
 }

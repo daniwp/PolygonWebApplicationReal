@@ -1,6 +1,12 @@
 <jsp:include page="header.jsp" />
 
 <div class="container well">
+    <% if (session.getAttribute("userExistsError") != null) {%>
+    <div class="alert alert-danger">
+        <p class="text-center"><%= session.getAttribute("userExistsError")%> </p>
+    </div>
+    <% }%>
+    <% session.removeAttribute("userExistsError");%>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <h1 class="page-header">Create customer</h1>
@@ -23,7 +29,7 @@
                     <p>Username: </p><input class="form-control" type="text" name="customerUsername" required>
                 </div>
                 <div class="form-group">
-                    <p>Password: </p><input class="form-control" type="text" name="customerPassword" required>
+                    <p>Password: </p><input class="form-control" type="password" name="customerPassword" required>
                 </div>
                 <br>
                 <button class="btn btn-primary col-md-4 col-md-offset-4" type="submit">Create customer</button>

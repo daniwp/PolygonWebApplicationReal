@@ -6,11 +6,12 @@
             <h1 class="page-header">Login page</h1>
             <% if (session.getAttribute("loginError") != null) { %>
             
-            <div class="alert-danger">
+            <div class="alert alert-danger">
                 <p class="text-center"><%= session.getAttribute("loginError") %></p>
             </div>
             
             <% } %>
+            <% session.removeAttribute("loginError"); %>
             <form action="login" method="POST">
                 <div class="form-group">
                     <p>Username: </p><input class="form-control" type="text" name="username" required>

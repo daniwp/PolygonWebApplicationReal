@@ -5,6 +5,7 @@
  */
 package presentationLayer.servlet;
 
+import exceptions.UserAlreadyExistsException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -28,10 +29,10 @@ public class AddCustomer extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         RequestDispatcher rd = null;
+        HttpSession session = request.getSession();
+        session.setMaxInactiveInterval(30 * 60);
+        
         try {
-
-            HttpSession session = request.getSession();
-            session.setMaxInactiveInterval(30 * 60);
 
             Controller controller = new Controller();
 
@@ -44,10 +45,13 @@ public class AddCustomer extends HttpServlet {
 
             controller.addCustomer(companyName, customerFirstName, customerLastName, customerUsername, customerPassword, customerEmail);
 
-            rd = request.getRequestDispatcher("viewBuildings.jsp");
+            rd = request.getRequestDispatcher("index.jsp");
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
-            rd = request.getRequestDispatcher("index.jsp");
+            rd = request.getRequestDispatcher("createCustomer.jsp");
+        } catch (UserAlreadyExistsException ex) {
+            session.setAttribute("userExistsError", ex.getMessage());
+            rd = request.getRequestDispatcher("createCustomer.jsp");
         }
         rd.forward(request, response);
     }

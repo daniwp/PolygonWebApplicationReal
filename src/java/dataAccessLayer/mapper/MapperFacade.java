@@ -1,6 +1,7 @@
 package dataAccessLayer.mapper;
 
 import dataAccessLayer.DBConnector;
+import exceptions.UserAlreadyExistsException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +21,7 @@ public class MapperFacade {
     CustomerMapper customerMapper = new CustomerMapper();
     FloorMapper floorMapper = new FloorMapper();
 
-    public void addBudilding(Building b) {
+    public void addBuilding(Building b) {
         buildingMapper.addBuilding(b);
     }
 
@@ -51,7 +52,7 @@ public class MapperFacade {
         return floorMapper.getAllFloorsByBuildingID(buildingId);
     }
 
-    public void addCustomer(Customer c) {
+    public void addCustomer(Customer c) throws UserAlreadyExistsException {
         customerMapper.addCustomer(c);
     }
 

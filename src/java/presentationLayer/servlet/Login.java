@@ -38,7 +38,9 @@ public class Login extends HttpServlet {
         try {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
+            
             Customer customer = customerMapper.validateLogin(username, password);
+            
             if (customer != null) {
                 rd = request.getRequestDispatcher("index.jsp");
                 session.setAttribute("user", customer);

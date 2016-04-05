@@ -9,7 +9,6 @@ import serviceLayer.entity.Customer;
 public class CustomerMapper {
 
     //made by Lasse and Nicolai
-
     public void addCustomer(Customer c) {
 
         try {
@@ -30,7 +29,7 @@ public class CustomerMapper {
             ee.printStackTrace();
         }
     }
-    
+
     public Customer validateLogin(String customerUsername, String customerPassword) {
         ResultSet rs = null;
         Customer customer = null;
@@ -54,10 +53,37 @@ public class CustomerMapper {
 
                 customer = new Customer(customerId, companyName, customerFirstname, customerLastname, customerUsername, customerPassword, customerEmail);
             }
+            rs.close();
             ps.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return customer;
     }
+
+    public Customer getUserByUsername(String username) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Customer customer = null;
+
+        try {
+            String query = "SELECT * FROM user WHERE uName = (?)";
+            ps = DBConnector.getConnection().prepareStatement(query);
+            
+            ps.setString(1, username);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                customer = new Customer("","","", rs.getString("customerUsername"),"","");
+            }
+
+            ps.close();
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+            return customer;
+    }
+
 }

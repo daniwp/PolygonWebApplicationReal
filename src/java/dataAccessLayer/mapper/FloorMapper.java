@@ -73,6 +73,7 @@ public class FloorMapper {
             }
             
             ps.close();
+            rs.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

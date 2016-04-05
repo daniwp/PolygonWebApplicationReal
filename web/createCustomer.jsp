@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <h1 class="page-header">Create customer</h1>
-            <form action="#" method="POST">
+            <form action="addcustomer" method="POST">
                 <div class="form-group">
                     <p>Company name: </p><input class="form-control" type="text" name="companyName" required>
                 </div>

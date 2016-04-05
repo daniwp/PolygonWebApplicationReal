@@ -23,7 +23,9 @@ public class AddBuilding extends HttpServlet {
 
             HttpSession session = request.getSession();
             session.setMaxInactiveInterval(30 * 60);
-
+            
+            session.setAttribute("nrOfFloors", request.getParameter("nrOfFloors"));
+            
             Controller controller = new Controller();
 
             String buildingName = request.getParameter("buildingName");

@@ -1,3 +1,4 @@
+<%@page import="serviceLayer.entity.Customer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -51,17 +52,26 @@
 
                     <!-- Right side items --> 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="login.jsp">Login</a></li>
+                        <% if (session.getAttribute("user") == null) { %>
+                            <li><a href="login.jsp">Login</a></li>
+                                <% } else { %>
+                        <form action="logout" method="POST">
+                            <button class="no-button" type="submit">Logout</button>
+                        </form>
+                                <% } %>
+                        <li><a href="createCustomer.jsp">Create customer</a></li>
 
                         <!-- Drop down -->
+                        <% if (session.getAttribute("user") != null) { %>
+                        <% Customer customer = (Customer) session.getAttribute("user");%>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Daviddk22 <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= customer.getCustomerFirstName()%> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="createCustomer.jsp">Create customer</a></li>
                                 <li><a href="addBuilding.jsp">Add building</a></li>
                                 <li><a href="viewBuildings.jsp">View my buildings</a></li>
                             </ul>
                         </li> 
+                        <% }%>
                     </ul>
                 </div>
             </div>

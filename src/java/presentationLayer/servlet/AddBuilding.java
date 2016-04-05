@@ -3,8 +3,6 @@ package presentationLayer.servlet;
 import serviceLayer.Controller;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import serviceLayer.entity.Customer;
 
 @WebServlet(name = "AddBuilding", urlPatterns = {"/addbuilding"})
 public class AddBuilding extends HttpServlet {
@@ -19,15 +18,17 @@ public class AddBuilding extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         RequestDispatcher rd = null;
+        Customer customer;
         try {
 
             HttpSession session = request.getSession();
             session.setMaxInactiveInterval(30 * 60);
             
             session.setAttribute("nrOfFloors", request.getParameter("nrOfFloors"));
-            
+            int customerId = Integer.parseInt(request.getParameter("customerId"));
+            System.out.println(customerId);
             Controller controller = new Controller();
-
+            
             String buildingName = request.getParameter("buildingName");
             String ownerName = request.getParameter("ownerName");
             String buildingAddress = request.getParameter("buildingAddress");
@@ -38,7 +39,7 @@ public class AddBuilding extends HttpServlet {
             double totalM2 = Double.parseDouble(request.getParameter("totalM2"));
             int conditionLevel = Integer.parseInt(request.getParameter("conditionLevel"));
             
-            controller.addBuilding(buildingName, buildingAddress, buildingZipcode, buildingCity, buildingYear, nrOfFloors, totalM2, ownerName, conditionLevel, 1);
+            controller.addBuilding(buildingName, buildingAddress, buildingZipcode, buildingCity, buildingYear, nrOfFloors, totalM2, ownerName, conditionLevel, customerId);
             
             rd = request.getRequestDispatcher("addFloor.jsp");
         } catch (SQLException | ClassNotFoundException ex) {

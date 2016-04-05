@@ -1,3 +1,4 @@
+<%@page import="serviceLayer.entity.Customer"%>
 <%@page import="java.util.List"%>
 <%@page import="serviceLayer.entity.Building"%>
 <%@page import="dataAccessLayer.mapper.BuildingMapper"%>
@@ -7,8 +8,11 @@
     <div class="row">
         <div class="col-md-12">
             <%
-                BuildingMapper buildingMapper = new BuildingMapper();
-                List<Building> buildings = buildingMapper.getAllBuildings(1);
+                if (session.getAttribute("user") != null) {
+                    Customer customer = (Customer) session.getAttribute("user");
+                    BuildingMapper buildingMapper = new BuildingMapper();
+                    List<Building> buildings = buildingMapper.getAllBuildings(customer.getCustomerId());
+                
             %>    
             <%
                 for (Building building : buildings) {
@@ -35,7 +39,7 @@
                         <input type="hidden" name="buildingId" value="<%=building.getBuildingId()%>">
                         <button class="btn btn-primary pull-left" type="submit"><i class="fa fa-fw fa-eye"></i> View</button>
                     </form>
-                        <form action="#" method="POST">
+                    <form action="#" method="POST">
                         <input type="hidden" name="buildingId" value="<%=building.getBuildingId()%>">
                         <button style="margin-left: 5px" class="btn btn-success pull-left" type="submit"><i class="fa fa-fw fa-pencil-square-o"></i> Edit</button>
                     </form>
@@ -46,7 +50,7 @@
                 </div>
             </div>
 
-            <% }%>
+            <% }}%>
         </div>
     </div>
 </div>

@@ -30,7 +30,7 @@ public class CustomerMapper {
             ee.printStackTrace();
         }
     }
-
+    
     public Customer validateLogin(String customerUsername, String customerPassword) {
         ResultSet rs = null;
         Customer customer = null;
@@ -46,8 +46,8 @@ public class CustomerMapper {
             if (rs.next()) {
                 int customerId = rs.getInt("customerId");
                 String companyName = rs.getString("companyName");
-                String customerFirstname = rs.getString("customerFirstname");
-                String customerLastname = rs.getString("customerLastname");
+                String customerFirstname = rs.getString("companyOwnerFirstName");
+                String customerLastname = rs.getString("companyOwnerLastName");
                 String cUsername = rs.getString("customerUsername");
                 String cPassword = rs.getString("customerPassword");
                 String customerEmail = rs.getString("customerEmail");

@@ -4,7 +4,14 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <h1 class="page-header">Login page</h1>
-            <form action="#">
+            <% if (session.getAttribute("loginError") != null) { %>
+            
+            <div class="alert-danger">
+                <p class="text-center"><%= session.getAttribute("loginError") %></p>
+            </div>
+            
+            <% } %>
+            <form action="login" method="POST">
                 <div class="form-group">
                     <p>Username: </p><input class="form-control" type="text" name="username" required>
                 </div>

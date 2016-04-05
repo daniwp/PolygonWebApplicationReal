@@ -7,6 +7,8 @@ package presentationLayer.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import serviceLayer.Controller;
 
-
 /**
  *
  * @author PeterHenriksen
@@ -24,35 +25,32 @@ import serviceLayer.Controller;
 @WebServlet(name = "AddCustomer", urlPatterns = {"/addcustomer"})
 public class AddCustomer extends HttpServlet {
 
-     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-         RequestDispatcher rd = null;
-            try {
-                
-                HttpSession session = request.getSession();
-                session.setMaxInactiveInterval(30 * 60);
-                
-                Controller controller = new Controller();
-                
-                String companyName = request.getParameter("companyName");
-                String customerFirstName = request.getParameter("customerFirstName");
-                String customerLastName = request.getParameter("customerLastName");
-                String customerUsername = request.getParameter("customerUsername");
-                String customerPassword = request.getParameter("customerPassword");
-                String customerEmail = request.getParameter("customerEmail");
-                
-                controller.addCustomer(companyName, customerFirstName, customerLastName, customerUsername, customerPassword, customerEmail);
-                
-            
-             
-            rd = request.getRequestDispatcher("createCustomer.jsp");
-            }catch(SQLException | ClassNotFoundException ex){
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        RequestDispatcher rd = null;
+        try {
+
+            HttpSession session = request.getSession();
+            session.setMaxInactiveInterval(30 * 60);
+
+            Controller controller = new Controller();
+
+            String companyName = request.getParameter("companyName");
+            String customerFirstName = request.getParameter("companyOwnerFirstName");
+            String customerLastName = request.getParameter("companyOwnerLastName");
+            String customerUsername = request.getParameter("customerUsername");
+            String customerPassword = request.getParameter("customerPassword");
+            String customerEmail = request.getParameter("customerEmail");
+
+            controller.addCustomer(companyName, customerFirstName, customerLastName, customerUsername, customerPassword, customerEmail);
+
+            rd = request.getRequestDispatcher("viewBuildings.jsp");
+        } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
-            rd = request.getRequestDispatcher("AddCustomer.jsp");
-          }    
-         }
-     
-        
+            rd = request.getRequestDispatcher("index.jsp");
+        }
+        rd.forward(request, response);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -66,7 +64,11 @@ public class AddCustomer extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -80,7 +82,11 @@ public class AddCustomer extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddCustomer.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -93,5 +99,3 @@ public class AddCustomer extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 }
-
-

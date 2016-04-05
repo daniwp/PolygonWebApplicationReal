@@ -10,21 +10,21 @@ public class CustomerMapper {
     public void addCustomer(Customer c)  {
 
         try {
-            String query = "INSERT INTO customer (companyName, customerOwnerFirstName, customerOwnerLastName, customerUsername, customerPassword, customerEmail) VALUES (?,?,?,?,?,?)";
+            String query = "INSERT INTO customer (companyName, companyOwnerFirstName, companyOwnerLastName, customerUsername, customerPassword, customerEmail) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setString(1, c.getCompanyName());
             ps.setString(2, c.getCustomerFirstName());
-            ps.setString(4, c.getCustomerLastName());
-            ps.setString(5, c.getCustomerUsername());
-            ps.setString(6, c.getCustomerPassword());
-            ps.setString(7, c.getCustomerEmail());
+            ps.setString(3, c.getCustomerLastName());
+            ps.setString(4, c.getCustomerUsername());
+            ps.setString(5, c.getCustomerPassword());
+            ps.setString(6, c.getCustomerEmail());
 
             ps.executeUpdate();
 
             ps.close();
         } catch (SQLException ee) {
-            
+            ee.printStackTrace();
         }
     }
 }

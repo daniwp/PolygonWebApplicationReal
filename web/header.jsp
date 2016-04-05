@@ -58,7 +58,7 @@
                             <li><a href="logout">Logout</a></li>
                                 <% } %>
                         <li><a href="createCustomer.jsp">Create customer</a></li>
-
+                        
                         <!-- Drop down -->
                         <% if (session.getAttribute("user") != null) { %>
                         <% Customer customer = (Customer) session.getAttribute("user");%>

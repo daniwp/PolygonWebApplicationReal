@@ -13,7 +13,7 @@ import serviceLayer.entity.Floor;
 
 /**
  *
- * @author danie
+ * @author Daniel Winkel, Lasse Lauritsen, Nicolai Mikkelsen og Peter Henriksen
  */
 public class MapperFacade {
 

@@ -66,7 +66,7 @@ public class FloorMapper {
                 double floorSize = rs.getDouble("size");
                 int buildingID = rs.getInt("buildingId");
                 
-                floor = new Floor(floorId, floorNr, floorSize, buildingId);
+                floor = new Floor(floorId, floorNr, floorSize, buildingID);
                 floors.add(floor);
                 
                 ps.executeQuery();

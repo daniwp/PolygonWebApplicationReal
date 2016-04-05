@@ -55,9 +55,7 @@
                         <% if (session.getAttribute("user") == null) { %>
                             <li><a href="login.jsp">Login</a></li>
                                 <% } else { %>
-                        <form action="logout" method="POST">
-                            <button class="no-button" type="submit">Logout</button>
-                        </form>
+                            <li><a href="logout">Logout</a></li>
                                 <% } %>
                         <li><a href="createCustomer.jsp">Create customer</a></li>
 

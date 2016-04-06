@@ -53,12 +53,10 @@
                     <!-- Right side items --> 
                     <ul class="nav navbar-nav navbar-right">
                         <% if (session.getAttribute("user") == null) { %>
-                            <li><a href="login.jsp">Login</a></li>
-                                <% } else { %>
-                            <li><a href="logout">Logout</a></li>
-                                <% } %>
+                        <li><a href="login.jsp">Login</a></li>
+                            <% } %>
                         <li><a href="createCustomer.jsp">Create customer</a></li>
-                        
+
                         <!-- Drop down -->
                         <% if (session.getAttribute("user") != null) { %>
                         <% Customer customer = (Customer) session.getAttribute("user");%>
@@ -67,6 +65,9 @@
                             <ul class="dropdown-menu">
                                 <li><a href="addBuilding.jsp">Add building</a></li>
                                 <li><a href="viewBuildings.jsp">View my buildings</a></li>
+                                    <% if (session.getAttribute("user") != null) { %>
+                                <li><a href="logout">Logout</a></li>
+                                    <% } %>
                             </ul>
                         </li> 
                         <% }%>

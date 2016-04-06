@@ -11,10 +11,6 @@ import serviceLayer.entity.Building;
 import serviceLayer.entity.Customer;
 import serviceLayer.entity.Floor;
 
-/**
- *
- * @author Daniel Winkel, Lasse Lauritsen, Nicolai Mikkelsen og Peter Henriksen
- */
 public class MapperFacade {
 
     BuildingMapper buildingMapper = new BuildingMapper();

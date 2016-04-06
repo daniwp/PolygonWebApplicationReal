@@ -55,7 +55,9 @@
                         <% if (session.getAttribute("user") == null) { %>
                         <li><a href="login.jsp">Login</a></li>
                             <% } %>
+                            <% if (session.getAttribute("user") != null) { %>
                         <li><a href="createCustomer.jsp">Create customer</a></li>
+                            <% } %>
 
                         <!-- Drop down -->
                         <% if (session.getAttribute("user") != null) { %>

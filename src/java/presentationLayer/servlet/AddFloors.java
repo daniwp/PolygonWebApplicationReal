@@ -44,12 +44,9 @@ public class AddFloors extends HttpServlet {
                 fNr = "floorNr" + (i + 1)  + "";
                 fSize = "floorSize" + (i + 1) + "";
                 
-                System.out.println(fNr);
-                System.out.println(fSize);
-                
                 int floorNr = Integer.parseInt(request.getParameter(fNr.toString()));
                 int floorSize = Integer.parseInt(request.getParameter(fSize.toString()));
-                int buildingId = controller.getCurrentBuilding().getFloors();
+                int buildingId = Integer.parseInt(request.getParameter("buildingId"));
 
                 floor = new Floor(floorNr, floorSize, buildingId);
                 floors.add(floor);

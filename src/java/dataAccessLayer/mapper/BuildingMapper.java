@@ -1,6 +1,7 @@
 package dataAccessLayer.mapper;
 
 import dataAccessLayer.DBConnector;
+import exceptions.ConditionLevelException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,12 +13,15 @@ public class BuildingMapper {
 
     //made by Lasse
 
-    public void addBuilding(Building b) {
+    public void addBuilding(Building b) throws ConditionLevelException {
 
         try {
             String query = "INSERT INTO building (buildingName, address, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, customerId) VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
-
+            
+            if (b.getBuildingCondition() < 0 || b.getBuildingCondition() > 3) {
+                    throw new ConditionLevelException("The condition must be between 0 - 3");
+                }
             ps.setString(1, b.getName());
             ps.setString(2, b.getAddress());
             ps.setInt(3, b.getZipcodes());
@@ -125,5 +129,27 @@ public class BuildingMapper {
             ee.printStackTrace();
         }
         return building;
+    }
+    
+    public int getBuildingIdByName(String name) {
+        ResultSet rs = null;
+        int buildingId = 0;
+        try {
+            String query = "Select buildingId from building WHERE buildingName = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            ps.setString(1, name);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                buildingId = rs.getInt("buildingId");
+
+            }
+            ps.close();
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return buildingId;
     }
 }

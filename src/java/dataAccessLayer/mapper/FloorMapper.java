@@ -56,8 +56,10 @@ public class FloorMapper {
         ResultSet rs = null;
         try {
             
-            String query = "SELECT * FROM floor WHERE (buildingId) = ?";
+            String query = "SELECT * FROM floor WHERE buildingId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            ps.setInt(1, buildingId);
+            rs = ps.executeQuery();
             
             while(rs.next()) {
                 
@@ -69,12 +71,11 @@ public class FloorMapper {
                 floor = new Floor(floorId, floorNr, floorSize, buildingID);
                 floors.add(floor);
                 
-                ps.executeQuery();
             }
             
             ps.close();
             rs.close();
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return floors;

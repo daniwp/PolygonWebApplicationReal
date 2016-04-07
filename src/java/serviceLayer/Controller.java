@@ -4,6 +4,7 @@ import dataAccessLayer.mapper.BuildingMapper;
 import dataAccessLayer.mapper.CustomerMapper;
 import dataAccessLayer.mapper.FloorMapper;
 import dataAccessLayer.mapper.MapperFacade;
+import exceptions.ConditionLevelException;
 import exceptions.UserAlreadyExistsException;
 import java.sql.SQLException;
 import java.util.List;
@@ -28,7 +29,7 @@ public class Controller {
     }
 
     // Creates a building and then inserts it into the database
-    public void addBuilding(String name, String address, int zipcodes, String city, int buildingYear, int floors, double totalSize, String buildingOwner, int buildingCondition, int costumerId) throws SQLException, ClassNotFoundException {
+    public void addBuilding(String name, String address, int zipcodes, String city, int buildingYear, int floors, double totalSize, String buildingOwner, int buildingCondition, int costumerId) throws SQLException, ClassNotFoundException, ConditionLevelException {
         Building building = new Building(name, address, zipcodes, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, costumerId);
 
         setCurrentBuilding(building);
@@ -53,5 +54,9 @@ public class Controller {
     
     public void validateLogin(String customerUsername, String customerPassword) {
         mapperFacade.validateLogin(customerUsername, customerPassword);
+    }
+    
+    public int getBuildingIdByName(String name) {
+        return mapperFacade.getBuildingIdByName(name);
     }
 }

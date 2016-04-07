@@ -53,8 +53,6 @@ public class Building {
 
     public Building() {
     }
-
-    
     
     public int getBuildingId() {
         return buildingId;

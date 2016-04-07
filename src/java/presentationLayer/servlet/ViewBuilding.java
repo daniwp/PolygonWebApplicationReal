@@ -26,8 +26,11 @@ public class ViewBuilding extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         RequestDispatcher rd = null;
+        HttpSession session = request.getSession();
+        session.setMaxInactiveInterval(30 * 60);
+
+        session.setAttribute("buildingId", request.getParameter("buildingId"));
         rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
         rd.forward(request, response);
 

@@ -5,9 +5,10 @@
 <%@page import="serviceLayer.entity.Building"%>
 <jsp:include page="header.jsp" />
 
-<% MapperFacade mapperFacade = new MapperFacade();
-    Building building = mapperFacade.getBuildingByBuildingId(Integer.parseInt(request.getParameter("buildingId"))); %>
-<% List<Floor> floors = mapperFacade.getAllFloorsByBuildingID(Integer.parseInt(request.getParameter("buildingId"))); %>
+<%
+    MapperFacade mapperFacade = new MapperFacade();
+    Building building = mapperFacade.getBuildingByBuildingId(Integer.parseInt((String)session.getAttribute("buildingId")));
+    List<Floor> floors = mapperFacade.getAllFloorsByBuildingID(Integer.parseInt((String)session.getAttribute("buildingId"))); %>
 
 <div class="container well">
     <div class="col-md-10 col-md-offset-1">
@@ -68,13 +69,13 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-4">
-                        <h4><strong><%= floor.getFloor() %>.</strong> Floor</h4>
+                        <h4><strong><%= floor.getFloor()%>.</strong> Floor</h4>
                     </div>
                     <div class="col-md-4">
-                        <p>Size: <strong><%= floor.getSize() %></strong></p>
+                        <p>Size: <strong><%= floor.getSize()%></strong></p>
                     </div>
                     <form action="deletefloor" method="POST">
-                        <input type="hidden" name="floorId" value="<%=floor.getFloorId() %>">
+                        <input type="hidden" name="floorId" value="<%=floor.getFloorId()%>">
                         <button class="btn btn-danger col-md-2 col-md-offset-1" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
                     </form>
                 </div>

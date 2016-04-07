@@ -44,9 +44,10 @@ public class AddFloors extends HttpServlet {
                 fNr = "floorNr" + (i + 1)  + "";
                 fSize = "floorSize" + (i + 1) + "";
                 
-                int floorNr = Integer.parseInt(request.getParameter(fNr.toString()));
-                int floorSize = Integer.parseInt(request.getParameter(fSize.toString()));
-                int buildingId = Integer.parseInt(request.getParameter("buildingId"));
+                session.setAttribute("buildingId", request.getParameter("buildingId"));
+                int floorNr = Integer.parseInt(request.getParameter(fNr));
+                int floorSize = Integer.parseInt(request.getParameter(fSize));
+                int buildingId = Integer.parseInt((String)session.getAttribute("buildingId"));
 
                 floor = new Floor(floorNr, floorSize, buildingId);
                 floors.add(floor);

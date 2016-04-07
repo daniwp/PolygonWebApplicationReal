@@ -38,12 +38,11 @@ public class DeleteFloor extends HttpServlet {
 
             controller.deleteFloorByFloorId(floorId);
 
-            rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
         } catch (Exception e) {
             e.printStackTrace();
-            rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
         }
 
+        rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
         rd.forward(request, response);
 
     }

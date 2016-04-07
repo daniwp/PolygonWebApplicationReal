@@ -38,27 +38,31 @@ public class AddFloors extends HttpServlet {
 
             String fNr = "";
             String fSize = "";
-            
-            for (int i = 0; i < controller.getCurrentBuilding().getFloors(); i++) {
-                
-                fNr = "floorNr" + (i + 1)  + "";
+
+            for (int i = 0; i < Integer.parseInt(request.getParameter("nrOfFloors")); i++) {
+
+                fNr = "floorNr" + (i + 1) + "";
                 fSize = "floorSize" + (i + 1) + "";
                 
-                session.setAttribute("buildingId", request.getParameter("buildingId"));
                 int floorNr = Integer.parseInt(request.getParameter(fNr));
                 int floorSize = Integer.parseInt(request.getParameter(fSize));
-                int buildingId = Integer.parseInt((String)session.getAttribute("buildingId"));
-
+                int buildingId = Integer.parseInt(request.getParameter("buildingId"));
+                
                 floor = new Floor(floorNr, floorSize, buildingId);
                 floors.add(floor);
-
+                
             }
+            
             controller.addFloors(floors);
-            rd = request.getRequestDispatcher("index.jsp");
+            
+            rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
         } catch (Exception e) {
             e.printStackTrace();
             rd = request.getRequestDispatcher("addFloor.jsp");
         }
+        
+        session.removeAttribute("nrOfFloors");
+        
         rd.forward(request, response);
     }
 

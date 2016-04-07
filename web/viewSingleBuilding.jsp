@@ -7,8 +7,8 @@
 
 <%
     MapperFacade mapperFacade = new MapperFacade();
-    Building building = mapperFacade.getBuildingByBuildingId(Integer.parseInt((String)session.getAttribute("buildingId")));
-    List<Floor> floors = mapperFacade.getAllFloorsByBuildingID(Integer.parseInt((String)session.getAttribute("buildingId"))); %>
+    Building building = mapperFacade.getBuildingByBuildingId(Integer.parseInt((String) session.getAttribute("buildingId")));
+    List<Floor> floors = mapperFacade.getAllFloorsByBuildingID(Integer.parseInt((String) session.getAttribute("buildingId"))); %>
 
 <div class="container well">
     <div class="col-md-10 col-md-offset-1">
@@ -62,6 +62,64 @@
             </div>
         </div>
         <% }%>
+        <form action="showaddfloors" method="POST">
+            <div class="row">
+                <div class="pull-left col-md-offset-1">
+                    <a class="btn btn-primary" href="viewBuildings.jsp"><i class="fa fa-fw fa-angle-double-left"></i> Back</a>
+                </div>
+                <div class="col-md-4 pull-right">
+                    <div class="col-md-7">
+                        <p>Nr. of floors</p>
+                    </div>
+                    <div class="col-md-5">
+                        <input class="form-control" type="number" maxlength="3" name="nrOfFloors" required>
+                    </div>
+                </div>
+                <div class="col-md-2 pull-right">
+                    <button class="btn btn-primary" type="submit">Add more floors</button>
+                </div>
+            </div>
+        </form>
+        <br><br>
+
+        <% if (session.getAttribute("nrOfFloors") != null) {
+                for (int i = 0; i < Integer.parseInt((String) session.getAttribute("nrOfFloors")); i++) {%> 
+        <form action="addfloor" method="POST">
+            <div class="row well flooritem">
+                <div class="col-md-2">
+                    <h4 class="vtop"><%= i + 1%>. </h4>
+                </div>
+                <div class="vcenter col-md-4">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <p>Floor nr.: </p>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="number" maxlength="3" name="floorNr<%=i + 1%>" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <p>Floor size: </p>
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-control" type="number" maxlength="4" name="floorSize<%=i + 1%>" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% }%>
+            <div class="row">
+                <input type="hidden" name="buildingId" value="<%= Integer.parseInt((String) session.getAttribute("buildingId")) %>">
+                <input type="hidden" name="nrOfFloors" value="<%= session.getAttribute("nrOfFloors")%>">
+                <button type="submit" class="btn btn-primary col-md-2 col-md-offset-5">Add new floors</button>
+            </div>
+            <br>
+        </form>
+        <% }  %>
+
 
         <% if (!floors.isEmpty()) {
                 for (Floor floor : floors) {%>
@@ -84,8 +142,6 @@
         <% }
             }%>
 
-        <a class="btn btn-primary" href="viewBuildings.jsp"><i class="fa fa-fw fa-angle-double-left"></i> Back</a>
     </div>
 </div>
-
 <jsp:include page="footer.jsp" />

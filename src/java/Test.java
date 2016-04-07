@@ -1,9 +1,9 @@
 
-import dataAccessLayer.mapper.BuildingMapper;
+import dataAccessLayer.mapper.FloorMapper;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import serviceLayer.entity.Building;
+import serviceLayer.entity.Floor;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,13 +17,10 @@ import serviceLayer.entity.Building;
 public class Test {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        BuildingMapper buildingMapper = new BuildingMapper();
-        List<Building> buildings = new ArrayList();
-        
-        buildings = buildingMapper.getAllBuildings(1);
-        
-        for (Building building : buildings) {
-            System.out.println(building.getName());
-        }
+        FloorMapper fm = new FloorMapper();
+        List<Floor> floors = new ArrayList();
+        Floor floor = new Floor(1, 2, 6);
+        floors.add(floor);
+        fm.addFloors(floors);
     }
 }

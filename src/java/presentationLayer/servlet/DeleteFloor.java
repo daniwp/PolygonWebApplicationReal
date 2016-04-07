@@ -40,6 +40,7 @@ public class DeleteFloor extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
+            rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
         }
 
         rd = request.getRequestDispatcher("viewSingleBuilding.jsp");

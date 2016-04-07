@@ -7,7 +7,6 @@ package presentationLayer.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,14 +14,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import serviceLayer.Controller;
 
 /**
  *
  * @author Daniel
  */
-@WebServlet(name = "ViewBuilding", urlPatterns = {"/viewbuilding"})
-public class ViewBuilding extends HttpServlet {
+@WebServlet(name = "ShowAddFloors", urlPatterns = {"/showaddfloors"})
+public class ShowAddFloors extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,13 +28,9 @@ public class ViewBuilding extends HttpServlet {
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
 
-        if (session.getAttribute("nrOfFloors") != null) {
-            session.removeAttribute("nrOfFloors");
-        }
-        session.setAttribute("buildingId", request.getParameter("buildingId"));
+        session.setAttribute("nrOfFloors", request.getParameter("nrOfFloors"));
         rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
         rd.forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

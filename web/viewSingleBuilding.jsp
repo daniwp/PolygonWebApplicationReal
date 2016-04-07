@@ -64,19 +64,19 @@
         <% }%>
         <form action="showaddfloors" method="POST">
             <div class="row">
-                <div class="pull-left col-md-offset-1">
+                <div class="col-md-1 pull-left">
                     <a class="btn btn-primary" href="viewBuildings.jsp"><i class="fa fa-fw fa-angle-double-left"></i> Back</a>
                 </div>
+                <div class="col-md-2 pull-right">
+                    <button class="btn btn-primary" type="submit">Add more floors</button>
+                </div>
                 <div class="col-md-4 pull-right">
-                    <div class="col-md-7">
+                    <div class="col-md-5 col-md-offset-2">
                         <p>Nr. of floors</p>
                     </div>
                     <div class="col-md-5">
                         <input class="form-control" type="number" maxlength="3" name="nrOfFloors" required>
                     </div>
-                </div>
-                <div class="col-md-2 pull-right">
-                    <button class="btn btn-primary" type="submit">Add more floors</button>
                 </div>
             </div>
         </form>
@@ -112,7 +112,7 @@
             </div>
             <% }%>
             <div class="row">
-                <input type="hidden" name="buildingId" value="<%= Integer.parseInt((String) session.getAttribute("buildingId")) %>">
+                <input type="hidden" name="buildingId" value="<%= Integer.parseInt((String) session.getAttribute("buildingId"))%>">
                 <input type="hidden" name="nrOfFloors" value="<%= session.getAttribute("nrOfFloors")%>">
                 <button type="submit" class="btn btn-primary col-md-2 col-md-offset-5">Add new floors</button>
             </div>
@@ -141,7 +141,7 @@
         </div>
         <% }
             }%>
-
     </div>
 </div>
+
 <jsp:include page="footer.jsp" />

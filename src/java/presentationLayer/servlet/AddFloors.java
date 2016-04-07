@@ -39,7 +39,7 @@ public class AddFloors extends HttpServlet {
             String fNr = "";
             String fSize = "";
 
-            for (int i = 0; i < Integer.parseInt(request.getParameter("nrOfFloors")); i++) {
+            for (int i = 0; i < Integer.parseInt((String)session.getAttribute("nrOfFloors")); i++) {
 
                 fNr = "floorNr" + (i + 1) + "";
                 fSize = "floorSize" + (i + 1) + "";
@@ -55,7 +55,7 @@ public class AddFloors extends HttpServlet {
             
             controller.addFloors(floors);
             
-            rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
+            rd = request.getRequestDispatcher("viewBuildings.jsp");
         } catch (Exception e) {
             e.printStackTrace();
             rd = request.getRequestDispatcher("addFloor.jsp");

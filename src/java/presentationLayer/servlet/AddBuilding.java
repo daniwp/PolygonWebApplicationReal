@@ -26,6 +26,7 @@ public class AddBuilding extends HttpServlet {
 
             session.setAttribute("nrOfFloors", request.getParameter("nrOfFloors"));
             session.setAttribute("buildingName", request.getParameter("buildingName"));
+
             int customerId = Integer.parseInt(request.getParameter("customerId"));
             System.out.println(customerId);
             Controller controller = new Controller();
@@ -41,8 +42,7 @@ public class AddBuilding extends HttpServlet {
             int conditionLevel = Integer.parseInt(request.getParameter("conditionLevel"));
 
             controller.addBuilding(buildingName, buildingAddress, buildingZipcode, buildingCity, buildingYear, nrOfFloors, totalM2, ownerName, conditionLevel, customerId);
-            
-            
+
             rd = request.getRequestDispatcher("addFloor.jsp");
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();

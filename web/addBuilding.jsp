@@ -1,54 +1,55 @@
 <%@page import="serviceLayer.entity.Customer"%>
+<%@page import="serviceLayer.entity.Customer"%>
 <jsp:include page="header.jsp" />
 
 <% Customer customer = (Customer) session.getAttribute("user");%>
 <div class="container well">
     <div class="col-md-8 col-md-offset-2">
         <h1 class="page-header">Add building</h1>
-        <form action="addbuilding" method="POST">
+        <form data-disable="true" action="addbuilding" method="POST" id="addbuildingform">
             <div class="col-md-12">
                 <div class="row">
                     <div class="form-group">
-                        <p>Building Name * </p><input class="form-control" type="text" name="buildingName" required>
+                        <p>Building Name * </p><input class="form-control" type="text" name="buildingName" id="buildingName" >
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group">
-                        <p>Owner name * </p><input class="form-control" type="text" name="ownerName" required>
+                        <p>Owner name * </p><input class="form-control" type="text" name="ownerName" id="ownerName" >
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group">
-                        <p>Address * </p><input class="form-control" type="text" name="buildingAddress" required>
+                        <p>Address * </p><input class="form-control" type="text" name="buildingAddress" id="buildingAddress">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group">
-                        <p>City *</p><input class="form-control" type="text" name="buildingCity" required>
+                        <p>City *</p><input class="form-control" type="text" name="buildingCity" id="buildingCity">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Zipcode *</p><input class="form-control" type="number" maxlength="4" name="buildingZipcode" required>
+                        <p>Zipcode *</p><input class="form-control" type="number" name="buildingZipcode" id="buildingZipcode" >
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Building year *</p><input class="form-control" type="number" maxlength="4" name="buildingYear" required>
+                        <p>Building year *</p><input class="form-control" type="number" name="buildingYear" id="buildingYear" >
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Nr. of floors *</p><input class="form-control" type="number" maxlength="2" name="nrOfFloors" required>
+                        <p>Nr. of floors *</p><input class="form-control" type="number" name="nrOfFloors" id="nrOfFloors" >
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Total m2 *</p><input class="form-control" type="number" maxlength="10" name="totalM2" required>
+                        <p>Total m2 *</p><input class="form-control" type="number" name="totalM2" id="totalM2" >
                     </div>
                 </div>
             </div>
@@ -59,15 +60,15 @@
                         <% if (session.getAttribute("conditionError") != null) { %>
                         <p style="color: red">Condition must be in range of 0 - 3 inclusive</p>
                         <% }%>
-                        <% session.removeAttribute("conditionError"); %>
-                        
+                        <% session.removeAttribute("conditionError");%>
+
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-group">
-                        <input class="form-control" type="number" maxlength="1" name="conditionLevel" required>
+                        <input class="form-control" type="number" name="conditionLevel" id="conditionLevel" >
                     </div>
                 </div>
             </div>

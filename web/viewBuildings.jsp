@@ -8,15 +8,17 @@
     <div class="row">
         <div class="col-md-12">
             <%
-                if (session.getAttribute("user") != null) {
-                    Customer customer = (Customer) session.getAttribute("user");
-                    BuildingMapper buildingMapper = new BuildingMapper();
-                    List<Building> buildings = buildingMapper.getAllBuildings(customer.getCustomerId());
-                
-            %>    
-            <%
-                for (Building building : buildings) {
-            %>
+                if (session.getAttribute("user") != null) { %>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="addBuilding.jsp" class="btn btn-success pull-left" ><i class="fa fa-plus"></i> Add building</a>
+                </div>
+            </div><br>
+            <% Customer customer = (Customer) session.getAttribute("user");
+                BuildingMapper buildingMapper = new BuildingMapper();
+                List<Building> buildings = buildingMapper.getAllBuildings(customer.getCustomerId());%>    
+            <% for (Building building : buildings) {%>
+
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-building fa-fw"></i>&nbsp;&nbsp;<%= building.getName()%></h3>
@@ -50,7 +52,8 @@
                 </div>
             </div>
 
-            <% }}%>
+            <% }
+                }%>
         </div>
     </div>
 </div>

@@ -25,7 +25,7 @@ public class FloorMapper {
 
                 ps.executeUpdate();
             }
-            
+
             ps.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -51,33 +51,48 @@ public class FloorMapper {
     }
 
     public List<Floor> getAllFloorsByBuildingID(int buildingId) {
-            List<Floor> floors = new ArrayList();
+        List<Floor> floors = new ArrayList();
         Floor floor;
         ResultSet rs = null;
         try {
-            
+
             String query = "SELECT * FROM floor WHERE buildingId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setInt(1, buildingId);
             rs = ps.executeQuery();
-            
-            while(rs.next()) {
-                
+
+            while (rs.next()) {
+
                 int floorId = rs.getInt("floorId");
                 int floorNr = rs.getInt("floor");
                 double floorSize = rs.getDouble("size");
                 int buildingID = rs.getInt("buildingId");
-                
+
                 floor = new Floor(floorId, floorNr, floorSize, buildingID);
                 floors.add(floor);
-                
+
             }
-            
+
             ps.close();
             rs.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return floors;
+    }
+
+    public void deleteFloorByFloorId(int floorId) {
+        try {
+            String query = "DELETE FROM floor WHERE floorId = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+
+            ps.setInt(1, floorId);
+
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException ee) {
+            ee.printStackTrace();
+        }
     }
 }

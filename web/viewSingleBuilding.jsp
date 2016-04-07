@@ -68,14 +68,14 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-4">
-                        <p>Street: <strong><%= building.getAddress()%></strong></p>
+                        <h4><strong><%= floor.getFloor() %>.</strong> Floor</h4>
                     </div>
                     <div class="col-md-4">
-                        <p>Zipcode: <strong><%= building.getZipcodes()%></strong></p>
+                        <p>Size: <strong><%= floor.getSize() %></strong></p>
                     </div>
-                    <form action="deletebuilding" method="POST">
-                        <input type="hidden" name="buildingId" value="<%=building.getBuildingId()%>">
-                        <button class="btn btn-danger pull-right" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
+                    <form action="deletefloor" method="POST">
+                        <input type="hidden" name="floorId" value="<%=floor.getFloorId() %>">
+                        <button class="btn btn-danger col-md-2 col-md-offset-1" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
                     </form>
                 </div>
             </div>

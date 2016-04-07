@@ -59,4 +59,8 @@ public class Controller {
     public int getBuildingIdByName(String name) {
         return mapperFacade.getBuildingIdByName(name);
     }
+    
+    public void deleteFloorByFloorId(int floorId) {
+        mapperFacade.deleteFloorByFloorId(floorId);
+    }
 }

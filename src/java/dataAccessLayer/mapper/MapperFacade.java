@@ -35,7 +35,7 @@ public class MapperFacade {
     public Building getBuildingByBuildingId(int buildingId) {
         return buildingMapper.getBuildingByBuildingId(buildingId);
     }
-    
+
     public int getBuildingIdByName(String name) {
         return buildingMapper.getBuildingIdByName(name);
     }
@@ -51,6 +51,10 @@ public class MapperFacade {
 
     public List<Floor> getAllFloorsByBuildingID(int buildingId) {
         return floorMapper.getAllFloorsByBuildingID(buildingId);
+    }
+
+    public void deleteFloorByFloorId(int floorId) {
+        floorMapper.deleteFloorByFloorId(floorId);
     }
 
     public void addCustomer(Customer c) throws UserAlreadyExistsException {

@@ -31,10 +31,10 @@ public class AddCustomer extends HttpServlet {
         RequestDispatcher rd = null;
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
-        
-        try {
 
-            Controller controller = new Controller();
+        Controller controller = new Controller();
+
+        try {
 
             String companyName = request.getParameter("companyName");
             String customerFirstName = request.getParameter("companyOwnerFirstName");

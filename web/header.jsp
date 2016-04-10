@@ -50,13 +50,13 @@
                 <!-- Menu Items -->
                 <div class="collapse navbar-collapse" id="mainNavBar">
 
-                    <!-- Right side items --> 
+                    <!-- Right side items when logged out--> 
                     <ul class="nav navbar-nav navbar-right">
                         <% if (session.getAttribute("user") == null) { %>
                         <li><a href="login.jsp">Login</a></li>
                             <% } %>
 
-                        <!-- Drop down -->
+                        <!-- Drop down for User-->
                         <% if (session.getAttribute("user") != null) { %>
                         <% Customer customer = (Customer) session.getAttribute("user");%>
                         <li class="dropdown">

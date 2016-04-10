@@ -57,11 +57,6 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         <p>Building condition (from 0 - 3) * </p>
-                        <% if (session.getAttribute("conditionError") != null) { %>
-                        <p style="color: red">Condition must be in range of 0 - 3 inclusive</p>
-                        <% }%>
-                        <% session.removeAttribute("conditionError");%>
-
                     </div>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+<%@page import="serviceLayer.Controller"%>
 <%@page import="serviceLayer.entity.Customer"%>
 <%@page import="java.util.List"%>
 <%@page import="serviceLayer.entity.Building"%>
@@ -15,8 +16,8 @@
                 </div>
             </div><br>
             <% Customer customer = (Customer) session.getAttribute("user");
-                BuildingMapper buildingMapper = new BuildingMapper();
-                List<Building> buildings = buildingMapper.getAllBuildings(customer.getCustomerId());%>    
+                Controller controller = new Controller();
+                List<Building> buildings = controller.getAllBuildingsByCustomerId(customer.getCustomerId());%>    
             <% for (Building building : buildings) {%>
 
             <div class="panel panel-primary">

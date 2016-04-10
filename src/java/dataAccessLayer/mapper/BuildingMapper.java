@@ -1,7 +1,6 @@
 package dataAccessLayer.mapper;
 
 import dataAccessLayer.DBConnector;
-import exceptions.ConditionLevelException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,15 +12,12 @@ public class BuildingMapper {
 
     //made by Lasse
 
-    public void addBuilding(Building b) throws ConditionLevelException {
+    public void addBuilding(Building b)  {
 
         try {
             String query = "INSERT INTO building (buildingName, address, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, customerId) VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             
-            if (b.getBuildingCondition() < 0 || b.getBuildingCondition() > 3) {
-                    throw new ConditionLevelException("The condition must be between 0 - 3");
-                }
             ps.setString(1, b.getName());
             ps.setString(2, b.getAddress());
             ps.setInt(3, b.getZipcodes());
@@ -37,12 +33,12 @@ public class BuildingMapper {
 
             ps.close();
         } catch (SQLException ee) {
-
+            ee.printStackTrace();
         }
     }
     
     // In this method we get all the information about the building up from the database.
-    public List<Building> getAllBuildings(int customerId) {
+    public List<Building> getAllBuildingsByCustomerId(int customerId) {
         List<Building> buildings = new ArrayList();
         Building building;
         ResultSet rs = null;
@@ -152,4 +148,49 @@ public class BuildingMapper {
         }
         return buildingId;
     }
+    
+    public int getNumberOfFloorsByBuildingId(int buildingId) {
+        ResultSet rs = null;
+        int numberOfFloors = 0;
+        
+        try {
+            
+            String query = "Select * from floor WHERE buildingId = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            
+            ps.setInt(1, buildingId);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                numberOfFloors ++;
+            }
+            
+            ps.close();
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return numberOfFloors;
+    }
+    
+    public void updateBuildingFloorsByBuildingId(int buildingId) {
+        
+        try {
+            int floors = getNumberOfFloorsByBuildingId(buildingId);
+            
+            String query = "UPDATE building SET floors=(?) where (buildingId) = (?)";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            
+            ps.setInt(1, floors);
+            ps.setInt(2, buildingId);
+
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException ee) {
+            ee.printStackTrace();
+        }
+    }
+    
 }

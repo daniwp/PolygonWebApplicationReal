@@ -1,6 +1,5 @@
 package presentationLayer.servlet;
 
-import exceptions.ConditionLevelException;
 import serviceLayer.Controller;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,17 +18,17 @@ public class AddBuilding extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         RequestDispatcher rd = null;
-        Customer customer;
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
+        
+        Controller controller = new Controller();
+        
         try {
 
             session.setAttribute("nrOfFloors", request.getParameter("nrOfFloors"));
             session.setAttribute("buildingName", request.getParameter("buildingName"));
 
             int customerId = Integer.parseInt(request.getParameter("customerId"));
-            System.out.println(customerId);
-            Controller controller = new Controller();
 
             String buildingName = request.getParameter("buildingName");
             String ownerName = request.getParameter("ownerName");
@@ -46,10 +45,6 @@ public class AddBuilding extends HttpServlet {
             rd = request.getRequestDispatcher("addFloor.jsp");
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
-            rd = request.getRequestDispatcher("addBuilding.jsp");
-        } catch (ConditionLevelException ce) {
-            ce.printStackTrace();
-            session.setAttribute("conditionError", ce.getMessage());
             rd = request.getRequestDispatcher("addBuilding.jsp");
         }
         rd.forward(request, response);

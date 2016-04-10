@@ -30,13 +30,16 @@ public class DeleteFloor extends HttpServlet {
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
 
+        Controller controller = new Controller();
+
         try {
 
-            Controller controller = new Controller();
-
             int floorId = Integer.parseInt(request.getParameter("floorId"));
+            int buildingId = Integer.parseInt((String) session.getAttribute("buildingId"));
 
             controller.deleteFloorByFloorId(floorId);
+            System.out.println(buildingId);
+            controller.updateNumberOfFloorsByBuildingId(buildingId);
 
         } catch (Exception e) {
             e.printStackTrace();

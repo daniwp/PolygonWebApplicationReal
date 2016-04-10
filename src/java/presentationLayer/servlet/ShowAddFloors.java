@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentationLayer.servlet;
 
 import java.io.IOException;
@@ -29,6 +24,7 @@ public class ShowAddFloors extends HttpServlet {
         session.setMaxInactiveInterval(30 * 60);
 
         session.setAttribute("nrOfFloors", request.getParameter("nrOfFloors"));
+        
         rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
         rd.forward(request, response);
     }

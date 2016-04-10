@@ -5,9 +5,7 @@
  */
 package presentationLayer.servlet;
 
-import dataAccessLayer.mapper.CustomerMapper;
 import java.io.IOException;
-import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import serviceLayer.Controller;
 import serviceLayer.entity.Customer;
 
 /**
@@ -29,25 +28,20 @@ public class Login extends HttpServlet {
         RequestDispatcher rd = null;
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
-        
-        if (session.getAttribute("loginError") != null) {
-            session.removeAttribute("loginError");
-        }
-        
-        CustomerMapper customerMapper = new CustomerMapper();
+
+        Controller controller = new Controller();
+
         try {
+
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             
-            Customer customer = customerMapper.validateLogin(username, password);
-            
-            if (customer != null) {
+            if (controller.validateLogin(username, password, session)) {;
                 rd = request.getRequestDispatcher("index.jsp");
-                session.setAttribute("user", customer);
             } else {
                 rd = request.getRequestDispatcher("login.jsp");
-                session.setAttribute("loginError", "An error occurred. Please try again.");
             }
+
         } catch (Exception ee) {
             ee.printStackTrace();
         }

@@ -1,7 +1,6 @@
 package dataAccessLayer.mapper;
 
 import dataAccessLayer.DBConnector;
-import exceptions.ConditionLevelException;
 import exceptions.UserAlreadyExistsException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,12 +17,12 @@ public class MapperFacade {
     CustomerMapper customerMapper = new CustomerMapper();
     FloorMapper floorMapper = new FloorMapper();
 
-    public void addBuilding(Building b) throws ConditionLevelException {
+    public void addBuilding(Building b) {
         buildingMapper.addBuilding(b);
     }
 
-    public List<Building> getAllBuildings(int customerId) {
-        return buildingMapper.getAllBuildings(customerId);
+    public List<Building> getAllBuildingsByCustomerId(int customerId) {
+        return buildingMapper.getAllBuildingsByCustomerId(customerId);
     }
 
     //made by Lasse
@@ -39,9 +38,13 @@ public class MapperFacade {
     public int getBuildingIdByName(String name) {
         return buildingMapper.getBuildingIdByName(name);
     }
+    
+    public void updateBuildingFloorsByBuildingId(int buildingId) {
+        buildingMapper.updateBuildingFloorsByBuildingId(buildingId);
+    }
 
-    public boolean addFloors(List<Floor> floors) {
-        return floorMapper.addFloors(floors);
+    public boolean addFloor(Floor floor) {
+        return floorMapper.addFloor(floor);
     }
 
     //Made by Nicolai

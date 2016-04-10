@@ -31,38 +31,34 @@ public class AddFloors extends HttpServlet {
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
 
+        Controller controller = new Controller();
+
         try {
-            Controller controller = new Controller();
-            Floor floor;
-            List<Floor> floors = new ArrayList();
 
-            String fNr = "";
-            String fSize = "";
+            int numberOfFloors = Integer.parseInt((String) session.getAttribute("nrOfFloors"));
+            int buildingId = Integer.parseInt(request.getParameter("buildingId"));
 
-            for (int i = 0; i < Integer.parseInt((String)session.getAttribute("nrOfFloors")); i++) {
+            for (int i = 0; i < numberOfFloors; i++) {
 
-                fNr = "floorNr" + (i + 1) + "";
-                fSize = "floorSize" + (i + 1) + "";
-                
-                int floorNr = Integer.parseInt(request.getParameter(fNr));
-                int floorSize = Integer.parseInt(request.getParameter(fSize));
-                int buildingId = Integer.parseInt(request.getParameter("buildingId"));
-                
-                floor = new Floor(floorNr, floorSize, buildingId);
-                floors.add(floor);
-                
+                int floorNr = Integer.parseInt(request.getParameter("floorNr" + (i + 1) + ""));
+                double floorSize = Double.parseDouble(request.getParameter("floorSize" + (i + 1) + ""));
+
+                controller.addFloor(floorNr, floorSize, buildingId);
+
             }
+
+            controller.updateNumberOfFloorsByBuildingId(buildingId);
             
-            controller.addFloors(floors);
+            rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
             
-            rd = request.getRequestDispatcher("viewBuildings.jsp");
         } catch (Exception e) {
             e.printStackTrace();
             rd = request.getRequestDispatcher("addFloor.jsp");
         }
         
+        session.setAttribute("buildingId", request.getParameter("buildingId"));
         session.removeAttribute("nrOfFloors");
-        
+
         rd.forward(request, response);
     }
 

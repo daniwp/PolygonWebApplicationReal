@@ -1,3 +1,4 @@
+<%@page import="serviceLayer.Controller"%>
 <%@page import="serviceLayer.entity.Floor"%>
 <%@page import="java.util.List"%>
 <%@page import="dataAccessLayer.mapper.MapperFacade"%>
@@ -6,9 +7,11 @@
 <jsp:include page="header.jsp" />
 
 <%
-    MapperFacade mapperFacade = new MapperFacade();
-    Building building = mapperFacade.getBuildingByBuildingId(Integer.parseInt((String) session.getAttribute("buildingId")));
-    List<Floor> floors = mapperFacade.getAllFloorsByBuildingID(Integer.parseInt((String) session.getAttribute("buildingId"))); %>
+    if (session.getAttribute("user") != null) {
+        Controller controller = new Controller();
+        int buildingId = Integer.parseInt((String) session.getAttribute("buildingId"));
+        Building building = controller.getBuildingByBuildingId(buildingId);
+        List<Floor> floors = controller.getAllFloorsByBuildingId(buildingId); %>
 
 <div class="container well">
     <div class="col-md-10 col-md-offset-1">
@@ -143,5 +146,6 @@
             }%>
     </div>
 </div>
+<% }%>
 
 <jsp:include page="footer.jsp" />

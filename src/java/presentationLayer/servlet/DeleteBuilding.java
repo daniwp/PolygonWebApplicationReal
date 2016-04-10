@@ -28,18 +28,19 @@ public class DeleteBuilding extends HttpServlet {
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
 
+        Controller controller = new Controller();
+        
         try {
             
-            Controller controller = new Controller();
-            
             int buildingId = Integer.parseInt(request.getParameter("buildingId"));
-            
+
             controller.deleteBuildingAndFloorsByBuildingId(buildingId);
 
         } catch (Exception e) {
+            rd = request.getRequestDispatcher("viewBuildings.jsp");
             e.printStackTrace();
         }
-
+        
         rd = request.getRequestDispatcher("viewBuildings.jsp");
         rd.forward(request, response);
 

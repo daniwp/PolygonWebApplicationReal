@@ -18,9 +18,7 @@ public class Test {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         FloorMapper fm = new FloorMapper();
-        List<Floor> floors = new ArrayList();
         Floor floor = new Floor(1, 2, 6);
-        floors.add(floor);
-        fm.addFloors(floors);
+        fm.addFloor(floor);
     }
 }

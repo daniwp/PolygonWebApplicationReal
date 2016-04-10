@@ -1,6 +1,5 @@
 package presentationLayer.servlet;
 
-import serviceLayer.Controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import serviceLayer.ControllerFacade;
 import serviceLayer.entity.Customer;
 
 @WebServlet(name = "AddBuilding", urlPatterns = {"/addbuilding"})
@@ -21,7 +21,7 @@ public class AddBuilding extends HttpServlet {
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
         
-        Controller controller = new Controller();
+        ControllerFacade controllerFacade = new ControllerFacade();
         
         try {
 
@@ -40,7 +40,7 @@ public class AddBuilding extends HttpServlet {
             double totalM2 = Double.parseDouble(request.getParameter("totalM2"));
             int conditionLevel = Integer.parseInt(request.getParameter("conditionLevel"));
 
-            controller.addBuilding(buildingName, buildingAddress, buildingZipcode, buildingCity, buildingYear, nrOfFloors, totalM2, ownerName, conditionLevel, customerId);
+            controllerFacade.addBuilding(buildingName, buildingAddress, buildingZipcode, buildingCity, buildingYear, nrOfFloors, totalM2, ownerName, conditionLevel, customerId);
 
             rd = request.getRequestDispatcher("addFloor.jsp");
         } catch (SQLException | ClassNotFoundException ex) {

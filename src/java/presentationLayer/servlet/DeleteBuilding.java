@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import serviceLayer.Controller;
+import serviceLayer.ControllerFacade;
 
 /**
  *
@@ -28,13 +28,13 @@ public class DeleteBuilding extends HttpServlet {
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
 
-        Controller controller = new Controller();
+        ControllerFacade controllerFacade = new ControllerFacade();
         
         try {
             
             int buildingId = Integer.parseInt(request.getParameter("buildingId"));
 
-            controller.deleteBuildingAndFloorsByBuildingId(buildingId);
+            controllerFacade.deleteBuildingAndFloorsByBuildingId(buildingId);
 
         } catch (Exception e) {
             rd = request.getRequestDispatcher("viewBuildings.jsp");

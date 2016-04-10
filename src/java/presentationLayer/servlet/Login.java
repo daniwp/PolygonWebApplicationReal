@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import serviceLayer.Controller;
-import serviceLayer.entity.Customer;
+import serviceLayer.ControllerFacade;
 
 /**
  *
@@ -29,14 +28,14 @@ public class Login extends HttpServlet {
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
 
-        Controller controller = new Controller();
+        ControllerFacade controllerFacade = new ControllerFacade();
 
         try {
 
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             
-            if (controller.validateLogin(username, password, session)) {;
+            if (controllerFacade.validateLogin(username, password, session)) {;
                 rd = request.getRequestDispatcher("index.jsp");
             } else {
                 rd = request.getRequestDispatcher("login.jsp");

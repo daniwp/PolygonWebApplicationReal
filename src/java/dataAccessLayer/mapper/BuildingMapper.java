@@ -11,7 +11,6 @@ import serviceLayer.entity.Building;
 public class BuildingMapper {
 
     //made by Lasse
-
     public void addBuilding(Building b)  {
 
         try {

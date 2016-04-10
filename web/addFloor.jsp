@@ -1,6 +1,6 @@
-<%@page import="serviceLayer.Controller"%>
+<%@page import="serviceLayer.ControllerFacade"%>
 <jsp:include page="header.jsp" />
-<% Controller controller = new Controller(); %>
+<% ControllerFacade controllerFacade = new ControllerFacade(); %>
 <div class="container well">
     <div class="col-md-8 col-md-offset-2">
         <h1 class="page-header">Add floors</h1>
@@ -43,7 +43,7 @@
             <a href="index.jsp" class="btn btn-primary col-md-2 col-md-offset-5">Add building</a>
             <% }%>
             <br><br><br><br><br><br><br><br>
-            <input type="hidden" name="buildingId" value="<%= controller.getBuildingIdByName((String)session.getAttribute("buildingName")) %>">
+            <input type="hidden" name="buildingId" value="<%= controllerFacade.getBuildingIdByName((String)session.getAttribute("buildingName")) %>">
         </form>
     </div>
 </div>

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import serviceLayer.Controller;
+import serviceLayer.ControllerFacade;
 
 /**
  *
@@ -32,7 +32,7 @@ public class AddCustomer extends HttpServlet {
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
 
-        Controller controller = new Controller();
+        ControllerFacade controllerFacade = new ControllerFacade();
 
         try {
 
@@ -43,7 +43,7 @@ public class AddCustomer extends HttpServlet {
             String customerPassword = request.getParameter("customerPassword");
             String customerEmail = request.getParameter("customerEmail");
 
-            controller.addCustomer(companyName, customerFirstName, customerLastName, customerUsername, customerPassword, customerEmail);
+            controllerFacade.addCustomer(companyName, customerFirstName, customerLastName, customerUsername, customerPassword, customerEmail);
 
             rd = request.getRequestDispatcher("index.jsp");
         } catch (SQLException | ClassNotFoundException ex) {

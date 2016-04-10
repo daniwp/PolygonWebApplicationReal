@@ -6,7 +6,6 @@
 package presentationLayer.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import serviceLayer.Controller;
+import serviceLayer.ControllerFacade;
 
 /**
  *
@@ -30,16 +29,15 @@ public class DeleteFloor extends HttpServlet {
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
 
-        Controller controller = new Controller();
+        ControllerFacade controllerFacade = new ControllerFacade();
 
         try {
 
             int floorId = Integer.parseInt(request.getParameter("floorId"));
             int buildingId = Integer.parseInt((String) session.getAttribute("buildingId"));
 
-            controller.deleteFloorByFloorId(floorId);
-            System.out.println(buildingId);
-            controller.updateNumberOfFloorsByBuildingId(buildingId);
+            controllerFacade.deleteFloorByFloorId(floorId);
+            controllerFacade.updateNumberOfFloorsByBuildingId(buildingId);
 
         } catch (Exception e) {
             e.printStackTrace();

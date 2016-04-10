@@ -6,8 +6,6 @@
 package presentationLayer.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,8 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import serviceLayer.Controller;
-import serviceLayer.entity.Floor;
+import serviceLayer.ControllerFacade;
 
 /**
  *
@@ -31,7 +28,7 @@ public class AddFloors extends HttpServlet {
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
 
-        Controller controller = new Controller();
+        ControllerFacade controllerFacade = new ControllerFacade();
 
         try {
 
@@ -43,11 +40,11 @@ public class AddFloors extends HttpServlet {
                 int floorNr = Integer.parseInt(request.getParameter("floorNr" + (i + 1) + ""));
                 double floorSize = Double.parseDouble(request.getParameter("floorSize" + (i + 1) + ""));
 
-                controller.addFloor(floorNr, floorSize, buildingId);
+                controllerFacade.addFloor(floorNr, floorSize, buildingId);
 
             }
 
-            controller.updateNumberOfFloorsByBuildingId(buildingId);
+            controllerFacade.updateNumberOfFloorsByBuildingId(buildingId);
             
             rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
             

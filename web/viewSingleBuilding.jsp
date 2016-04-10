@@ -1,4 +1,4 @@
-<%@page import="serviceLayer.Controller"%>
+<%@page import="serviceLayer.ControllerFacade"%>
 <%@page import="serviceLayer.entity.Floor"%>
 <%@page import="java.util.List"%>
 <%@page import="dataAccessLayer.mapper.MapperFacade"%>
@@ -8,10 +8,10 @@
 
 <%
     if (session.getAttribute("user") != null) {
-        Controller controller = new Controller();
+        ControllerFacade controllerFacade = new ControllerFacade();
         int buildingId = Integer.parseInt((String) session.getAttribute("buildingId"));
-        Building building = controller.getBuildingByBuildingId(buildingId);
-        List<Floor> floors = controller.getAllFloorsByBuildingId(buildingId); %>
+        Building building = controllerFacade.getBuildingByBuildingId(buildingId);
+        List<Floor> floors = controllerFacade.getAllFloorsByBuildingId(buildingId); %>
 
 <div class="container well">
     <div class="col-md-10 col-md-offset-1">

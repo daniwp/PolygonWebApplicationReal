@@ -5,6 +5,9 @@ import exceptions.UserAlreadyExistsException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import static java.util.Collections.list;
+import java.util.List;
 import serviceLayer.entity.Customer;
 import serviceLayer.entity.User;
 
@@ -60,5 +63,38 @@ public class CustomerMapper {
             ex.printStackTrace();
         }
         return customer;
+    }
+    
+    public List<Customer> getAllCustomers(int customerId){
+        List<Customer> customers = new ArrayList();
+        Customer customer;
+        ResultSet rs = null;
+        try {
+            
+            String query = "Select * FROM customer WHERE customerId = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            ps.setInt(1, customerId);
+            rs = ps.executeQuery();
+            
+            while(rs.next());{
+            
+            int customerID = rs.getInt("customerId");
+            String companyName = rs.getString("companyName");
+            String customerEmail = rs.getString("customerEmail");
+            String companyOwnerFirstName = rs.getString("companyOwnerFirstName");
+            String companyOwnerLastName = rs.getString("companyOwnerLastName");
+            
+            customer = new Customer(customerId, companyName, customerEmail, companyOwnerFirstName, companyOwnerLastName);
+            
+            }
+            ps.close();
+            rs.close();
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return customers;
+        
+        
     }
 }

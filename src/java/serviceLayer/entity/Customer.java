@@ -15,30 +15,35 @@ public class Customer {
     private String companyName;
     private String customerFirstName;
     private String customerLastName;
-    private String customerUsername;
-    private String customerPassword;
     private String customerEmail;
+    private int userId;
 
-    public Customer(int customerId, String companyName, String customerFirstName, String customerLastName, String customerUsername, String customerPassword, String customerEmail) {
+    public Customer(int customerId, String companyName, String customerFirstName, String customerLastName, String customerEmail, int userId) {
         this.customerId = customerId;
         this.companyName = companyName;
         this.customerFirstName = customerFirstName;
         this.customerLastName = customerLastName;
-        this.customerUsername = customerUsername;
-        this.customerPassword = customerPassword;
         this.customerEmail = customerEmail;
+        this.userId = userId;
     }
 
-    public Customer(String companyName, String customerFirstName, String customerLastName, String customerUsername, String customerPassword, String customerEmail) {
+    public Customer(String companyName, String customerFirstName, String customerLastName, String customerEmail, int userId) {
         this.companyName = companyName;
         this.customerFirstName = customerFirstName;
         this.customerLastName = customerLastName;
-        this.customerUsername = customerUsername;
-        this.customerPassword = customerPassword;
         this.customerEmail = customerEmail;
+        this.userId = userId;
     }
 
     public Customer() {
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getCustomerId() {
@@ -73,22 +78,6 @@ public class Customer {
         this.customerLastName = customerLastName;
     }
 
-    public String getCustomerUsername() {
-        return customerUsername;
-    }
-
-    public void setCustomerUsername(String customerUsername) {
-        this.customerUsername = customerUsername;
-    }
-
-    public String getCustomerPassword() {
-        return customerPassword;
-    }
-
-    public void setCustomerPassword(String customerPassword) {
-        this.customerPassword = customerPassword;
-    }
-
     public String getCustomerEmail() {
         return customerEmail;
     }
@@ -97,7 +86,4 @@ public class Customer {
         this.customerEmail = customerEmail;
     }
 
-  
-    }
-
-    
+}

@@ -11,7 +11,7 @@ import serviceLayer.entity.User;
 public class CustomerMapper {
 
     //made by Lasse and Nicolai
-    public void addCustomer(Customer customer, User user) {
+    public void addCustomer(Customer customer) {
 
         try {
 
@@ -22,7 +22,7 @@ public class CustomerMapper {
             ps.setString(2, customer.getCustomerFirstName());
             ps.setString(3, customer.getCustomerLastName());
             ps.setString(4, customer.getCustomerEmail());
-            ps.setInt(5, user.getUserId());
+            ps.setInt(5, customer.getUserId());
 
             ps.executeUpdate();
 
@@ -48,8 +48,8 @@ public class CustomerMapper {
                 int customerId = rs.getInt("customerId");
                 String companyName = rs.getString("companyName");
                 String customerEmail = rs.getString("customerEmail");
-                String customerFirstname = rs.getString("customerFirstName");
-                String customerLastname = rs.getString("customerLastName");
+                String customerFirstname = rs.getString("companyOwnerFirstName");
+                String customerLastname = rs.getString("companyOwnerLastName");
 
                 customer = new Customer(customerId, companyName, customerFirstname, customerLastname, customerEmail, userId);
             }

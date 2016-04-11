@@ -89,4 +89,28 @@ public class UserMapper {
             ee.printStackTrace();
         }
     }
+    
+    public int getUserIdByUsername(String username) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int userId = 0;
+        
+        try {
+            String query = "SELECT userId FROM user WHERE username = ?";
+            ps = DBConnector.getConnection().prepareStatement(query);
+            ps.setString(1, username);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                userId = rs.getInt("userId");
+            }
+
+            ps.close();
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return userId;
+    }
 }

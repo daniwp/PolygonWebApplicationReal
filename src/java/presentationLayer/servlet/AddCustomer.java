@@ -42,13 +42,12 @@ public class AddCustomer extends HttpServlet {
             String customerUsername = request.getParameter("customerUsername");
             String customerPassword = request.getParameter("customerPassword");
             String customerEmail = request.getParameter("customerEmail");
+            int type = 1;
 
-            controllerFacade.addCustomer(companyName, customerFirstName, customerLastName, customerUsername, customerPassword, customerEmail);
+            
+            controllerFacade.addUserAndCustomer(companyName, customerFirstName, customerLastName, customerEmail, customerUsername, customerPassword, type);
 
             rd = request.getRequestDispatcher("index.jsp");
-        } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
-            rd = request.getRequestDispatcher("createCustomer.jsp");
         } catch (UserAlreadyExistsException ex) {
             session.setAttribute("userExistsError", ex.getMessage());
             rd = request.getRequestDispatcher("createCustomer.jsp");

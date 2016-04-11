@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import serviceLayer.entity.Building;
 import serviceLayer.entity.Customer;
 import serviceLayer.entity.Floor;
+import serviceLayer.entity.User;
 
 /**
  *
@@ -27,8 +28,12 @@ public class ControllerFacade {
     }
 
     // creates a customer and inserts it into the database
-    public void addCustomer(String companyName, String companyOwnerFirstName, String companyOwnerLastName, String customerUsername, String customerPassword, String customerEmail) throws SQLException, ClassNotFoundException, UserAlreadyExistsException {
-        controller.addCustomer(companyName, companyOwnerFirstName, companyOwnerLastName, customerUsername, customerPassword, customerEmail);
+    public void addCustomer(String companyName, String companyOwnerFirstName, String companyOwnerLastName, String customerEmail, int userId) throws SQLException, ClassNotFoundException, UserAlreadyExistsException {
+        controller.addCustomer(companyName, companyOwnerFirstName, companyOwnerLastName, customerEmail, userId);
+    }
+    
+    public void addUserAndCustomer(String companyName, String customerFirstName, String customerLastName, String customerEmail, String username, String password, int type) throws UserAlreadyExistsException {
+        controller.addUserAndCustomer(companyName, customerFirstName, customerLastName, customerEmail, username, password, type);
     }
 
     public void deleteBuildingAndFloorsByBuildingId(int buildingId) {

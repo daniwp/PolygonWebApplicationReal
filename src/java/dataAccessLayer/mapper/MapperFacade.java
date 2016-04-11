@@ -61,8 +61,8 @@ public class MapperFacade {
         floorMapper.deleteFloorByFloorId(floorId);
     }
 
-    public void addCustomer(Customer customer, User user) {
-        customerMapper.addCustomer(customer, user);
+    public void addCustomer(Customer customer) {
+        customerMapper.addCustomer(customer);
     }
 
     public Customer getCustomerByUserId(int userId) {
@@ -79,5 +79,9 @@ public class MapperFacade {
 
     public void addUser(User user) throws UserAlreadyExistsException {
         userMapper.addUser(user);
+    }
+
+    public int getUserIdByUsername(String username) {
+        return userMapper.getUserIdByUsername(username);
     }
 }

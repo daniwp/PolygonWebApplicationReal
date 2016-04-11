@@ -7,7 +7,7 @@
 <jsp:include page="header.jsp" />
 
 <%
-    if (session.getAttribute("user") != null) {
+    if (session.getAttribute("customer") != null) {
         ControllerFacade controllerFacade = new ControllerFacade();
         int buildingId = Integer.parseInt((String) session.getAttribute("buildingId"));
         Building building = controllerFacade.getBuildingByBuildingId(buildingId);

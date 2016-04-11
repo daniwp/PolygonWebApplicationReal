@@ -52,22 +52,22 @@
 
                     <!-- Right side items when logged out--> 
                     <ul class="nav navbar-nav navbar-right">
-                        <% if (session.getAttribute("user") == null) { %>
+                        <% if (session.getAttribute("customer") == null) { %>
                         <li><a href="login.jsp">Login</a></li>
                             <% } %>
 
                         <!-- Drop down for User-->
-                        <% if (session.getAttribute("user") != null) { %>
-                        <% Customer customer = (Customer) session.getAttribute("user");%>
+                        <% if (session.getAttribute("customer") != null) { %>
+                        <% Customer customer = (Customer) session.getAttribute("customer");%>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= customer.getCustomerFirstName()%> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="addBuilding.jsp">Add building</a></li>
                                 <li><a href="viewBuildings.jsp">View my buildings</a></li>
-                                    <% if (session.getAttribute("user") != null) { %>
+                                    <% if (session.getAttribute("customer") != null) { %>
                                 <li><a href="createCustomer.jsp">Create customer</a></li>
                                     <% } %>
-                                    <% if (session.getAttribute("user") != null) { %>
+                                    <% if (session.getAttribute("customer") != null) { %>
                                 <li><a href="logout">Logout</a></li>
                                     <% } %>
                             </ul>

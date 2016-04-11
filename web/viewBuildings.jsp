@@ -9,13 +9,13 @@
     <div class="row">
         <div class="col-md-12">
             <%
-                if (session.getAttribute("user") != null) { %>
+                if (session.getAttribute("customer") != null) { %>
             <div class="row">
                 <div class="col-md-12">
                     <a href="addBuilding.jsp" class="btn btn-success pull-left" ><i class="fa fa-plus"></i> Add building</a>
                 </div>
             </div><br>
-            <% Customer customer = (Customer) session.getAttribute("user");
+            <% Customer customer = (Customer) session.getAttribute("customer");
                 ControllerFacade controllerFacade = new ControllerFacade();
                 List<Building> buildings = controllerFacade.getAllBuildingsByCustomerId(customer.getCustomerId());%>    
             <% for (Building building : buildings) {%>

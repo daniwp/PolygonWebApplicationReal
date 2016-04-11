@@ -38,6 +38,10 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer(int customerId, String companyName, String customerEmail, String companyOwnerFirstName, String companyOwnerLastName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getUserId() {
         return userId;
     }

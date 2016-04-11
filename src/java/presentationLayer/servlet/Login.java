@@ -34,8 +34,8 @@ public class Login extends HttpServlet {
 
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            
-            if (controllerFacade.validateLogin(username, password, session)) {;
+
+            if (controllerFacade.validateLogin(username, password, session)) {
                 rd = request.getRequestDispatcher("index.jsp");
             } else {
                 rd = request.getRequestDispatcher("login.jsp");

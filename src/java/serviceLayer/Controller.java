@@ -51,14 +51,16 @@ public class Controller {
     }
 
     public boolean validateLogin(String customerUsername, String customerPassword, HttpSession curSession) {
-        RequestDispatcher rd = null;
         User user = mapperFacade.validateUser(customerUsername, customerPassword);
+        user.setUserId(mapperFacade.getUserIdByUsername(customerUsername));
         Customer customer = mapperFacade.getCustomerByUserId(user.getUserId());
 
-        if (customer != null) {
-            curSession.setAttribute("userType", user.getType());
+        if (user != null) {
+            curSession.setAttribute("loggedIn", true);
             if (user.getType() == 1) {
                 curSession.setAttribute("customer", customer);
+            } else if (user.getType() == 0) {
+                curSession.setAttribute("admin", true);
             }
             return true;
         } else {

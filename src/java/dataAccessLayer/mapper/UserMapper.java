@@ -105,7 +105,7 @@ public class UserMapper {
             while (rs.next()) {
                 userId = rs.getInt("userId");
             }
-
+            
             ps.close();
             rs.close();
         } catch (SQLException ex) {

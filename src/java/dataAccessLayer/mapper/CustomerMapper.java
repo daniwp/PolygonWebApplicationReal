@@ -75,7 +75,7 @@ public class CustomerMapper {
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             rs = ps.executeQuery();
             
-            while(rs.next());{
+            while(rs.next()){
             
             int customerId = rs.getInt("customerId");
             String companyName = rs.getString("companyName");

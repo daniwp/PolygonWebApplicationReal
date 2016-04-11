@@ -96,5 +96,10 @@ public class Controller {
     public void updateNumberOfFloorsByBuildingId(int buildingId) {
         mapperFacade.updateBuildingFloorsByBuildingId(buildingId);
     }
-
+    
+    public void addUser(String username, String password, int type) throws UserAlreadyExistsException {
+        User user = new User(username, password, type);
+        mapperFacade.addUser(user);
+    }
+    
 }

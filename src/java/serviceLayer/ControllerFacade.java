@@ -31,7 +31,7 @@ public class ControllerFacade {
     public void addCustomer(String companyName, String companyOwnerFirstName, String companyOwnerLastName, String customerEmail, int userId) throws SQLException, ClassNotFoundException, UserAlreadyExistsException {
         controller.addCustomer(companyName, companyOwnerFirstName, companyOwnerLastName, customerEmail, userId);
     }
-    
+
     public void addUserAndCustomer(String companyName, String customerFirstName, String customerLastName, String customerEmail, String username, String password, int type) throws UserAlreadyExistsException {
         controller.addUserAndCustomer(companyName, customerFirstName, customerLastName, customerEmail, username, password, type);
     }
@@ -66,5 +66,9 @@ public class ControllerFacade {
 
     public void updateNumberOfFloorsByBuildingId(int buildingId) {
         controller.updateNumberOfFloorsByBuildingId(buildingId);
+    }
+
+    public void addUser(String username, String password, int type) throws UserAlreadyExistsException {
+        controller.addUser(username, password, type);
     }
 }

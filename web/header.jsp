@@ -74,7 +74,8 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="viewCustomers.jsp">View all customers</a></li>
-                                <li><a href="createCustomer.jsp">Create customer</a></li>
+                                <li><a href="createCustomer.jsp">Create new <strong>customer</strong></a></li>
+                                <li><a href="createAdmin.jsp">Create new <strong>admin</strong></a></li>
                                 <li><a href="logout">Logout</a></li>
                             </ul>
                         </li> 

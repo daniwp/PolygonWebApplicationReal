@@ -1,9 +1,8 @@
 
-import dataAccessLayer.mapper.FloorMapper;
+import dataAccessLayer.mapper.CustomerMapper;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import serviceLayer.entity.Floor;
+import serviceLayer.entity.Customer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,8 +16,11 @@ import serviceLayer.entity.Floor;
 public class Test {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        FloorMapper fm = new FloorMapper();
-        Floor floor = new Floor(1, 2, 6);
-        fm.addFloor(floor);
+        CustomerMapper cM = new CustomerMapper();
+        List<Customer> customers = cM.getAllCustomers();
+        
+        for (Customer c : customers) {
+            System.out.println(c.getCompanyName());
+        }
     }
 }

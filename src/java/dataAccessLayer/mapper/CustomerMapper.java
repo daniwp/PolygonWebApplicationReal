@@ -65,26 +65,27 @@ public class CustomerMapper {
         return customer;
     }
     
-    public List<Customer> getAllCustomers(int customerId){
+    public List<Customer> getAllCustomers(){
         List<Customer> customers = new ArrayList();
         Customer customer;
         ResultSet rs = null;
         try {
             
-            String query = "Select * FROM customer WHERE customerId = ?";
+            String query = "Select * FROM customer";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
-            ps.setInt(1, customerId);
             rs = ps.executeQuery();
             
             while(rs.next());{
             
-            int customerID = rs.getInt("customerId");
+            int customerId = rs.getInt("customerId");
             String companyName = rs.getString("companyName");
             String customerEmail = rs.getString("customerEmail");
             String companyOwnerFirstName = rs.getString("companyOwnerFirstName");
             String companyOwnerLastName = rs.getString("companyOwnerLastName");
+            int userId = rs.getInt("userId");
             
-            customer = new Customer(customerId, companyName, customerEmail, companyOwnerFirstName, companyOwnerLastName);
+            customer = new Customer(customerId, companyName, customerEmail, companyOwnerFirstName, companyOwnerLastName, userId);
+            customers.add(customer);
             
             }
             ps.close();
@@ -94,7 +95,6 @@ public class CustomerMapper {
             ex.printStackTrace();
         }
         return customers;
-        
         
     }
 }

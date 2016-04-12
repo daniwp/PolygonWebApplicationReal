@@ -5,7 +5,7 @@
  */
 package serviceLayer.entity;
 
-import java.io.File;
+import java.sql.Blob;
 
 /**
  *
@@ -14,14 +14,14 @@ import java.io.File;
 public class Report {
     
     private int reportId;
-    private File mediumblob;
+    private Blob mediumblob;
 
-    public Report(int reportId, File mediumblob) {
+    public Report(int reportId, Blob mediumblob) {
         this.reportId = reportId;
         this.mediumblob = mediumblob;
     }
 
-    public Report(File mediumblob) {
+    public Report(Blob mediumblob) {
         this.mediumblob = mediumblob;
     }
 
@@ -36,16 +36,14 @@ public class Report {
         this.reportId = reportId;
     }
 
-    public File getMediumblob() {
+    public Blob getMediumblob() {
         return mediumblob;
     }
 
-    public void setMediumblob(File mediumblob) {
+    public void setMediumblob(Blob mediumblob) {
         this.mediumblob = mediumblob;
     }
     
     
 
- 
-    
 }

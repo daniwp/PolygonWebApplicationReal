@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-12">
             <%
-                if (session.getAttribute("userType") != null) { %>
+                if (session.getAttribute("loggedIn") != null) { %>
             <div class="row">
                 <div class="col-md-12">
                     <a href="addBuilding.jsp" class="btn btn-success pull-left" ><i class="fa fa-plus"></i> Add building</a>

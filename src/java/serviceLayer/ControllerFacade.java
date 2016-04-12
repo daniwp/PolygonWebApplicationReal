@@ -71,4 +71,8 @@ public class ControllerFacade {
     public void addUser(String username, String password, int type) throws UserAlreadyExistsException {
         controller.addUser(username, password, type);
     }
+    
+    public List<Customer> getAllCustomers(){
+        return controller.getAllCustomers();
+    }
 }

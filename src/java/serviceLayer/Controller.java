@@ -102,4 +102,7 @@ public class Controller {
         mapperFacade.addUser(user);
     }
     
+    public List<Customer> getAllCustomers(){
+       return mapperFacade.getAllCustomers();
+    }
 }

@@ -84,4 +84,8 @@ public class MapperFacade {
     public int getUserIdByUsername(String username) {
         return userMapper.getUserIdByUsername(username);
     }
+    
+    public List<Customer> getAllCustomers(){
+        return customerMapper.getAllCustomers();
+    }
 }

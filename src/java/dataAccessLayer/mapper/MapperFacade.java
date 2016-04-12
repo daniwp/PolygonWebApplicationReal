@@ -64,6 +64,9 @@ public class MapperFacade {
     public void addCustomer(Customer customer) {
         customerMapper.addCustomer(customer);
     }
+    public Customer getCustomerByCustomerId(int customerId) {
+        return customerMapper.getCustomerByCustomerId(customerId);
+    }
 
     public Customer getCustomerByUserId(int userId) {
         return customerMapper.getCustomerByUserId(userId);

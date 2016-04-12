@@ -22,6 +22,7 @@ public class Floor {
         this.floor = floor;
         this.size = size;
         this.buildingId = buildingId;
+        System.out.println("hej");
     }
 
     public Floor(int floor, double size, int buildingId) {

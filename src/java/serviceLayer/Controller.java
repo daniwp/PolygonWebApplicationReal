@@ -78,6 +78,11 @@ public class Controller {
         building = mapperFacade.getBuildingByBuildingId(buildingId);
         return building;
     }
+    public Customer getCustomerByCustomerId(int customerId) {
+      Customer customer = new Customer();
+      customer = mapperFacade.getCustomerByCustomerId(customerId);
+      return customer;
+    }
 
     public List<Building> getAllBuildingsByCustomerId(int CustomerId) {
         List<Building> buildings = mapperFacade.getAllBuildingsByCustomerId(CustomerId);

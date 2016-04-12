@@ -75,4 +75,8 @@ public class ControllerFacade {
     public List<Customer> getAllCustomers(){
         return controller.getAllCustomers();
     }
+    
+    public void getCustomerByCustomerId(int customerId){
+        controller.getCustomerByCustomerId(customerId);
+    }
 }

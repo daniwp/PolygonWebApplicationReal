@@ -97,4 +97,32 @@ public class CustomerMapper {
         return customers;
         
     }
+        public Customer getCustomerByCustomerId(int customerId) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Customer customer = null;
+
+        try {
+            String query = "SELECT * FROM customer WHERE customerId = ?";
+            ps = DBConnector.getConnection().prepareStatement(query);
+            ps.setInt(1, customerId);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String companyName = rs.getString("companyName");
+                String customerEmail = rs.getString("customerEmail");
+                String customerFirstname = rs.getString("companyOwnerFirstName");
+                String customerLastname = rs.getString("companyOwnerLastName");
+
+                customer = new Customer(customerId, companyName, customerFirstname, customerLastname, customerEmail);
+            }
+
+            ps.close();
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return customer;
+    }
 }

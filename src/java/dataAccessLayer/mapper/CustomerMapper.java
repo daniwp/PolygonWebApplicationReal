@@ -84,7 +84,7 @@ public class CustomerMapper {
             String companyOwnerLastName = rs.getString("companyOwnerLastName");
             int userId = rs.getInt("userId");
             
-            customer = new Customer(customerId, companyName, customerEmail, companyOwnerFirstName, companyOwnerLastName, userId);
+            customer = new Customer(customerId, companyName, companyOwnerFirstName, companyOwnerLastName, customerEmail, userId);
             customers.add(customer);
             
             }
@@ -114,8 +114,9 @@ public class CustomerMapper {
                 String customerEmail = rs.getString("customerEmail");
                 String customerFirstname = rs.getString("companyOwnerFirstName");
                 String customerLastname = rs.getString("companyOwnerLastName");
-
-                customer = new Customer(customerId, companyName, customerFirstname, customerLastname, customerEmail);
+                int userId = rs.getInt("userId");
+                
+                customer = new Customer(customerId, companyName, customerFirstname, customerLastname, customerEmail, userId);
             }
 
             ps.close();

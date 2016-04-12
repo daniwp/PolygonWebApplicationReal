@@ -20,7 +20,10 @@ public class Test {
         List<Customer> customers = cM.getAllCustomers();
         
         for (Customer c : customers) {
-            System.out.println(c.getCompanyName());
+            System.out.println("Name: " + c.getCompanyName());
+            System.out.println("Email: " + c.getCustomerEmail());
+            System.out.println("Firstname: " + c.getCustomerFirstName());
+            System.out.println("Lastname: " + c.getCustomerLastName());
         }
     }
 }

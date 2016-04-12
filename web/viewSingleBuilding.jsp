@@ -7,7 +7,7 @@
 <jsp:include page="header.jsp" />
 
 <%
-    if (session.getAttribute("customer") != null) {
+    if (session.getAttribute("loggedIn") != null) {
         ControllerFacade controllerFacade = new ControllerFacade();
         int buildingId = Integer.parseInt((String) session.getAttribute("buildingId"));
         Building building = controllerFacade.getBuildingByBuildingId(buildingId);
@@ -68,7 +68,12 @@
         <form action="showaddfloors" method="POST">
             <div class="row">
                 <div class="col-md-1 pull-left">
+                    <% if (session.getAttribute("admin") != null) { %>
+                    <a class="btn btn-primary" href="viewSingleCustomer.jsp"><i class="fa fa-fw fa-angle-double-left"></i> Back</a>
+                    <% }
+                        if (session.getAttribute("customer") != null) { %>
                     <a class="btn btn-primary" href="viewBuildings.jsp"><i class="fa fa-fw fa-angle-double-left"></i> Back</a>
+                    <% }%>
                 </div>
                 <div class="col-md-2 pull-right">
                     <button class="btn btn-primary" type="submit">Add more floors</button>

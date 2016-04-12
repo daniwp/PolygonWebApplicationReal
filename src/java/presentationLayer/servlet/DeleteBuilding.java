@@ -29,19 +29,28 @@ public class DeleteBuilding extends HttpServlet {
         session.setMaxInactiveInterval(30 * 60);
 
         ControllerFacade controllerFacade = new ControllerFacade();
-        
+
         try {
-            
+
             int buildingId = Integer.parseInt(request.getParameter("buildingId"));
 
             controllerFacade.deleteBuildingAndFloorsByBuildingId(buildingId);
 
         } catch (Exception e) {
-            rd = request.getRequestDispatcher("viewBuildings.jsp");
+            if (session.getAttribute("admin") != null) {
+                rd = request.getRequestDispatcher("viewCustomer.jsp");
+            } else {
+                rd = request.getRequestDispatcher("viewBuildings.jsp");
+            }
             e.printStackTrace();
         }
-        
-        rd = request.getRequestDispatcher("viewBuildings.jsp");
+
+        if (session.getAttribute("admin") != null) {
+            rd = request.getRequestDispatcher("viewSingleCustomer.jsp");
+        } else {
+            rd = request.getRequestDispatcher("viewBuildings.jsp");
+        }
+
         rd.forward(request, response);
 
     }

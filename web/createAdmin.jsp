@@ -15,7 +15,7 @@
             </div>
             <% }%>
             <% session.removeAttribute("adminExistsError");%>
-            <h1 class="page-header">Create new user</h1>
+            <h1 class="page-header">Create new admin</h1>
             <form action="addadmin" method="POST">
                 <div class="form-group">
                     <p>Username: </p><input class="form-control" type="text" name="adminUsername" required>

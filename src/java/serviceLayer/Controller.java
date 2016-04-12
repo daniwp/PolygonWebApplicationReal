@@ -78,10 +78,9 @@ public class Controller {
         building = mapperFacade.getBuildingByBuildingId(buildingId);
         return building;
     }
+
     public Customer getCustomerByCustomerId(int customerId) {
-      Customer customer = new Customer();
-      customer = mapperFacade.getCustomerByCustomerId(customerId);
-      return customer;
+        return mapperFacade.getCustomerByCustomerId(customerId);
     }
 
     public List<Building> getAllBuildingsByCustomerId(int CustomerId) {
@@ -101,13 +100,13 @@ public class Controller {
     public void updateNumberOfFloorsByBuildingId(int buildingId) {
         mapperFacade.updateBuildingFloorsByBuildingId(buildingId);
     }
-    
+
     public void addUser(String username, String password, int type) throws UserAlreadyExistsException {
         User user = new User(username, password, type);
         mapperFacade.addUser(user);
     }
-    
-    public List<Customer> getAllCustomers(){
-       return mapperFacade.getAllCustomers();
+
+    public List<Customer> getAllCustomers() {
+        return mapperFacade.getAllCustomers();
     }
 }

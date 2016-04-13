@@ -18,21 +18,25 @@
         <%if (customer != null) {%>
 
         <div class="row">
-            <h1 class="page-header"><%= customer.getCompanyName()%></h1>
+            <div class="col-md-12">
+                <h1 class="page-header"><%= customer.getCompanyName()%></h1>
+            </div>
         </div>
         <div class="well buildingitem">
             <div class="row">
-                <h3 class="page-header col-md-12">Customer info:</h3>
+                <div class="col-md-12">
+                    <h3 class="page-header">Customer info:</h3>
+                </div>
             </div>
-            <div class="row border">
+            <div class="row">
                 <div class="col-md-4">
-                    <p>Company owner name: <strong><%= customer.getCustomerFirstName() + " " + customer.getCustomerLastName()%></strong></p>
+                    <p class="border">Company owner name: <strong><%= customer.getCustomerFirstName() + " " + customer.getCustomerLastName()%></strong></p>
                 </div>
             </div>
             <br>
-            <div class="row border">
+            <div class="row">
                 <div class="col-md-4">
-                    <p>E-mail: <strong><%= customer.getCustomerEmail()%></strong></p>
+                    <p class="border">E-mail: <strong><%= customer.getCustomerEmail()%></strong></p>
                 </div>
             </div>
             <br>

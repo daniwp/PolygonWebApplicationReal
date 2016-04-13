@@ -13,7 +13,7 @@
                 if (session.getAttribute("loggedIn") != null) { %>
             <div class="row">
                 <div class="col-md-12">
-                    <a href="addBuilding.jsp" class="btn btn-success pull-left" ><i class="fa fa-plus"></i> Add building</a>
+                    <a href="createCustomer.jsp" class="btn btn-success pull-left" ><i class="fa fa-plus"></i> Add customer</a>
                 </div>
             </div><br>
             <% ControllerFacade controllerFacade = new ControllerFacade();

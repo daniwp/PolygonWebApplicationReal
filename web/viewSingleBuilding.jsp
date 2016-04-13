@@ -90,11 +90,13 @@
         </form>
         <br><br>
 
+        <!-- Floors -->
         <% if (session.getAttribute("nrOfFloors") != null) {
                 for (int i = 0; i < Integer.parseInt((String) session.getAttribute("nrOfFloors")); i++) {%> 
+
         <form action="addfloor" method="POST">
             <div class="row well flooritem">
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <h4 class="vtop"><%= i + 1%>. </h4>
                 </div>
                 <div class="vcenter col-md-4">
@@ -107,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <div class="col-md-4">
                             <p>Floor size: </p>
@@ -118,6 +120,7 @@
                     </div>
                 </div>
             </div>
+
             <% }%>
             <div class="row">
                 <input type="hidden" name="buildingId" value="<%= Integer.parseInt((String) session.getAttribute("buildingId"))%>">
@@ -128,6 +131,71 @@
         </form>
         <% }  %>
 
+        <!-- Building Reports -->
+        <div class="well buildingitem">
+            <div class="row">
+                <h3 class="border">&nbsp;Building reports</h3>
+            </div>
+            <div class="row border">
+                <div class="col-md-3">
+                    <p>Add a new building report:</p>
+                </div>
+                <div style="margin-bottom: 10px" class="input-group col-md-6 pull-right">
+                    <span class="input-group-btn">
+                        <span class="btn btn-primary btn-file">
+                            <form action="#" method="POST" enctype="">
+                                Browse&hellip; <input type="file" name="reportFile" multiple>
+                            </form>
+                        </span>
+                    </span>
+                    <input type="text" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+
+        <!-- Relevent documents -->
+        <div class="well buildingitem">
+            <div class="row">
+                <h3 class="border">&nbsp;Relevent documents</h3>
+            </div>
+            <div class="row border">
+                <div class="col-md-3">
+                    <p>Add a new document:</p>
+                </div>
+                <div style="margin-bottom: 10px" class="input-group col-md-6 pull-right">
+                    <span class="input-group-btn">
+                        <span class="btn btn-primary btn-file">
+                            <form action="#" method="POST" enctype="">
+                                Browse&hellip; <input type="file" name="documentFile" multiple>
+                            </form>
+                        </span>
+                    </span>
+                    <input type="text" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+
+        <!-- Relevent images -->
+        <div class="well buildingitem">
+            <div class="row">
+                <h3 class="border">&nbsp;Relevent images</h3>
+            </div>
+            <div class="row border">
+                <div class="col-md-3">
+                    <p>Add a new image:</p>
+                </div>
+                <div style="margin-bottom: 10px" class="input-group col-md-6 pull-right">
+                    <span class="input-group-btn">
+                        <span class="btn btn-primary btn-file">
+                            <form action="#" method="POST" enctype="">
+                                Browse&hellip; <input type="file" name="imageFile" multiple>
+                            </form>
+                        </span>
+                    </span>
+                    <input type="text" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
 
         <% if (!floors.isEmpty()) {
                 for (Floor floor : floors) {%>
@@ -142,7 +210,8 @@
                     </div>
                     <form action="deletefloor" method="POST">
                         <input type="hidden" name="floorId" value="<%=floor.getFloorId()%>">
-                        <button class="btn btn-danger col-md-2 col-md-offset-1" onClick="return confirm('Are you sure you want to delete this floor?');" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
+                        <button class="btn btn-danger col-md-2 col-md-offset-1" onClick="return
+                                confirm('Are you sure you want to delete this floor?');" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
                     </form>
                 </div>
             </div>

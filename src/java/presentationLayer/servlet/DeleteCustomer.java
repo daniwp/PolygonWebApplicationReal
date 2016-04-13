@@ -20,10 +20,7 @@ import serviceLayer.ControllerFacade;
  *
  * @author Lasse
  */
-@WebServlet(name = "DeleteCustomer", urlPatterns =
-{
-    "/DeleteCustomer"
-})
+@WebServlet(name = "DeleteCustomer", urlPatterns = {"/deletecustomer"})
 public class DeleteCustomer extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -38,27 +35,18 @@ public class DeleteCustomer extends HttpServlet {
 
             int customerId = Integer.parseInt(request.getParameter("customerId"));
 
-            controllerFacade.deleteCustomerByCustomerId(customerId);
+            controllerFacade.deleteUserAndCustomerByCustomerId(customerId);
+
+            rd = request.getRequestDispatcher("viewCustomers.jsp");
 
         } catch (Exception e) {
-            if (session.getAttribute("admin") != null) {
-                rd = request.getRequestDispatcher("viewCustomer.jsp");
-            } else {
-                rd = request.getRequestDispatcher("viewCustomer.jsp");
-            }
+            rd = request.getRequestDispatcher("viewCustomers.jsp");
             e.printStackTrace();
-        }
-
-        if (session.getAttribute("admin") != null) {
-            rd = request.getRequestDispatcher("viewSingleCustomer.jsp");
-        } else {
-            rd = request.getRequestDispatcher("viewCustomer.jsp");
         }
 
         rd.forward(request, response);
 
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -71,8 +59,7 @@ public class DeleteCustomer extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -86,8 +73,7 @@ public class DeleteCustomer extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -97,8 +83,7 @@ public class DeleteCustomer extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo()
-    {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

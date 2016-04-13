@@ -80,7 +80,7 @@ public class ControllerFacade {
         return controller.getCustomerByCustomerId(customerId);
     }
     
-    public void deleteCustomerByCustomerId(int customerId){
-        controller.deleteCustomerByCustomerId(customerId);
+    public void deleteUserAndCustomerByCustomerId(int customerId) {
+        controller.deleteUserAndCustomerByCustomerId(customerId);
     }
 }

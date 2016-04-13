@@ -11,12 +11,12 @@ import serviceLayer.entity.Building;
 public class BuildingMapper {
 
     //made by Lasse
-    public void addBuilding(Building b)  {
+    public void addBuilding(Building b) {
 
         try {
             String query = "INSERT INTO building (buildingName, address, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, customerId) VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
-            
+
             ps.setString(1, b.getName());
             ps.setString(2, b.getAddress());
             ps.setInt(3, b.getZipcodes());
@@ -35,7 +35,7 @@ public class BuildingMapper {
             ee.printStackTrace();
         }
     }
-    
+
     // In this method we get all the information about the building up from the database.
     public List<Building> getAllBuildingsByCustomerId(int customerId) {
         List<Building> buildings = new ArrayList();
@@ -92,17 +92,57 @@ public class BuildingMapper {
     }
 
     // Daniel
+    public void deleteBuildingByCustomerId(int customerId) {
+        try {
+            String query = "DELETE FROM building WHERE (customerId) = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+
+            ps.setInt(1, customerId);
+
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException ee) {
+            ee.printStackTrace();
+        }
+    }
+
+    // Daniel
+    public List<Integer> getBuildingIdsByCustomerId(int customerId) {
+        ResultSet rs = null;
+        List<Integer> buildingIds = new ArrayList();
+
+        try {
+            String query = "Select buildingId from building WHERE customerId = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            ps.setInt(1, customerId);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                buildingIds.add(rs.getInt("buildingId"));
+            }
+            
+            ps.close();
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return buildingIds;
+    }
+
+    // Daniel
     public Building getBuildingByBuildingId(int buildingId) {
         Building building = null;
         ResultSet rs = null;
-        
+
         try {
             String query = "SELECT * FROM building WHERE buildingId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, buildingId);
             rs = ps.executeQuery();
-            
+
             while (rs.next()) {
                 String buildingName = rs.getString("buildingName");
                 String buildingAddress = rs.getString("address");
@@ -114,7 +154,7 @@ public class BuildingMapper {
                 String buildingOwner = rs.getString("buildingOwner");
                 int buildingCondition = rs.getInt("buildingCondition");
                 int buildingcustomerId = rs.getInt("customerId");
-                
+
                 building = new Building(buildingName, buildingAddress, buildingZip, buildingCity, buildingYear, buildingFloor, buildingSize, buildingOwner, buildingCondition, buildingcustomerId);
             }
 
@@ -125,7 +165,7 @@ public class BuildingMapper {
         }
         return building;
     }
-    
+
     public int getBuildingIdByName(String name) {
         ResultSet rs = null;
         int buildingId = 0;
@@ -147,40 +187,40 @@ public class BuildingMapper {
         }
         return buildingId;
     }
-    
+
     public int getNumberOfFloorsByBuildingId(int buildingId) {
         ResultSet rs = null;
         int numberOfFloors = 0;
-        
+
         try {
-            
+
             String query = "Select * from floor WHERE buildingId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
-            
+
             ps.setInt(1, buildingId);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                numberOfFloors ++;
+                numberOfFloors++;
             }
-            
+
             ps.close();
             rs.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return numberOfFloors;
     }
-    
+
     public void updateBuildingFloorsByBuildingId(int buildingId) {
-        
+
         try {
             int floors = getNumberOfFloorsByBuildingId(buildingId);
-            
+
             String query = "UPDATE building SET floors=(?) where (buildingId) = (?)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
-            
+
             ps.setInt(1, floors);
             ps.setInt(2, buildingId);
 
@@ -191,5 +231,5 @@ public class BuildingMapper {
             ee.printStackTrace();
         }
     }
-    
+
 }

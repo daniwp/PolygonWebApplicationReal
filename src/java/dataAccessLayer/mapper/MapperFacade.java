@@ -92,8 +92,19 @@ public class MapperFacade {
         return customerMapper.getAllCustomers();
     }
 
-    public void deleteCustomerByCustomerId(int customerId)
-    {
-        customerMapper.deleteCustomerByCustomerId(customerId);
+    public void deleteCustomerByCustomerId(int customerId, int userId) {
+        customerMapper.deleteCustomerByCustomerId(customerId, userId);
+    }
+
+    public int getUserIdByCustomerId(int customerId) {
+        return customerMapper.getUserIdByCustomerId(customerId);
+    }
+
+    public void deleteUserByUserId(int userId) {
+        userMapper.deleteUserByUserId(userId);
+    }
+    
+    public List<Integer> getBuildingIdsByCustomerId(int customerId) {
+        return buildingMapper.getBuildingIdsByCustomerId(customerId);
     }
 }

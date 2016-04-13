@@ -145,12 +145,13 @@ public class CustomerMapper
     }
     
 //made by Lasse
-    public void deleteCustomerByCustomerId(int customerId) {
+    public void deleteCustomerByCustomerId(int customerId, int userId) {
         try {
-            String query = "DELETE FROM customer WHERE (customerId) = ?";
+            String query = "DELETE FROM customer WHERE (customerId) = ? AND (userId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, customerId);
+            ps.setInt(2, userId);
 
             ps.executeUpdate();
 
@@ -158,6 +159,33 @@ public class CustomerMapper
         } catch (SQLException ee) {
             ee.printStackTrace();
         }
+    }
+    
+    public int getUserIdByCustomerId(int customerId) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int userId = 0;
+        
+        try
+        {
+            String query = "SELECT (userId) FROM customer WHERE customerId = ?";
+            ps = DBConnector.getConnection().prepareStatement(query);
+            ps.setInt(1, customerId);
+
+            rs = ps.executeQuery();
+
+            if (rs.next())
+            {
+                userId = rs.getInt("userId");
+            }
+
+            ps.close();
+            rs.close();
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        return userId;
     }
 }
 

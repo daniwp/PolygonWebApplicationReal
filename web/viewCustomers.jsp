@@ -44,7 +44,7 @@
                         <input type="hidden" name="customerId" value="<%=customer.getCustomerId()%>">
                         <button class="btn btn-primary pull-left" type="submit"><i class="fa fa-fw fa-eye"></i> View</button>
                     </form>
-                    <form action="#" method="POST">
+                    <form action="deletecustomer" method="POST">
                         <input type="hidden" name="customerId" value="<%=customer.getCustomerId()%>">
                         <button class="btn btn-danger pull-right" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
                     </form>

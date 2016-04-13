@@ -109,7 +109,17 @@ public class Controller {
     public List<Customer> getAllCustomers() {
         return mapperFacade.getAllCustomers();
     }
-    public void deleteCustomerByCustomerId(int customerId) {
-        mapperFacade.deleteCustomerByCustomerId(customerId);
+
+    public void deleteUserAndCustomerByCustomerId(int customerId) {
+        int userId = mapperFacade.getUserIdByCustomerId(customerId);
+        List<Integer> buildingIds = mapperFacade.getBuildingIdsByCustomerId(customerId);
+
+        for (int buildingId : buildingIds) {
+            deleteBuildingAndFloorsByBuildingId(buildingId);
+        }
+
+        mapperFacade.deleteCustomerByCustomerId(customerId, userId);
+        mapperFacade.deleteUserByUserId(userId);
     }
+
 }

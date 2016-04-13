@@ -142,7 +142,7 @@
                     </div>
                     <form action="deletefloor" method="POST">
                         <input type="hidden" name="floorId" value="<%=floor.getFloorId()%>">
-                        <button class="btn btn-danger col-md-2 col-md-offset-1" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
+                        <button class="btn btn-danger col-md-2 col-md-offset-1" onClick="return confirm('Are you sure you want to delete this floor?');" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
                     </form>
                 </div>
             </div>

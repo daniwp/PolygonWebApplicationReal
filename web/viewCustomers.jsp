@@ -46,7 +46,7 @@
                     </form>
                     <form action="deletecustomer" method="POST">
                         <input type="hidden" name="customerId" value="<%=customer.getCustomerId()%>">
-                        <button class="btn btn-danger pull-right" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
+                        <button class="btn btn-danger pull-right" onClick="return confirm('Are you sure you want to delete this customer?');" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
                     </form>
                 </div>
             </div>

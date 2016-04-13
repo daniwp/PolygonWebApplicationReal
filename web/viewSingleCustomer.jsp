@@ -70,7 +70,7 @@
                 </form>
                 <form action="deletebuilding" method="POST">
                     <input type="hidden" name="buildingId" value="<%=building.getBuildingId()%>">
-                    <button class="btn btn-danger pull-right" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
+                    <button class="btn btn-danger pull-right" onClick="return confirm('Are you sure you want to delete this building?');" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
                 </form>
             </div>
         </div>

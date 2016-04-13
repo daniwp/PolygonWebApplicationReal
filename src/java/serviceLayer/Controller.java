@@ -109,4 +109,7 @@ public class Controller {
     public List<Customer> getAllCustomers() {
         return mapperFacade.getAllCustomers();
     }
+    public void deleteCustomerByCustomerId(int customerId) {
+        mapperFacade.deleteCustomerByCustomerId(customerId);
+    }
 }

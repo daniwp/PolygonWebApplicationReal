@@ -91,4 +91,9 @@ public class MapperFacade {
     public List<Customer> getAllCustomers(){
         return customerMapper.getAllCustomers();
     }
+
+    public void deleteCustomerByCustomerId(int customerId)
+    {
+        customerMapper.deleteCustomerByCustomerId(customerId);
+    }
 }

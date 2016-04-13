@@ -79,4 +79,8 @@ public class ControllerFacade {
     public Customer getCustomerByCustomerId(int customerId){
         return controller.getCustomerByCustomerId(customerId);
     }
+    
+    public void deleteCustomerByCustomerId(int customerId){
+        controller.deleteCustomerByCustomerId(customerId);
+    }
 }

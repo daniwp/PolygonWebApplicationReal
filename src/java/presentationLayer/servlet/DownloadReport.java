@@ -5,9 +5,7 @@
  */
 package presentationLayer.servlet;
 
-import dataAccessLayer.mapper.ReportMapper;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -16,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import serviceLayer.ControllerFacade;
 
 /**
  *
@@ -24,15 +23,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "DownloadReport", urlPatterns = {"/downloadreport"})
 public class DownloadReport extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -54,17 +44,15 @@ public class DownloadReport extends HttpServlet {
             RequestDispatcher rd = null;
             HttpSession session = request.getSession();
             session.setMaxInactiveInterval(30 * 60);
-            ReportMapper fileMapper = new ReportMapper();
+            ControllerFacade controllerFacade = new ControllerFacade();
             
             session.setAttribute("reportId", request.getParameter("reportId"));
-            System.out.println(session.getAttribute("reportId"));
 
             int reportId = Integer.parseInt((String)session.getAttribute("reportId"));
-            System.out.println(reportId);
             
             ServletContext context = getServletContext();
             
-            fileMapper.downloadReport(context, response, reportId);
+            controllerFacade.downloadReport(context, response, reportId);
 
         } catch (Exception e) {
             e.printStackTrace();

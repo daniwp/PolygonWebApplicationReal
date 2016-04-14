@@ -10,96 +10,65 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
-import serviceLayer.entity.Report;
+import serviceLayer.entity.Document;
+import serviceLayer.entity.Floorplan;
 
 /**
  *
- * @author danie
+ * @author Daniel
  */
-public class ReportMapper {
+public class FloorplanMapper {
 
-    public void saveReport(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
+    public void uploadFloorplan(InputStream input, String name, int floorId) {
 
         try {
-
-            String query = "INSERT INTO report (reportFile, reportFileName, reportUploadDate, buildingId) values (?, ?, ?, ?)";
+            
+            String query = "INSERT INTO floorplan (floorplanName, floorplan, floorId) values (?, ?, ?)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
-
-            ps.setBlob(1, input);
-            ps.setString(2, name);
-            ps.setString(3, date);
-            ps.setInt(4, buildingId);
-
+            
+            ps.setString(1, name);
+            ps.setBlob(2, input);
+            ps.setInt(3, floorId);
+            
             ps.executeUpdate();
-
+            
             ps.close();
-
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-
-    public List<Report> getAllReportsByBuildingId(int buildingId) {
-        List<Report> reports = new ArrayList();
-        ResultSet rs = null;
-        Report report = null;
-
-        try {
-
-            String query = "SELECT * FROM report WHERE (buildingId) = ?";
-            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
-
-            ps.setInt(1, buildingId);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                int reportId = rs.getInt("reportId");
-                String fileName = rs.getString("reportFileName");
-                String date = rs.getString("reportUploadDate");
-
-                report = new Report(reportId, fileName, date, buildingId);
-                reports.add(report);
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        return reports;
-    }
-
-    public OutputStream downloadReport(ServletContext context, HttpServletResponse response, int reportId) throws ClassNotFoundException {
+    
+    public OutputStream downloadFloorplan(ServletContext context, HttpServletResponse response, int floorplanId) throws ClassNotFoundException {
         ResultSet rs = null;
         OutputStream output = null;
         final int BUFFER_SIZE = 4096;
 
         try {
 
-            String query = "SELECT * FROM report WHERE (reportId) = ?";
+            String query = "SELECT * FROM floorplan WHERE (floorplanId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
-            ps.setInt(1, reportId);
+            ps.setInt(1, floorplanId);
 
             rs = ps.executeQuery();
 
             if (rs.next()) {
 
-                String fileName = rs.getString("reportFileName");
-                Blob blob = rs.getBlob("reportFile");
+                String floorplanName = rs.getString("floorplanName");
+                Blob blob = rs.getBlob("floorplan");
 
                 InputStream inputStream = blob.getBinaryStream();
 
-                String mimeType = context.getMimeType(fileName);
+                String mimeType = context.getMimeType(floorplanName);
                 if (mimeType == null) {
                     mimeType = "application/octet-stream";
                 }
                 response.setContentType(mimeType);
                 String headerKey = "Content-Disposition";
-                String headerValue = String.format("attachment; filename=\"%s\"", fileName);
+                String headerValue = String.format("attachment; documentName=\"%s\"", floorplanName);
                 response.setHeader(headerKey, headerValue);
 
                 OutputStream outputStream = response.getOutputStream();
@@ -123,14 +92,41 @@ public class ReportMapper {
 
         return output;
     }
-
-    public void deleteReportByReportId(int reportId) {
-
-        try {
-            String query = "DELETE FROM report WHERE (reportId) = ?";
+    
+    public Floorplan getFloorplanByFloorId(int floorId) {
+        ResultSet rs = null;
+        Floorplan floorplan = null;
+        
+        try{
+            
+            String query = "SELECT * FROM floorplan WHERE (floorId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             
-            ps.setInt(1, reportId);
+            ps.setInt(1, floorId);
+            rs = ps.executeQuery();
+            
+            if(rs.next()) {
+                
+                int floorplanId = rs.getInt("floorplanId");
+                String floorplanName = rs.getString("floorplanName");
+                
+                floorplan = new Floorplan(floorplanId, floorplanName, floorId);
+                
+            }
+            
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return floorplan;
+    }   
+    
+    public void deleteFloorplanByFloorplanId(int floorplanId) {
+
+        try {
+            String query = "DELETE FROM floorplan WHERE (floorplanId) = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            
+            ps.setInt(1, floorplanId);
             ps.executeUpdate();
             
             ps.close();
@@ -138,4 +134,5 @@ public class ReportMapper {
             ex.printStackTrace();
         }
     }
+
 }

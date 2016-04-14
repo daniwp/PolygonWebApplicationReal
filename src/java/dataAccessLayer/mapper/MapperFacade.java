@@ -15,6 +15,7 @@ import serviceLayer.entity.Building;
 import serviceLayer.entity.Customer;
 import serviceLayer.entity.Document;
 import serviceLayer.entity.Floor;
+import serviceLayer.entity.Floorplan;
 import serviceLayer.entity.Report;
 import serviceLayer.entity.User;
 
@@ -26,6 +27,7 @@ public class MapperFacade {
     UserMapper userMapper = new UserMapper();
     ReportMapper reportMapper = new ReportMapper();
     DocumentMapper documentMapper = new DocumentMapper();
+    FloorplanMapper floorplanMapper = new FloorplanMapper();
 
     public void addBuilding(Building b) {
         buildingMapper.addBuilding(b);
@@ -144,5 +146,21 @@ public class MapperFacade {
     
     public void deleteReportByReportId(int reportId) {
         reportMapper.deleteReportByReportId(reportId);
+    }
+    
+    public void deleteFloorplanByFloorplanId(int floorplanId) {
+        floorplanMapper.deleteFloorplanByFloorplanId(floorplanId);
+    }
+    
+    public Floorplan getFloorplanByFloorId(int floorId) {
+        return floorplanMapper.getFloorplanByFloorId(floorId);
+    }
+    
+    public OutputStream downloadFloorplan(ServletContext context, HttpServletResponse response, int floorplanId) throws ClassNotFoundException {
+        return floorplanMapper.downloadFloorplan(context, response, floorplanId);
+    }
+    
+    public void uploadFloorplan(InputStream input, String name, int floorId) {
+        floorplanMapper.uploadFloorplan(input, name, floorId);
     }
 }

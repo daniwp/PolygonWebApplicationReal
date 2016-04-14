@@ -14,6 +14,7 @@ import serviceLayer.entity.Report;
 import serviceLayer.entity.Customer;
 import serviceLayer.entity.Document;
 import serviceLayer.entity.Floor;
+import serviceLayer.entity.Floorplan;
 import serviceLayer.entity.User;
 
 public class Controller {
@@ -153,5 +154,21 @@ public class Controller {
     
     public void deleteReportByReportId(int reportId) {
         mapperFacade.deleteReportByReportId(reportId);
+    }
+    
+    public void deleteFloorplanByFloorplanId(int floorplanId) {
+        mapperFacade.deleteFloorplanByFloorplanId(floorplanId);
+    }
+    
+    public Floorplan getFloorplanByFloorId(int floorId) {
+        return mapperFacade.getFloorplanByFloorId(floorId);
+    }
+    
+    public OutputStream downloadFloorplan(ServletContext context, HttpServletResponse response, int floorplanId) throws ClassNotFoundException {
+        return mapperFacade.downloadFloorplan(context, response, floorplanId);
+    }
+    
+    public void uploadFloorplan(InputStream input, String name, int floorId) {
+        mapperFacade.uploadFloorplan(input, name, floorId);
     }
 }

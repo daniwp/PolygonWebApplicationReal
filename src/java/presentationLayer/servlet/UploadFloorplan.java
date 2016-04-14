@@ -6,31 +6,27 @@
 package presentationLayer.servlet;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import serviceLayer.ControllerFacade;
 
 /**
  *
- * @author danie
+ * @author Daniel
  */
-@WebServlet(name = "DeleteReport", urlPatterns = {"/deletereport"})
-public class DeleteReport extends HttpServlet {
+@MultipartConfig
+@WebServlet(name = "UploadFloorplan", urlPatterns = {"/uploadfloorplan"})
+public class UploadFloorplan extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher rd = null;
@@ -39,17 +35,20 @@ public class DeleteReport extends HttpServlet {
         ControllerFacade controllerFacade = new ControllerFacade();
 
         try {
-            int reportId = Integer.parseInt(request.getParameter("reportId"));
+            Part part = request.getPart("floorplanFile");
+            String name = part.getSubmittedFileName();
+            int floorId = Integer.parseInt(request.getParameter("floorId"));
+            InputStream inputStream = part.getInputStream();
 
-            controllerFacade.deleteReportByReportId(reportId);
+            controllerFacade.uploadFloorplan(inputStream, name, floorId);
 
             rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
 
-        } catch (Exception ex) {
+        } catch (Exception e) {
+            e.printStackTrace();
             rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
-            ex.printStackTrace();
         }
-        
+
         rd.forward(request, response);
     }
 

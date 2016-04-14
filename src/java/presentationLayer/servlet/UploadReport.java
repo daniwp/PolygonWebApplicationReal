@@ -37,7 +37,7 @@ public class UploadReport extends HttpServlet {
             Part part = request.getPart("reportFile");
             String name = part.getSubmittedFileName();
             String date = request.getParameter("reportDate");
-            int buildingId = Integer.parseInt(request.getParameter("buildingId"));
+            int buildingId = Integer.parseInt((String)session.getAttribute("buildingId"));
 
             InputStream inputStream = part.getInputStream();
 

@@ -50,14 +50,13 @@ public class FileMapper {
         
         try {
 
-            String query = "SELECT * FROM files WHERE (buildingId) = ?";
+            String query = "SELECT * FROM report WHERE (buildingId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             
             ps.setInt(1, buildingId);
             rs = ps.executeQuery();
             
             while(rs.next()) {
-                
                 int reportId = rs.getInt("reportId");
                 String fileName = rs.getString("reportFileName");
                 String date = rs.getString("reportUploadDate");
@@ -80,7 +79,7 @@ public class FileMapper {
 
         try {
 
-            String query = "SELECT * FROM files WHERE (reportId) = ?";
+            String query = "SELECT * FROM report WHERE (reportId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, reportId);

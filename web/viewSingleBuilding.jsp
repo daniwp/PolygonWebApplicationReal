@@ -137,22 +137,36 @@
             <div class="row">
                 <h3 class="border">&nbsp;Building reports</h3>
             </div>
-            <div class="row border">
-                <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-12">
                     <p>Add a new building report:</p>
                 </div>
-                <div style="margin-bottom: 10px" class="input-group col-md-6 pull-right">
+            </div>
+            <form action="uploadreport" method="POST" enctype="multipart/form-data">
+                <div style="margin-bottom: 10px" class="input-group">
                     <span class="input-group-btn">
                         <span class="btn btn-primary btn-file">
-                            <form action="#" method="POST" enctype="">
-                                Browse&hellip; <input type="file" name="reportFile" multiple>
-                            </form>
+                            Browse&hellip; <input type="file" name="reportFile" multiple>
                         </span>
                     </span>
                     <input type="text" class="form-control" readonly>
                 </div>
-            </div>
-            <% List<Report> reports = controllerFacade.getAllReportsByBuildingId(building.getBuildingId());
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="col-md-2">
+                            <p>Date:</p>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <input class="form-control" type="date" name="reportDate"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4 pull-right">
+                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <br><br>
+            <% List<Report> reports = controllerFacade.getAllReportsByBuildingId(buildingId);
                 for (Report report : reports) {%>
 
             <div class="row">
@@ -163,24 +177,20 @@
                     <div class="col-md-3">
                         <p><%= report.getUploadDate()%></p>
                     </div>
-                    <div class="col-md-4">
-                        <div class="col-md-6">
-                            <p>Date:</p>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <input class="form-control" type="date" name="reportDate"/>
-                        </div>
+                    <div class="col-md-2 pull-right">
+                        <form action="downloadreport">
+                            <button class="btn btn-success pull-right col-md-12" type="submit"><i class="fa fa-download" aria-hidden="true"></i></button>
+                            <input type="hidden" name="reportId" value="<%= report.getReportId() %>"/>
+                        </form>
                     </div>
-                    <div class="col-md-1">
-                        <button class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
-                    </div>
-                    <div class="col-md-1">
+                    <div class="col-md-2 pull-right">
                         <form action="deletereport" method="POST">
-                            <button class="btn btn-danger"><i class="fa fa-download" aria-hidden="true"></i></button>
+                            <button class="btn btn-danger pull-right col-md-12" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
                         </form>
                     </div>
                 </div>
             </div>
+            <br>
 
             <% }%>
         </div>

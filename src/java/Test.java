@@ -1,8 +1,10 @@
 
-import dataAccessLayer.mapper.CustomerMapper;
+import dataAccessLayer.mapper.FileMapper;
 import java.sql.SQLException;
 import java.util.List;
+import serviceLayer.ControllerFacade;
 import serviceLayer.entity.Customer;
+import serviceLayer.entity.Report;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,14 +18,14 @@ import serviceLayer.entity.Customer;
 public class Test {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        CustomerMapper cM = new CustomerMapper();
-        List<Customer> customers = cM.getAllCustomers();
+        ControllerFacade cF = new ControllerFacade();
+        FileMapper fM = new FileMapper();
+        List<Report> reports = cF.getAllReportsByBuildingId(1);
         
-        for (Customer c : customers) {
-            System.out.println("Name: " + c.getCompanyName());
-            System.out.println("Email: " + c.getCustomerEmail());
-            System.out.println("Firstname: " + c.getCustomerFirstName());
-            System.out.println("Lastname: " + c.getCustomerLastName());
+        
+        for (Report report : reports) {
+            System.out.println(report.getFileName());
+            report.getBuildingId();
         }
     }
 }

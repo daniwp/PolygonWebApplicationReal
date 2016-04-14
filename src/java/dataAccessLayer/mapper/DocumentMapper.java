@@ -75,7 +75,7 @@ public class DocumentMapper {
         return documents;
     }   
     
-    public OutputStream downloadReport(ServletContext context, HttpServletResponse response, int documentId) throws ClassNotFoundException {
+    public OutputStream downloadDocument(ServletContext context, HttpServletResponse response, int documentId) throws ClassNotFoundException {
         ResultSet rs = null;
         OutputStream output = null;
         final int BUFFER_SIZE = 4096;

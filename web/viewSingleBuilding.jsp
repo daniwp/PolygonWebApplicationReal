@@ -1,3 +1,4 @@
+<%@page import="serviceLayer.entity.Report"%>
 <%@page import="serviceLayer.ControllerFacade"%>
 <%@page import="serviceLayer.entity.Floor"%>
 <%@page import="java.util.List"%>
@@ -7,8 +8,8 @@
 <jsp:include page="header.jsp" />
 
 <%
+    ControllerFacade controllerFacade = new ControllerFacade();
     if (session.getAttribute("loggedIn") != null) {
-        ControllerFacade controllerFacade = new ControllerFacade();
         int buildingId = Integer.parseInt((String) session.getAttribute("buildingId"));
         Building building = controllerFacade.getBuildingByBuildingId(buildingId);
         List<Floor> floors = controllerFacade.getAllFloorsByBuildingId(buildingId); %>
@@ -151,6 +152,37 @@
                     <input type="text" class="form-control" readonly>
                 </div>
             </div>
+            <% List<Report> reports = controllerFacade.getAllReportsByBuildingId(building.getBuildingId());
+                for (Report report : reports) {%>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <p><%= report.getFileName()%></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p><%= report.getUploadDate()%></p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="col-md-6">
+                            <p>Date:</p>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <input class="form-control" type="date" name="reportDate"/>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="col-md-1">
+                        <form action="deletereport" method="POST">
+                            <button class="btn btn-danger"><i class="fa fa-download" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <% }%>
         </div>
 
         <!-- Relevent documents -->

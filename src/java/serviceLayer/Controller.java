@@ -2,11 +2,15 @@ package serviceLayer;
 
 import dataAccessLayer.mapper.MapperFacade;
 import exceptions.UserAlreadyExistsException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import serviceLayer.entity.Building;
+import serviceLayer.entity.Report;
 import serviceLayer.entity.Customer;
 import serviceLayer.entity.Floor;
 import serviceLayer.entity.User;
@@ -121,5 +125,16 @@ public class Controller {
         mapperFacade.deleteCustomerByCustomerId(customerId, userId);
         mapperFacade.deleteUserByUserId(userId);
     }
+    
+    public void saveReport(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
+        mapperFacade.saveReport(input, name, date, buildingId);
+    }
 
+    public List<Report> getAllReportsByBuildingId(int buildingId) {
+        return mapperFacade.getAllReportsByBuildingId(buildingId);
+    }
+
+    public OutputStream downloadReport(ServletContext context, HttpServletResponse response, int reportId) throws ClassNotFoundException {
+        return mapperFacade.downloadReport(context, response, reportId);
+    }
 }

@@ -14,18 +14,48 @@ import java.sql.Blob;
 public class Report {
     
     private int reportId;
-    private Blob mediumblob;
+    private String fileName;
+    private String uploadDate;
+    private int buildingId;
 
-    public Report(int reportId, Blob mediumblob) {
+    public Report(int reportId, String fileName, String uploadDate, int buildingId) {
         this.reportId = reportId;
-        this.mediumblob = mediumblob;
+        this.fileName = fileName;
+        this.uploadDate = uploadDate;
+        this.buildingId = buildingId;
     }
 
-    public Report(Blob mediumblob) {
-        this.mediumblob = mediumblob;
+    public Report(String fileName, String uploadDate, int buildingId) {
+        this.fileName = fileName;
+        this.uploadDate = uploadDate;
+        this.buildingId = buildingId;
     }
 
     public Report() {
+    }
+
+    public String getUploadDate() {
+        return uploadDate;
+    }
+
+    public void setUploadDate(String uploadDate) {
+        this.uploadDate = uploadDate;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public int getBuildingId() {
+        return buildingId;
+    }
+
+    public void setBuildingId(int buildingId) {
+        this.buildingId = buildingId;
     }
 
     public int getReportId() {
@@ -35,15 +65,5 @@ public class Report {
     public void setReportId(int reportId) {
         this.reportId = reportId;
     }
-
-    public Blob getMediumblob() {
-        return mediumblob;
-    }
-
-    public void setMediumblob(Blob mediumblob) {
-        this.mediumblob = mediumblob;
-    }
-    
-    
 
 }

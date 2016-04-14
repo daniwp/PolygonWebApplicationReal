@@ -2,13 +2,19 @@ package dataAccessLayer.mapper;
 
 import dataAccessLayer.DBConnector;
 import exceptions.UserAlreadyExistsException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import serviceLayer.entity.Building;
 import serviceLayer.entity.Customer;
 import serviceLayer.entity.Floor;
+import serviceLayer.entity.Report;
 import serviceLayer.entity.User;
 
 public class MapperFacade {
@@ -17,6 +23,7 @@ public class MapperFacade {
     CustomerMapper customerMapper = new CustomerMapper();
     FloorMapper floorMapper = new FloorMapper();
     UserMapper userMapper = new UserMapper();
+    FileMapper fileMapper = new FileMapper();
 
     public void addBuilding(Building b) {
         buildingMapper.addBuilding(b);
@@ -106,5 +113,17 @@ public class MapperFacade {
     
     public List<Integer> getBuildingIdsByCustomerId(int customerId) {
         return buildingMapper.getBuildingIdsByCustomerId(customerId);
+    }
+    
+    public void saveReport(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
+        fileMapper.saveReport(input, name, date, buildingId);
+    }
+
+    public List<Report> getAllReportsByBuildingId(int buildingId) {
+        return fileMapper.getAllReportsByBuildingId(buildingId);
+    }
+
+    public OutputStream downloadReport(ServletContext context, HttpServletResponse response, int reportId) throws ClassNotFoundException {
+        return fileMapper.downloadReport(context, response, reportId);
     }
 }

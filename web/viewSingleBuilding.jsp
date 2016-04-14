@@ -1,3 +1,4 @@
+<%@page import="serviceLayer.entity.Document"%>
 <%@page import="serviceLayer.entity.Report"%>
 <%@page import="serviceLayer.ControllerFacade"%>
 <%@page import="serviceLayer.entity.Floor"%>
@@ -197,25 +198,66 @@
         </div>
 
         <!-- Relevent documents -->
-        <div class="well buildingitem">
+<div class="well buildingitem">
             <div class="row">
-                <h3 class="border">&nbsp;Relevent documents</h3>
+                <h3 class="border">&nbsp;Building documents</h3>
             </div>
-            <div class="row border">
-                <div class="col-md-3">
-                    <p>Add a new document:</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Add a new building document:</p>
                 </div>
-                <div style="margin-bottom: 10px" class="input-group col-md-6 pull-right">
+            </div>
+            <form action="uploaddocument" method="POST" enctype="multipart/form-data">
+                <div style="margin-bottom: 10px" class="input-group">
                     <span class="input-group-btn">
                         <span class="btn btn-primary btn-file">
-                            <form action="#" method="POST" enctype="">
-                                Browse&hellip; <input type="file" name="documentFile" multiple>
-                            </form>
+                            Browse&hellip; <input type="file" name="documentFile" multiple>
                         </span>
                     </span>
                     <input type="text" class="form-control" readonly>
                 </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="col-md-2">
+                            <p>Date:</p>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <input class="form-control" type="date" name="documentDate"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4 pull-right">
+                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <br><br>
+            <% List<Document> documents = controllerFacade.getAllDocumentsByBuildingId(buildingId);
+                for (Document document : documents) {%>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <p><%= document.getDocumentFileName()%></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p><%= document.getDocumentUploadDate()%></p>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <form action="downloaddocument">
+                            <button class="btn btn-success pull-right col-md-12" type="submit"><i class="fa fa-download" aria-hidden="true"></i></button>
+                            <input type="hidden" name="documentId" value="<%= document.getDocumentId() %>"/>
+                        </form>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <form action="deletedocument" method="POST">
+                            <button class="btn btn-danger pull-right col-md-12" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                </div>
             </div>
+            <br>
+
+            <% }%>
         </div>
 
         <!-- Relevent images -->

@@ -11,7 +11,7 @@ public class DBConnector {
     public static String driver = "com.mysql.jdbc.Driver";
     public static String URL = "jdbc:mysql://localhost/polygondb";
     public static String ID = "root";
-    public static String PW = "15243qtwre";
+    public static String PW = "1234";
     private static Connection connection = null;
 
     public static Connection getConnection() {

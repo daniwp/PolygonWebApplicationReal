@@ -38,7 +38,9 @@ public class DocumentMapper {
             ps.setString(3, date);
             ps.setInt(4, buildingId);
         
-        
+            ps.executeUpdate();
+            
+            ps.close();
         
         } catch (SQLException ex){
             ex.printStackTrace();
@@ -53,7 +55,7 @@ public class DocumentMapper {
         
         try{
             
-            String query = "SELECT * FROM documents WHERE (BuildingId) = ?";
+            String query = "SELECT * FROM document WHERE (BuildingId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             
             ps.setInt(1, buildingId);

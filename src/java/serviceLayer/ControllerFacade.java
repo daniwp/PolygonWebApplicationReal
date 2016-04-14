@@ -113,4 +113,8 @@ public class ControllerFacade {
     public OutputStream downloadDocument(ServletContext context, HttpServletResponse response, int documentId) throws ClassNotFoundException {
         return controller.downloadDocument(context, response, documentId);
     }
+    
+    public void deleteReportByReportId(int reportId) {
+        controller.deleteReportByReportId(reportId);
+    }
 }

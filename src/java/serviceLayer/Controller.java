@@ -150,4 +150,8 @@ public class Controller {
     public OutputStream downloadDocument(ServletContext context, HttpServletResponse response, int documentId) throws ClassNotFoundException {
         return mapperFacade.downloadDocument(context, response, documentId);
     }
+    
+    public void deleteReportByReportId(int reportId) {
+        mapperFacade.deleteReportByReportId(reportId);
+    }
 }

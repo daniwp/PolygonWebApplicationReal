@@ -180,12 +180,13 @@
                     <div class="col-md-2 pull-right">
                         <form action="downloadreport">
                             <button class="btn btn-success pull-right col-md-12" type="submit"><i class="fa fa-download" aria-hidden="true"></i></button>
-                            <input type="hidden" name="reportId" value="<%= report.getReportId() %>"/>
+                            <input type="hidden" name="reportId" value="<%= report.getReportId()%>"/>
                         </form>
                     </div>
                     <div class="col-md-2 pull-right">
                         <form action="deletereport" method="POST">
-                            <button class="btn btn-danger pull-right col-md-12" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <button class="btn btn-danger pull-right col-md-12" onClick="return
+                                    confirm('Are you sure you want to delete this floor?');" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
                         </form>
                     </div>
                 </div>

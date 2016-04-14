@@ -1,5 +1,5 @@
 
-import dataAccessLayer.mapper.FileMapper;
+import dataAccessLayer.mapper.ReportMapper;
 import java.sql.SQLException;
 import java.util.List;
 import serviceLayer.ControllerFacade;
@@ -19,7 +19,7 @@ public class Test {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         ControllerFacade cF = new ControllerFacade();
-        FileMapper fM = new FileMapper();
+        ReportMapper fM = new ReportMapper();
         List<Report> reports = cF.getAllReportsByBuildingId(1);
         
         

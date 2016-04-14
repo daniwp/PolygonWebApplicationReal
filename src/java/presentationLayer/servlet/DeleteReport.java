@@ -5,9 +5,7 @@
  */
 package presentationLayer.servlet;
 
-import dataAccessLayer.mapper.FileMapper;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import serviceLayer.ControllerFacade;
 
 /**
  *
@@ -37,13 +36,21 @@ public class DeleteReport extends HttpServlet {
         RequestDispatcher rd = null;
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
-        FileMapper fileMapper = new FileMapper();
+        ControllerFacade controllerFacade = new ControllerFacade();
+
+        try {
+            int reportId = Integer.parseInt((String)session.getAttribute("reportId"));
+
+            controllerFacade.deleteReportByReportId(reportId);
+
+            rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
+
+        } catch (Exception ex) {
+            rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
+            ex.printStackTrace();
+        }
         
-        int reportId = Integer.parseInt(request.getParameter("reportId"));
-        
-        fileMapper.deleteReportByReportId(reportId);
-        
-        
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -5,7 +5,7 @@
  */
 package presentationLayer.servlet;
 
-import dataAccessLayer.mapper.FileMapper;
+import dataAccessLayer.mapper.ReportMapper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -54,7 +54,7 @@ public class DownloadReport extends HttpServlet {
             RequestDispatcher rd = null;
             HttpSession session = request.getSession();
             session.setMaxInactiveInterval(30 * 60);
-            FileMapper fileMapper = new FileMapper();
+            ReportMapper fileMapper = new ReportMapper();
             
             session.setAttribute("reportId", request.getParameter("reportId"));
             System.out.println(session.getAttribute("reportId"));

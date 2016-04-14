@@ -24,7 +24,7 @@ public class MapperFacade {
     CustomerMapper customerMapper = new CustomerMapper();
     FloorMapper floorMapper = new FloorMapper();
     UserMapper userMapper = new UserMapper();
-    FileMapper fileMapper = new FileMapper();
+    ReportMapper reportMapper = new ReportMapper();
     DocumentMapper documentMapper = new DocumentMapper();
 
     public void addBuilding(Building b) {
@@ -73,6 +73,7 @@ public class MapperFacade {
     public void addCustomer(Customer customer) {
         customerMapper.addCustomer(customer);
     }
+
     public Customer getCustomerByCustomerId(int customerId) {
         return customerMapper.getCustomerByCustomerId(customerId);
     }
@@ -96,8 +97,8 @@ public class MapperFacade {
     public int getUserIdByUsername(String username) {
         return userMapper.getUserIdByUsername(username);
     }
-    
-    public List<Customer> getAllCustomers(){
+
+    public List<Customer> getAllCustomers() {
         return customerMapper.getAllCustomers();
     }
 
@@ -112,32 +113,36 @@ public class MapperFacade {
     public void deleteUserByUserId(int userId) {
         userMapper.deleteUserByUserId(userId);
     }
-    
+
     public List<Integer> getBuildingIdsByCustomerId(int customerId) {
         return buildingMapper.getBuildingIdsByCustomerId(customerId);
     }
-    
+
     public void saveReport(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
-        fileMapper.saveReport(input, name, date, buildingId);
+        reportMapper.saveReport(input, name, date, buildingId);
     }
 
     public List<Report> getAllReportsByBuildingId(int buildingId) {
-        return fileMapper.getAllReportsByBuildingId(buildingId);
+        return reportMapper.getAllReportsByBuildingId(buildingId);
     }
 
     public OutputStream downloadReport(ServletContext context, HttpServletResponse response, int reportId) throws ClassNotFoundException {
-        return fileMapper.downloadReport(context, response, reportId);
+        return reportMapper.downloadReport(context, response, reportId);
     }
-    
-    public void saveDocument (InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
+
+    public void saveDocument(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
         documentMapper.saveDocument(input, name, date, buildingId);
     }
-    
+
     public List<Document> getAllDocumentsByBuildingId(int buildingId) {
         return documentMapper.getAllDocumentsByBuildingId(buildingId);
     }
-    
-     public OutputStream downloadDocument(ServletContext context, HttpServletResponse response, int documentId) throws ClassNotFoundException {
+
+    public OutputStream downloadDocument(ServletContext context, HttpServletResponse response, int documentId) throws ClassNotFoundException {
         return documentMapper.downloadDocument(context, response, documentId);
+    }
+    
+    public void deleteReportByReportId(int reportId) {
+        reportMapper.deleteReportByReportId(reportId);
     }
 }

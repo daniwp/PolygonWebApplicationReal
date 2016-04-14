@@ -13,6 +13,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import serviceLayer.entity.Building;
 import serviceLayer.entity.Customer;
+import serviceLayer.entity.Document;
 import serviceLayer.entity.Floor;
 import serviceLayer.entity.Report;
 import serviceLayer.entity.User;
@@ -24,6 +25,7 @@ public class MapperFacade {
     FloorMapper floorMapper = new FloorMapper();
     UserMapper userMapper = new UserMapper();
     FileMapper fileMapper = new FileMapper();
+    DocumentMapper documentMapper = new DocumentMapper();
 
     public void addBuilding(Building b) {
         buildingMapper.addBuilding(b);
@@ -125,5 +127,17 @@ public class MapperFacade {
 
     public OutputStream downloadReport(ServletContext context, HttpServletResponse response, int reportId) throws ClassNotFoundException {
         return fileMapper.downloadReport(context, response, reportId);
+    }
+    
+    public void saveDocument (InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
+        documentMapper.saveDocument(input, name, date, buildingId);
+    }
+    
+    public List<Document> getAllDocumentsByBuildingId(int buildingId) {
+        return documentMapper.getAllDocumentsByBuildingId(buildingId);
+    }
+    
+     public OutputStream downloadDocument(ServletContext context, HttpServletResponse response, int documentId) throws ClassNotFoundException {
+        return documentMapper.downloadDocument(context, response, documentId);
     }
 }

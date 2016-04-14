@@ -26,7 +26,7 @@ import serviceLayer.entity.Report;
  */
 public class DocumentMapper {
     
-    public void saveDocument(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException, SQLException {    
+    public void saveDocument(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException{    
         
         try {
         

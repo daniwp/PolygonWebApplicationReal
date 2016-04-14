@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import serviceLayer.entity.Report;
 import serviceLayer.entity.Building;
 import serviceLayer.entity.Customer;
+import serviceLayer.entity.Document;
 import serviceLayer.entity.Floor;
 import serviceLayer.entity.User;
 
@@ -100,5 +101,16 @@ public class ControllerFacade {
 
     public OutputStream downloadReport(ServletContext context, HttpServletResponse response, int reportId) throws ClassNotFoundException {
         return controller.downloadReport(context, response, reportId);
+    }
+    public void saveDocument(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException { 
+        controller.saveDocument(input, name, date,buildingId);
+    }
+    
+    public List<Document> getAllDocumentsByBuildingId(int buildingId) {
+        return controller.getAlDocumentsByBuildingId(buildingId);
+    }
+    
+    public OutputStream downloadDocument(ServletContext context, HttpServletResponse response, int documentId) throws ClassNotFoundException {
+        return controller.downloadDocument(context, response, documentId);
     }
 }

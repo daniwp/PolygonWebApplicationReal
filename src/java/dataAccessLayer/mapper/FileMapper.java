@@ -47,28 +47,28 @@ public class FileMapper {
         List<Report> reports = new ArrayList();
         ResultSet rs = null;
         Report report = null;
-        
+
         try {
 
             String query = "SELECT * FROM report WHERE (buildingId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
-            
+
             ps.setInt(1, buildingId);
             rs = ps.executeQuery();
-            
-            while(rs.next()) {
+
+            while (rs.next()) {
                 int reportId = rs.getInt("reportId");
                 String fileName = rs.getString("reportFileName");
                 String date = rs.getString("reportUploadDate");
-                
+
                 report = new Report(reportId, fileName, date, buildingId);
                 reports.add(report);
             }
-            
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
         return reports;
     }
 
@@ -122,6 +122,21 @@ public class FileMapper {
         }
 
         return output;
+    }
+
+    public void deleteReportByReportId(int reportId) {
+        
+        try {
+            String query = "DELETE FROM report WHERE (reportId) = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            
+            ps.setInt(1, reportId);
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
     }
 
 }

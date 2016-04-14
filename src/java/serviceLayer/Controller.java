@@ -2,11 +2,15 @@ package serviceLayer;
 
 import dataAccessLayer.mapper.MapperFacade;
 import exceptions.UserAlreadyExistsException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import serviceLayer.entity.Building;
+import serviceLayer.entity.Report;
 import serviceLayer.entity.Customer;
 import serviceLayer.entity.Floor;
 import serviceLayer.entity.User;
@@ -78,10 +82,9 @@ public class Controller {
         building = mapperFacade.getBuildingByBuildingId(buildingId);
         return building;
     }
+
     public Customer getCustomerByCustomerId(int customerId) {
-      Customer customer = new Customer();
-      customer = mapperFacade.getCustomerByCustomerId(customerId);
-      return customer;
+        return mapperFacade.getCustomerByCustomerId(customerId);
     }
 
     public List<Building> getAllBuildingsByCustomerId(int CustomerId) {
@@ -101,13 +104,37 @@ public class Controller {
     public void updateNumberOfFloorsByBuildingId(int buildingId) {
         mapperFacade.updateBuildingFloorsByBuildingId(buildingId);
     }
-    
+
     public void addUser(String username, String password, int type) throws UserAlreadyExistsException {
         User user = new User(username, password, type);
         mapperFacade.addUser(user);
     }
+
+    public List<Customer> getAllCustomers() {
+        return mapperFacade.getAllCustomers();
+    }
+
+    public void deleteUserAndCustomerByCustomerId(int customerId) {
+        int userId = mapperFacade.getUserIdByCustomerId(customerId);
+        List<Integer> buildingIds = mapperFacade.getBuildingIdsByCustomerId(customerId);
+
+        for (int buildingId : buildingIds) {
+            deleteBuildingAndFloorsByBuildingId(buildingId);
+        }
+
+        mapperFacade.deleteCustomerByCustomerId(customerId, userId);
+        mapperFacade.deleteUserByUserId(userId);
+    }
     
-    public List<Customer> getAllCustomers(){
-       return mapperFacade.getAllCustomers();
+    public void saveReport(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
+        mapperFacade.saveReport(input, name, date, buildingId);
+    }
+
+    public List<Report> getAllReportsByBuildingId(int buildingId) {
+        return mapperFacade.getAllReportsByBuildingId(buildingId);
+    }
+
+    public OutputStream downloadReport(ServletContext context, HttpServletResponse response, int reportId) throws ClassNotFoundException {
+        return mapperFacade.downloadReport(context, response, reportId);
     }
 }

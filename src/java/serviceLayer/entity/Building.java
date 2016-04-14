@@ -8,7 +8,7 @@ package serviceLayer.entity;
 
 /**
  *
- * @author admin
+ * @author Peter Henriksen
  */
 public class Building {
     

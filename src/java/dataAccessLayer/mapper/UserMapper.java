@@ -113,4 +113,20 @@ public class UserMapper {
         }
         return userId;
     }
+    
+    public void deleteUserByUserId(int userId) {
+        try {
+            String query = "DELETE FROM user WHERE (userId) = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+
+            ps.setInt(1, userId);
+
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException ee) {
+            ee.printStackTrace();
+        }
+    }
+    
 }

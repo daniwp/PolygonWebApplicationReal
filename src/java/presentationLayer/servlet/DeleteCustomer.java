@@ -6,6 +6,7 @@
 package presentationLayer.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,10 +18,10 @@ import serviceLayer.ControllerFacade;
 
 /**
  *
- * @author Daniel
+ * @author Lasse
  */
-@WebServlet(name = "DeleteBuilding", urlPatterns = {"/deletebuilding"})
-public class DeleteBuilding extends HttpServlet {
+@WebServlet(name = "DeleteCustomer", urlPatterns = {"/deletecustomer"})
+public class DeleteCustomer extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -32,23 +33,15 @@ public class DeleteBuilding extends HttpServlet {
 
         try {
 
-            int buildingId = Integer.parseInt(request.getParameter("buildingId"));
+            int customerId = Integer.parseInt(request.getParameter("customerId"));
 
-            controllerFacade.deleteBuildingAndFloorsByBuildingId(buildingId);
+            controllerFacade.deleteUserAndCustomerByCustomerId(customerId);
+
+            rd = request.getRequestDispatcher("viewCustomers.jsp");
 
         } catch (Exception e) {
-            if (session.getAttribute("admin") != null) {
-                rd = request.getRequestDispatcher("viewCustomer.jsp");
-            } else {
-                rd = request.getRequestDispatcher("viewBuildings.jsp");
-            }
+            rd = request.getRequestDispatcher("viewCustomers.jsp");
             e.printStackTrace();
-        }
-
-        if (session.getAttribute("admin") != null) {
-            rd = request.getRequestDispatcher("viewSingleCustomer.jsp");
-        } else {
-            rd = request.getRequestDispatcher("viewBuildings.jsp");
         }
 
         rd.forward(request, response);

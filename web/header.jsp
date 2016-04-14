@@ -78,7 +78,7 @@
                                 <li><a href="createAdmin.jsp">Create new <strong>admin</strong></a></li>
                                 <li><a href="logout">Logout</a></li>
                             </ul>
-                        </li> 
+                        </li>
                         <% }%>
 
                     </ul>

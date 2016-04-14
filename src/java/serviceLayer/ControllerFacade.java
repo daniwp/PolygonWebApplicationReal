@@ -1,14 +1,20 @@
 package serviceLayer;
 
 import exceptions.UserAlreadyExistsException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.List;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
+import serviceLayer.entity.Report;
 import serviceLayer.entity.Building;
 import serviceLayer.entity.Customer;
 import serviceLayer.entity.Floor;
 import serviceLayer.entity.User;
+
 
 /**
  *
@@ -71,12 +77,28 @@ public class ControllerFacade {
     public void addUser(String username, String password, int type) throws UserAlreadyExistsException {
         controller.addUser(username, password, type);
     }
-    
-    public List<Customer> getAllCustomers(){
+
+    public List<Customer> getAllCustomers() {
         return controller.getAllCustomers();
     }
-    
-    public Customer getCustomerByCustomerId(int customerId){
+
+    public Customer getCustomerByCustomerId(int customerId) {
         return controller.getCustomerByCustomerId(customerId);
+    }
+
+    public void deleteUserAndCustomerByCustomerId(int customerId) {
+        controller.deleteUserAndCustomerByCustomerId(customerId);
+    }
+
+    public void saveReport(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
+        controller.saveReport(input, name, date, buildingId);
+    }
+
+    public List<Report> getAllReportsByBuildingId(int buildingId) {
+        return controller.getAllReportsByBuildingId(buildingId);
+    }
+
+    public OutputStream downloadReport(ServletContext context, HttpServletResponse response, int reportId) throws ClassNotFoundException {
+        return controller.downloadReport(context, response, reportId);
     }
 }

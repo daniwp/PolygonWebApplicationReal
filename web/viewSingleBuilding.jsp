@@ -314,6 +314,8 @@
                 </div>
             </div>
             <br>
+            <% } %>
+            
             <%-- method for deleting floor --%>
         <% if (!floors.isEmpty()) {
                 for (Floor floor : floors) {%>

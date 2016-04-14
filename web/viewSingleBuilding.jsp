@@ -269,25 +269,53 @@
         <!-- Relevent images -->
         <div class="well buildingitem">
             <div class="row">
-                <h3 class="border">&nbsp;Relevent images</h3>
+                <h3 class="border">&nbsp;Building images</h3>
             </div>
-            <div class="row border">
-                <div class="col-md-3">
-                    <p>Add a new image:</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Add a new building image:</p>
                 </div>
-                <div style="margin-bottom: 10px" class="input-group col-md-6 pull-right">
+            </div>
+            <form action="uploadimage" method="POST" enctype="multipart/form-data">
+                <div style="margin-bottom: 10px" class="input-group">
                     <span class="input-group-btn">
                         <span class="btn btn-primary btn-file">
-                            <form action="#" method="POST" enctype="">
-                                Browse&hellip; <input type="file" name="imageFile" multiple>
-                            </form>
+                            Browse&hellip; <input type="file" name="imageFile" multiple>
                         </span>
                     </span>
                     <input type="text" class="form-control" readonly>
                 </div>
-            </div>
-        </div>
+                <div class="row">
+                    <div class="col-md-4 pull-right">
+                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <br><br>
+            <% List<Image> images = controllerFacade.getAllImagesByBuildingId(buildingId);
+                for (Image image : images) {%>
 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <p><%= image.getFileName()%></p>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <form action="downloadimage">
+                            <button class="btn btn-success pull-right col-md-12" type="submit"><i class="fa fa-download" aria-hidden="true"></i></button>
+                            <input type="hidden" name="imageId" value="<%= image.getImageId()%>"/>
+                        </form>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <form action="deleteimage" method="POST">
+                            <button class="btn btn-danger pull-right col-md-12" onClick="return
+                                    confirm('Are you sure you want to delete this image?');" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <%-- method for deleting floor --%>
         <% if (!floors.isEmpty()) {
                 for (Floor floor : floors) {
                     Floorplan floorplan = controllerFacade.getFloorplanByFloorId(floor.getFloorId());

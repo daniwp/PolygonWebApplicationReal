@@ -138,6 +138,7 @@
             <div class="row">
                 <h3 class="border">&nbsp;Building reports</h3>
             </div>
+            <% if (session.getAttribute("admin") != null) {%>
             <div class="row">
                 <div class="col-md-12">
                     <p>Add a new building report:</p>
@@ -167,6 +168,7 @@
                 </div>
             </form>
             <br><br>
+            <% } %>
             <% List<Report> reports = controllerFacade.getAllReportsByBuildingId(buildingId);
                 for (Report report : reports) {%>
 
@@ -184,12 +186,14 @@
                             <input type="hidden" name="reportId" value="<%= report.getReportId()%>"/>
                         </form>
                     </div>
+                    <% if (session.getAttribute("admin") != null) {%>
                     <div class="col-md-2 pull-right">
                         <form action="deletereport" method="POST">
                             <button class="btn btn-danger pull-right col-md-12" onClick="return
                                     confirm('Are you sure you want to delete this floor?');" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
                         </form>
                     </div>
+                    <% } %>
                 </div>
             </div>
             <br>
@@ -198,7 +202,7 @@
         </div>
 
         <!-- Relevent documents -->
-<div class="well buildingitem">
+        <div class="well buildingitem">
             <div class="row">
                 <h3 class="border">&nbsp;Building documents</h3>
             </div>
@@ -230,6 +234,7 @@
                     </div>
                 </div>
             </form>
+
             <br><br>
             <% List<Document> documents = controllerFacade.getAllDocumentsByBuildingId(buildingId);
                 for (Document document : documents) {%>
@@ -245,7 +250,7 @@
                     <div class="col-md-2 pull-right">
                         <form action="downloaddocument">
                             <button class="btn btn-success pull-right col-md-12" type="submit"><i class="fa fa-download" aria-hidden="true"></i></button>
-                            <input type="hidden" name="documentId" value="<%= document.getDocumentId() %>"/>
+                            <input type="hidden" name="documentId" value="<%= document.getDocumentId()%>"/>
                         </form>
                     </div>
                     <div class="col-md-2 pull-right">

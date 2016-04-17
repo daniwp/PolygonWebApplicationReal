@@ -1,5 +1,6 @@
 package serviceLayer;
 
+import exceptions.FloorAlreadyExistsException;
 import exceptions.UserAlreadyExistsException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -31,7 +32,7 @@ public class ControllerFacade {
     }
 
     //Takes a list of floor objects and adds them to the database
-    public void addFloor(int floorNumber, double size, int buildingId) {
+    public void addFloor(int floorNumber, double size, int buildingId) throws FloorAlreadyExistsException {
         controller.addFloor(floorNumber, size, buildingId);
     }
 

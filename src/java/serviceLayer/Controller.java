@@ -1,6 +1,7 @@
 package serviceLayer;
 
 import dataAccessLayer.mapper.MapperFacade;
+import exceptions.FloorAlreadyExistsException;
 import exceptions.UserAlreadyExistsException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -40,9 +41,13 @@ public class Controller {
     }
 
     //Takes a list of floor objects and adds them to the database
-    public void addFloor(int floorNumber, double size, int buildingId) {
-        Floor floor = new Floor(floorNumber, size, buildingId);
-        mapperFacade.addFloor(floor);
+    public void addFloor(int floorNumber, double size, int buildingId) throws FloorAlreadyExistsException {
+        if (mapperFacade.checkIfFloorExists(buildingId, floorNumber)) {
+            throw new FloorAlreadyExistsException("The floor could not be added, as one or more floors already exists");
+        } else {
+            Floor floor = new Floor(floorNumber, size, buildingId);
+            mapperFacade.addFloor(floor);
+        }
     }
 
     // creates a customer and inserts it into the database
@@ -127,7 +132,7 @@ public class Controller {
         mapperFacade.deleteCustomerByCustomerId(customerId, userId);
         mapperFacade.deleteUserByUserId(userId);
     }
-    
+
     public void saveReport(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
         mapperFacade.saveReport(input, name, date, buildingId);
     }
@@ -139,35 +144,35 @@ public class Controller {
     public OutputStream downloadReport(ServletContext context, HttpServletResponse response, int reportId) throws ClassNotFoundException {
         return mapperFacade.downloadReport(context, response, reportId);
     }
-    
+
     public void saveDocument(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
         mapperFacade.saveDocument(input, name, date, buildingId);
     }
-    
-    public List<Document> getAlDocumentsByBuildingId (int buildingId) {
+
+    public List<Document> getAlDocumentsByBuildingId(int buildingId) {
         return mapperFacade.getAllDocumentsByBuildingId(buildingId);
     }
-    
+
     public OutputStream downloadDocument(ServletContext context, HttpServletResponse response, int documentId) throws ClassNotFoundException {
         return mapperFacade.downloadDocument(context, response, documentId);
     }
-    
+
     public void deleteReportByReportId(int reportId) {
         mapperFacade.deleteReportByReportId(reportId);
     }
-    
+
     public void deleteFloorplanByFloorplanId(int floorplanId) {
         mapperFacade.deleteFloorplanByFloorplanId(floorplanId);
     }
-    
+
     public Floorplan getFloorplanByFloorId(int floorId) {
         return mapperFacade.getFloorplanByFloorId(floorId);
     }
-    
+
     public OutputStream downloadFloorplan(ServletContext context, HttpServletResponse response, int floorplanId) throws ClassNotFoundException {
         return mapperFacade.downloadFloorplan(context, response, floorplanId);
     }
-    
+
     public void uploadFloorplan(InputStream input, String name, int floorId) {
         mapperFacade.uploadFloorplan(input, name, floorId);
     }

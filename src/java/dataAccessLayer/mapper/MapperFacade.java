@@ -55,8 +55,12 @@ public class MapperFacade {
         buildingMapper.updateBuildingFloorsByBuildingId(buildingId);
     }
 
-    public boolean addFloor(Floor floor) {
-        return floorMapper.addFloor(floor);
+    public void addFloor(Floor floor) {
+        floorMapper.addFloor(floor);
+    }
+    
+    public boolean checkIfFloorExists(int buildingId, int floorNumber) {
+        return floorMapper.checkIfFloorExists(buildingId, floorNumber);
     }
 
     //Made by Nicolai

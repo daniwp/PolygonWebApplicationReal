@@ -141,8 +141,8 @@ public class Controller {
         return mapperFacade.getAllReportsByBuildingId(buildingId);
     }
 
-    public OutputStream downloadReport(ServletContext context, HttpServletResponse response, int reportId) throws ClassNotFoundException {
-        return mapperFacade.downloadReport(context, response, reportId);
+    public InputStream downloadReport(int reportId) throws ClassNotFoundException {
+        return mapperFacade.downloadReport(reportId);
     }
 
     public void saveDocument(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
@@ -153,10 +153,14 @@ public class Controller {
         return mapperFacade.getAllDocumentsByBuildingId(buildingId);
     }
 
-    public OutputStream downloadDocument(ServletContext context, HttpServletResponse response, int documentId) throws ClassNotFoundException {
-        return mapperFacade.downloadDocument(context, response, documentId);
+    public InputStream downloadDocument(int documentId) {
+        return mapperFacade.downloadDocument(documentId);
     }
 
+    public String getDocumentNameById(int documentId) {
+        return mapperFacade.getDocumentNameById(documentId);
+    }
+    
     public void deleteReportByReportId(int reportId) {
         mapperFacade.deleteReportByReportId(reportId);
     }
@@ -169,11 +173,23 @@ public class Controller {
         return mapperFacade.getFloorplanByFloorId(floorId);
     }
 
-    public OutputStream downloadFloorplan(ServletContext context, HttpServletResponse response, int floorplanId) throws ClassNotFoundException {
-        return mapperFacade.downloadFloorplan(context, response, floorplanId);
+    public InputStream downloadFloorplan(int floorplanId) {
+        return mapperFacade.downloadFloorplan(floorplanId);
     }
 
     public void uploadFloorplan(InputStream input, String name, int floorId) {
         mapperFacade.uploadFloorplan(input, name, floorId);
+    }
+    
+    public String getReportNameById(int reportId) {
+        return mapperFacade.getReportNameById(reportId);
+    }
+    
+    public String getFloorplanNameById(int floorplanId) {
+        return mapperFacade.getFloorplanNameById(floorplanId);
+    }
+    
+    public void deleteDocumentByDocumentId(int documentId) {
+        mapperFacade.deleteDocumentByDocumentId(documentId);
     }
 }

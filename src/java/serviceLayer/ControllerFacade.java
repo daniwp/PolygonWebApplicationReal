@@ -101,8 +101,8 @@ public class ControllerFacade {
         return controller.getAllReportsByBuildingId(buildingId);
     }
 
-    public OutputStream downloadReport(ServletContext context, HttpServletResponse response, int reportId) throws ClassNotFoundException {
-        return controller.downloadReport(context, response, reportId);
+    public InputStream downloadReport(int reportId) throws ClassNotFoundException {
+        return controller.downloadReport(reportId);
     }
     public void saveDocument(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException { 
         controller.saveDocument(input, name, date,buildingId);
@@ -112,8 +112,12 @@ public class ControllerFacade {
         return controller.getAlDocumentsByBuildingId(buildingId);
     }
     
-    public OutputStream downloadDocument(ServletContext context, HttpServletResponse response, int documentId) throws ClassNotFoundException {
-        return controller.downloadDocument(context, response, documentId);
+    public InputStream downloadDocument(int documentId) throws ClassNotFoundException {
+        return controller.downloadDocument(documentId);
+    }
+    
+    public String getDocumentNameById(int documentId) {
+        return controller.getDocumentNameById(documentId);
     }
     
     public void deleteReportByReportId(int reportId) {
@@ -128,12 +132,23 @@ public class ControllerFacade {
         return controller.getFloorplanByFloorId(floorId);
     }
     
-    public OutputStream downloadFloorplan(ServletContext context, HttpServletResponse response, int floorplanId) throws ClassNotFoundException {
-        return controller.downloadFloorplan(context, response, floorplanId);
+    public InputStream downloadFloorplan(int floorplanId) {
+        return controller.downloadFloorplan(floorplanId);
     }
     
     public void uploadFloorplan(InputStream input, String name, int floorId) {
         controller.uploadFloorplan(input, name, floorId);
     }
     
+    public String getReportNameById(int reportId) {
+        return controller.getReportNameById(reportId);
+    }
+    
+    public String getFloorplanNameById(int floorplanId) {
+        return controller.getFloorplanNameById(floorplanId);
+    }
+    
+    public void deleteDocumentByDocumentId(int documentId) {
+        controller.deleteDocumentByDocumentId(documentId);
+    }
 }

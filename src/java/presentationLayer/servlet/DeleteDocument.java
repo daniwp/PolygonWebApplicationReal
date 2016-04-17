@@ -6,10 +6,8 @@
 package presentationLayer.servlet;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,13 +18,41 @@ import serviceLayer.ControllerFacade;
 
 /**
  *
- * @author Nicolai
+ * @author Daniel
  */
-@WebServlet(name = "DownloadDocument", urlPatterns = {"/downloaddocument"})
-public class DownloadDocument extends HttpServlet {
+@WebServlet(name = "DeleteDocument", urlPatterns = {"/deletedocument"})
+public class DeleteDocument extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        RequestDispatcher rd = null;
+        HttpSession session = request.getSession();
+        session.setMaxInactiveInterval(30 * 60);
+        ControllerFacade controllerFacade = new ControllerFacade();
+
+        try {
+            
+            int documentId = Integer.parseInt(request.getParameter("documentId"));
+
+            controllerFacade.deleteDocumentByDocumentId(documentId);
+
+            rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
+
+        } catch (Exception ex) {
+            rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
+            ex.printStackTrace();
+        }
+
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -41,42 +67,7 @@ public class DownloadDocument extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            RequestDispatcher rd = null;
-            HttpSession session = request.getSession();
-            session.setMaxInactiveInterval(30 * 60);
-            ControllerFacade controllerFacade = new ControllerFacade();
-            final int BUFFER_SIZE = 4096;
-            
-            session.setAttribute("documentId", request.getParameter("documentId"));
-
-            int documentId = Integer.parseInt((String) session.getAttribute("documentId"));
-
-            ServletContext context = getServletContext();
-
-            InputStream inputStream = controllerFacade.downloadDocument(documentId);
-            String fileName = controllerFacade.getDocumentNameById(documentId);
-            
-            String mimeType = context.getMimeType(fileName);
-            if (mimeType == null) {
-                mimeType = "application/octet-stream";
-            }
-            response.setContentType(mimeType);
-            String headerKey = "Content-Disposition";
-            String headerValue = String.format("attachment; filename=\"%s\"", fileName);
-            response.setHeader(headerKey, headerValue);
-
-            OutputStream outputStream = response.getOutputStream();
-
-            int bytesRead = -1;
-            byte[] buffer = new byte[BUFFER_SIZE];
-            while ((bytesRead = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, bytesRead);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        processRequest(request, response);
     }
 
     /**

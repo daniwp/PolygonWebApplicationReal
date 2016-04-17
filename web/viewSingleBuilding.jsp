@@ -264,6 +264,8 @@
                     <div class="col-md-2 pull-right">
                         <form action="deletedocument" method="POST">
                             <button class="btn btn-danger pull-right col-md-12" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <input type="hidden" name="documentId" value="<%= document.getDocumentId()%>"/>
+
                         </form>
                     </div>
                 </div>
@@ -361,7 +363,7 @@
             </div>
         </div>
         <% }
-                }%>
+            }%>
     </div>
     <% }%>
 

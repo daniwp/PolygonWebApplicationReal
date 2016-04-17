@@ -72,11 +72,10 @@ public class ReportMapper {
         return reports;
     }
 
-    public OutputStream downloadReport(ServletContext context, HttpServletResponse response, int reportId) throws ClassNotFoundException {
+    public InputStream downloadReport(int reportId){
         ResultSet rs = null;
-        OutputStream output = null;
-        final int BUFFER_SIZE = 4096;
-
+        InputStream inputStream = null;
+                
         try {
 
             String query = "SELECT * FROM report WHERE (reportId) = ?";
@@ -88,31 +87,13 @@ public class ReportMapper {
 
             if (rs.next()) {
 
-                String fileName = rs.getString("reportFileName");
                 Blob blob = rs.getBlob("reportFile");
 
-                InputStream inputStream = blob.getBinaryStream();
-
-                String mimeType = context.getMimeType(fileName);
-                if (mimeType == null) {
-                    mimeType = "application/octet-stream";
-                }
-                response.setContentType(mimeType);
-                String headerKey = "Content-Disposition";
-                String headerValue = String.format("attachment; filename=\"%s\"", fileName);
-                response.setHeader(headerKey, headerValue);
-
-                OutputStream outputStream = response.getOutputStream();
-
-                int bytesRead = -1;
-                byte[] buffer = new byte[BUFFER_SIZE];
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                }
+                inputStream = blob.getBinaryStream();
 
                 inputStream.close();
-                outputStream.close();
                 System.out.println("File saved");
+                
             }
 
             ps.close();
@@ -121,7 +102,7 @@ public class ReportMapper {
             ex.printStackTrace();
         }
 
-        return output;
+        return inputStream;
     }
 
     public void deleteReportByReportId(int reportId) {
@@ -138,4 +119,30 @@ public class ReportMapper {
             ex.printStackTrace();
         }
     }
+    
+    public String getReportNameById(int reportId) {
+        ResultSet rs = null;
+        String reportName = null;
+        
+        try {
+
+            String query = "SELECT (reportFileName) FROM report WHERE (reportId) = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+
+            ps.setInt(1, reportId);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                reportName = rs.getString("reportFileName");
+            }
+
+            ps.close();
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return reportName;
+    }
+    
 }

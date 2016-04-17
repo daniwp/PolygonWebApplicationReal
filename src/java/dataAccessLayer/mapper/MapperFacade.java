@@ -132,8 +132,8 @@ public class MapperFacade {
         return reportMapper.getAllReportsByBuildingId(buildingId);
     }
 
-    public OutputStream downloadReport(ServletContext context, HttpServletResponse response, int reportId) throws ClassNotFoundException {
-        return reportMapper.downloadReport(context, response, reportId);
+    public InputStream downloadReport(int reportId) {
+        return reportMapper.downloadReport(reportId);
     }
 
     public void saveDocument(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
@@ -144,8 +144,12 @@ public class MapperFacade {
         return documentMapper.getAllDocumentsByBuildingId(buildingId);
     }
 
-    public OutputStream downloadDocument(ServletContext context, HttpServletResponse response, int documentId) throws ClassNotFoundException {
-        return documentMapper.downloadDocument(context, response, documentId);
+    public InputStream downloadDocument(int documentId) {
+        return documentMapper.downloadDocument(documentId);
+    }
+    
+    public String getDocumentNameById(int documentId) {
+        return documentMapper.getDocumentNameById(documentId);
     }
     
     public void deleteReportByReportId(int reportId) {
@@ -160,11 +164,24 @@ public class MapperFacade {
         return floorplanMapper.getFloorplanByFloorId(floorId);
     }
     
-    public OutputStream downloadFloorplan(ServletContext context, HttpServletResponse response, int floorplanId) throws ClassNotFoundException {
-        return floorplanMapper.downloadFloorplan(context, response, floorplanId);
+    public InputStream downloadFloorplan(int floorplanId) {
+        return floorplanMapper.downloadFloorplan(floorplanId);
     }
     
     public void uploadFloorplan(InputStream input, String name, int floorId) {
         floorplanMapper.uploadFloorplan(input, name, floorId);
     }
+    
+    public String getReportNameById(int reportId) {
+        return reportMapper.getReportNameById(reportId);
+    }
+    
+    public String getFloorplanNameById(int floorplanId) {
+        return floorplanMapper.getFloorplanNameById(floorplanId);
+    }
+    
+    public void deleteDocumentByDocumentId(int documentId) {
+        documentMapper.deleteDocumentByDocumentId(documentId);
+    }
+    
 }

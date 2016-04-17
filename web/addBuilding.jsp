@@ -2,7 +2,11 @@
 <%@page import="serviceLayer.entity.Customer"%>
 <jsp:include page="header.jsp" />
 
-<% Customer customer = (Customer) session.getAttribute("customer");%>
+<%
+    if (session.getAttribute("customer") != null) {
+        session.setAttribute("customerId", ((Customer) session.getAttribute("customer")).getCustomerId());
+    }
+%>
 <div class="container well">
     <div class="col-md-8 col-md-offset-2">
         <h1 class="page-header">Add building</h1>
@@ -103,7 +107,7 @@
                 </div>
             </div>
             <br>
-            <input type="hidden" name="customerId" value="<%= customer.getCustomerId()%>">
+            <input type="hidden" name="customerId" value="<%= session.getAttribute("customerId") %>">
             <button type="submit" class="btn btn-primary col-md-4 col-md-offset-4 ">Add building</button>
             <br><br>
             <br><br>

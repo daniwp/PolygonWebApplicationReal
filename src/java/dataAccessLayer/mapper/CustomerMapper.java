@@ -11,15 +11,12 @@ import java.util.List;
 import serviceLayer.entity.Customer;
 import serviceLayer.entity.User;
 
-public class CustomerMapper
-{
+public class CustomerMapper {
 
     //made by Lasse and Nicolai
-    public void addCustomer(Customer customer)
-    {
+    public void addCustomer(Customer customer) {
 
-        try
-        {
+        try {
 
             String query = "INSERT INTO customer (companyName, companyOwnerFirstName, companyOwnerLastName,  customerEmail, userId) VALUES (?,?,?,?,?)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
@@ -33,28 +30,24 @@ public class CustomerMapper
             ps.executeUpdate();
 
             ps.close();
-        } catch (SQLException ee)
-        {
+        } catch (SQLException ee) {
             ee.printStackTrace();
         }
     }
 
-    public Customer getCustomerByUserId(int userId)
-    {
+    public Customer getCustomerByUserId(int userId) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Customer customer = null;
 
-        try
-        {
+        try {
             String query = "SELECT * FROM customer WHERE userId = ?";
             ps = DBConnector.getConnection().prepareStatement(query);
             ps.setInt(1, userId);
 
             rs = ps.executeQuery();
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 int customerId = rs.getInt("customerId");
                 String companyName = rs.getString("companyName");
                 String customerEmail = rs.getString("customerEmail");
@@ -66,27 +59,23 @@ public class CustomerMapper
 
             ps.close();
             rs.close();
-        } catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return customer;
     }
 
-    public List<Customer> getAllCustomers()
-    {
+    public List<Customer> getAllCustomers() {
         List<Customer> customers = new ArrayList();
         Customer customer;
         ResultSet rs = null;
-        try
-        {
+        try {
 
-            String query = "Select * FROM customer";
+            String query = "Select * FROM customer ORDER BY (companyName)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             rs = ps.executeQuery();
 
-            while (rs.next())
-            {
+            while (rs.next()) {
 
                 int customerId = rs.getInt("customerId");
                 String companyName = rs.getString("companyName");
@@ -102,30 +91,26 @@ public class CustomerMapper
             ps.close();
             rs.close();
 
-        } catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return customers;
 
     }
 
-    public Customer getCustomerByCustomerId(int customerId)
-    {
+    public Customer getCustomerByCustomerId(int customerId) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Customer customer = null;
 
-        try
-        {
+        try {
             String query = "SELECT * FROM customer WHERE customerId = ?";
             ps = DBConnector.getConnection().prepareStatement(query);
             ps.setInt(1, customerId);
 
             rs = ps.executeQuery();
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 String companyName = rs.getString("companyName");
                 String customerEmail = rs.getString("customerEmail");
                 String customerFirstname = rs.getString("companyOwnerFirstName");
@@ -137,13 +122,12 @@ public class CustomerMapper
 
             ps.close();
             rs.close();
-        } catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return customer;
     }
-    
+
 //made by Lasse
     public void deleteCustomerByCustomerId(int customerId, int userId) {
         try {
@@ -160,32 +144,28 @@ public class CustomerMapper
             ee.printStackTrace();
         }
     }
-    
+
     public int getUserIdByCustomerId(int customerId) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         int userId = 0;
-        
-        try
-        {
+
+        try {
             String query = "SELECT (userId) FROM customer WHERE customerId = ?";
             ps = DBConnector.getConnection().prepareStatement(query);
             ps.setInt(1, customerId);
 
             rs = ps.executeQuery();
 
-            if (rs.next())
-            {
+            if (rs.next()) {
                 userId = rs.getInt("userId");
             }
 
             ps.close();
             rs.close();
-        } catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return userId;
     }
 }
-

@@ -81,7 +81,7 @@ public class FloorMapper {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM floor WHERE buildingId = ?";
+            String query = "SELECT * FROM floor WHERE buildingId = ? ORDER BY (floor)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setInt(1, buildingId);
             rs = ps.executeQuery();

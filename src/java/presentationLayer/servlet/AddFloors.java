@@ -5,6 +5,7 @@
  */
 package presentationLayer.servlet;
 
+import exceptions.FloorAlreadyExistsException;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -48,9 +49,10 @@ public class AddFloors extends HttpServlet {
             
             rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
             
-        } catch (Exception e) {
+        } catch (FloorAlreadyExistsException e) {
             e.printStackTrace();
-            rd = request.getRequestDispatcher("addFloor.jsp");
+            session.setAttribute("floorAlreadyExists", e.getMessage());
+            rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
         }
         
         session.setAttribute("buildingId", request.getParameter("buildingId"));

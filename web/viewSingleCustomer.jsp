@@ -42,7 +42,12 @@
             <br>
         </div>
         <% }%>
-        <a class="btn btn-primary" href="viewCustomers.jsp"><i class="fa fa-fw fa-angle-double-left"></i> Back</a>
+        <div class="row">
+            <div class="col-md-12">
+                <a href="addBuilding.jsp" class="btn btn-success pull-right" ><i class="fa fa-plus"></i> Add building</a>
+                <a class="btn btn-primary" href="viewCustomers.jsp"><i class="fa fa-fw fa-angle-double-left"></i> Back</a>
+            </div>
+        </div>
         <br>
         <% for (Building building : buildings) {%>
         <br>

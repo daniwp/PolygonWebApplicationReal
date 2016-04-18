@@ -1,5 +1,6 @@
 package serviceLayer;
 
+import exceptions.FloorAlreadyExistsException;
 import exceptions.UserAlreadyExistsException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -14,6 +15,7 @@ import serviceLayer.entity.Building;
 import serviceLayer.entity.Customer;
 import serviceLayer.entity.Document;
 import serviceLayer.entity.Floor;
+import serviceLayer.entity.Floorplan;
 import serviceLayer.entity.User;
 
 
@@ -30,7 +32,7 @@ public class ControllerFacade {
     }
 
     //Takes a list of floor objects and adds them to the database
-    public void addFloor(int floorNumber, double size, int buildingId) {
+    public void addFloor(int floorNumber, double size, int buildingId) throws FloorAlreadyExistsException {
         controller.addFloor(floorNumber, size, buildingId);
     }
 
@@ -99,8 +101,8 @@ public class ControllerFacade {
         return controller.getAllReportsByBuildingId(buildingId);
     }
 
-    public OutputStream downloadReport(ServletContext context, HttpServletResponse response, int reportId) throws ClassNotFoundException {
-        return controller.downloadReport(context, response, reportId);
+    public InputStream downloadReport(int reportId) throws ClassNotFoundException {
+        return controller.downloadReport(reportId);
     }
     public void saveDocument(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException { 
         controller.saveDocument(input, name, date,buildingId);
@@ -110,11 +112,43 @@ public class ControllerFacade {
         return controller.getAlDocumentsByBuildingId(buildingId);
     }
     
-    public OutputStream downloadDocument(ServletContext context, HttpServletResponse response, int documentId) throws ClassNotFoundException {
-        return controller.downloadDocument(context, response, documentId);
+    public InputStream downloadDocument(int documentId) throws ClassNotFoundException {
+        return controller.downloadDocument(documentId);
+    }
+    
+    public String getDocumentNameById(int documentId) {
+        return controller.getDocumentNameById(documentId);
     }
     
     public void deleteReportByReportId(int reportId) {
         controller.deleteReportByReportId(reportId);
+    }
+    
+    public void deleteFloorplanByFloorplanId(int floorplanId) {
+        controller.deleteFloorplanByFloorplanId(floorplanId);
+    }
+    
+    public Floorplan getFloorplanByFloorId(int floorId) {
+        return controller.getFloorplanByFloorId(floorId);
+    }
+    
+    public InputStream downloadFloorplan(int floorplanId) {
+        return controller.downloadFloorplan(floorplanId);
+    }
+    
+    public void uploadFloorplan(InputStream input, String name, int floorId) {
+        controller.uploadFloorplan(input, name, floorId);
+    }
+    
+    public String getReportNameById(int reportId) {
+        return controller.getReportNameById(reportId);
+    }
+    
+    public String getFloorplanNameById(int floorplanId) {
+        return controller.getFloorplanNameById(floorplanId);
+    }
+    
+    public void deleteDocumentByDocumentId(int documentId) {
+        controller.deleteDocumentByDocumentId(documentId);
     }
 }

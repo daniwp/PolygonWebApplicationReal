@@ -43,7 +43,7 @@ public class BuildingMapper {
         ResultSet rs = null;
         try {
 
-            String query = "Select * from building WHERE customerId = ?";
+            String query = "SELECT * FROM building WHERE customerId = ? ORDER BY (buildingName)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setInt(1, customerId);
             rs = ps.executeQuery();

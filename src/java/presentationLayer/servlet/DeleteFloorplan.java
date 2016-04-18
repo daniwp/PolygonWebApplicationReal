@@ -6,6 +6,7 @@
 package presentationLayer.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,20 +18,11 @@ import serviceLayer.ControllerFacade;
 
 /**
  *
- * @author danie
+ * @author Daniel
  */
-@WebServlet(name = "DeleteReport", urlPatterns = {"/deletereport"})
-public class DeleteReport extends HttpServlet {
+@WebServlet(name = "DeleteFloorplan", urlPatterns = {"/deletefloorplan"})
+public class DeleteFloorplan extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher rd = null;
@@ -39,9 +31,9 @@ public class DeleteReport extends HttpServlet {
         ControllerFacade controllerFacade = new ControllerFacade();
 
         try {
-            int reportId = Integer.parseInt(request.getParameter("reportId"));
+            int floorplanId = Integer.parseInt(request.getParameter("floorplanId"));
 
-            controllerFacade.deleteReportByReportId(reportId);
+            controllerFacade.deleteFloorplanByFloorplanId(floorplanId);
 
             rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
 
@@ -49,8 +41,9 @@ public class DeleteReport extends HttpServlet {
             rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
             ex.printStackTrace();
         }
-        
+
         rd.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

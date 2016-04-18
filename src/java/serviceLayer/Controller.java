@@ -1,6 +1,7 @@
 package serviceLayer;
 
 import dataAccessLayer.mapper.MapperFacade;
+import exceptions.FloorAlreadyExistsException;
 import exceptions.UserAlreadyExistsException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -14,6 +15,7 @@ import serviceLayer.entity.Report;
 import serviceLayer.entity.Customer;
 import serviceLayer.entity.Document;
 import serviceLayer.entity.Floor;
+import serviceLayer.entity.Floorplan;
 import serviceLayer.entity.User;
 
 public class Controller {
@@ -39,9 +41,13 @@ public class Controller {
     }
 
     //Takes a list of floor objects and adds them to the database
-    public void addFloor(int floorNumber, double size, int buildingId) {
-        Floor floor = new Floor(floorNumber, size, buildingId);
-        mapperFacade.addFloor(floor);
+    public void addFloor(int floorNumber, double size, int buildingId) throws FloorAlreadyExistsException {
+        if (mapperFacade.checkIfFloorExists(buildingId, floorNumber)) {
+            throw new FloorAlreadyExistsException("Some floors were not added, as one or more floors already exists");
+        } else {
+            Floor floor = new Floor(floorNumber, size, buildingId);
+            mapperFacade.addFloor(floor);
+        }
     }
 
     // creates a customer and inserts it into the database
@@ -126,7 +132,7 @@ public class Controller {
         mapperFacade.deleteCustomerByCustomerId(customerId, userId);
         mapperFacade.deleteUserByUserId(userId);
     }
-    
+
     public void saveReport(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
         mapperFacade.saveReport(input, name, date, buildingId);
     }
@@ -135,23 +141,55 @@ public class Controller {
         return mapperFacade.getAllReportsByBuildingId(buildingId);
     }
 
-    public OutputStream downloadReport(ServletContext context, HttpServletResponse response, int reportId) throws ClassNotFoundException {
-        return mapperFacade.downloadReport(context, response, reportId);
+    public InputStream downloadReport(int reportId) throws ClassNotFoundException {
+        return mapperFacade.downloadReport(reportId);
     }
-    
+
     public void saveDocument(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
         mapperFacade.saveDocument(input, name, date, buildingId);
     }
-    
-    public List<Document> getAlDocumentsByBuildingId (int buildingId) {
+
+    public List<Document> getAlDocumentsByBuildingId(int buildingId) {
         return mapperFacade.getAllDocumentsByBuildingId(buildingId);
     }
-    
-    public OutputStream downloadDocument(ServletContext context, HttpServletResponse response, int documentId) throws ClassNotFoundException {
-        return mapperFacade.downloadDocument(context, response, documentId);
+
+    public InputStream downloadDocument(int documentId) {
+        return mapperFacade.downloadDocument(documentId);
+    }
+
+    public String getDocumentNameById(int documentId) {
+        return mapperFacade.getDocumentNameById(documentId);
     }
     
     public void deleteReportByReportId(int reportId) {
         mapperFacade.deleteReportByReportId(reportId);
+    }
+
+    public void deleteFloorplanByFloorplanId(int floorplanId) {
+        mapperFacade.deleteFloorplanByFloorplanId(floorplanId);
+    }
+
+    public Floorplan getFloorplanByFloorId(int floorId) {
+        return mapperFacade.getFloorplanByFloorId(floorId);
+    }
+
+    public InputStream downloadFloorplan(int floorplanId) {
+        return mapperFacade.downloadFloorplan(floorplanId);
+    }
+
+    public void uploadFloorplan(InputStream input, String name, int floorId) {
+        mapperFacade.uploadFloorplan(input, name, floorId);
+    }
+    
+    public String getReportNameById(int reportId) {
+        return mapperFacade.getReportNameById(reportId);
+    }
+    
+    public String getFloorplanNameById(int floorplanId) {
+        return mapperFacade.getFloorplanNameById(floorplanId);
+    }
+    
+    public void deleteDocumentByDocumentId(int documentId) {
+        mapperFacade.deleteDocumentByDocumentId(documentId);
     }
 }

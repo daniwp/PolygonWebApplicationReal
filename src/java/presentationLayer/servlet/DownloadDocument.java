@@ -5,9 +5,9 @@
  */
 package presentationLayer.servlet;
 
-import dataAccessLayer.mapper.DocumentMapper;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStream;
+import java.io.OutputStream;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import serviceLayer.ControllerFacade;
 
 /**
  *
@@ -44,17 +45,34 @@ public class DownloadDocument extends HttpServlet {
             RequestDispatcher rd = null;
             HttpSession session = request.getSession();
             session.setMaxInactiveInterval(30 * 60);
-            DocumentMapper documentMapper = new DocumentMapper();
-
+            ControllerFacade controllerFacade = new ControllerFacade();
+            final int BUFFER_SIZE = 4096;
+            
             session.setAttribute("documentId", request.getParameter("documentId"));
-            System.out.println(session.getAttribute("documentId"));
 
             int documentId = Integer.parseInt((String) session.getAttribute("documentId"));
-            System.out.println(documentId);
 
             ServletContext context = getServletContext();
 
-            documentMapper.downloadDocument(context, response, documentId);
+            InputStream inputStream = controllerFacade.downloadDocument(documentId);
+            String fileName = controllerFacade.getDocumentNameById(documentId);
+            
+            String mimeType = context.getMimeType(fileName);
+            if (mimeType == null) {
+                mimeType = "application/octet-stream";
+            }
+            response.setContentType(mimeType);
+            String headerKey = "Content-Disposition";
+            String headerValue = String.format("attachment; filename=\"%s\"", fileName);
+            response.setHeader(headerKey, headerValue);
+
+            OutputStream outputStream = response.getOutputStream();
+
+            int bytesRead = -1;
+            byte[] buffer = new byte[BUFFER_SIZE];
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

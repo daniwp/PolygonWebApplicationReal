@@ -6,6 +6,7 @@
 package presentationLayer.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,10 +18,10 @@ import serviceLayer.ControllerFacade;
 
 /**
  *
- * @author danie
+ * @author Daniel
  */
-@WebServlet(name = "DeleteReport", urlPatterns = {"/deletereport"})
-public class DeleteReport extends HttpServlet {
+@WebServlet(name = "DeleteDocument", urlPatterns = {"/deletedocument"})
+public class DeleteDocument extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,9 +40,10 @@ public class DeleteReport extends HttpServlet {
         ControllerFacade controllerFacade = new ControllerFacade();
 
         try {
-            int reportId = Integer.parseInt(request.getParameter("reportId"));
+            
+            int documentId = Integer.parseInt(request.getParameter("documentId"));
 
-            controllerFacade.deleteReportByReportId(reportId);
+            controllerFacade.deleteDocumentByDocumentId(documentId);
 
             rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
 
@@ -49,7 +51,7 @@ public class DeleteReport extends HttpServlet {
             rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
             ex.printStackTrace();
         }
-        
+
         rd.forward(request, response);
     }
 

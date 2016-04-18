@@ -1,3 +1,4 @@
+<%@page import="serviceLayer.entity.Image"%>
 <%@page import="serviceLayer.entity.Floorplan"%>
 <%@page import="serviceLayer.entity.Document"%>
 <%@page import="serviceLayer.entity.Report"%>
@@ -265,7 +266,6 @@
                         <form action="deletedocument" method="POST">
                             <button class="btn btn-danger pull-right col-md-12" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
                             <input type="hidden" name="documentId" value="<%= document.getDocumentId()%>"/>
-
                         </form>
                     </div>
                 </div>
@@ -307,7 +307,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-3">
-                        <p><%= image.getFileName()%></p>
+                        <p><%= image.getImageName()%></p>
                     </div>
                     <div class="col-md-2 pull-right">
                         <form action="downloadimage">
@@ -319,76 +319,77 @@
                         <form action="deleteimage" method="POST">
                             <button class="btn btn-danger pull-right col-md-12" onClick="return
                                     confirm('Are you sure you want to delete this image?');" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <input type="hidden" name="imageId" value="<%= image.getImageId()%>"/>
                         </form>
                     </div>
                 </div>
             </div>
             <br>
             <% } %>
-            
+
             <%-- method for deleting floor --%>
-        <% if (!floors.isEmpty()) {
-                for (Floor floor : floors) {
-                    Floorplan floorplan = controllerFacade.getFloorplanByFloorId(floor.getFloorId());
-        %>
-        <div class="panel panel-primary">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-2">
-                        <h4><strong><%= floor.getFloor()%>.</strong> Floor</h4>
-                    </div>
-                    <div class="col-md-2">
-                        <p>Size: <strong><%= floor.getSize()%></strong></p>
-                    </div>
-                    <div class="col-md-6">
-                        <% if (floorplan != null) {%>
-                        <div class="col-md-12">
-                            <div class="col-md-6">
-                                <p><%= floorplan.getFloorplanName()%></p>
-                            </div>
-                            <div class="col-md-3 pull-right">
-                                <form action="downloadfloorplan">
-                                    <button class="btn btn-success pull-right col-md-12" type="submit"><i class="fa fa-download" aria-hidden="true"></i></button>
-                                    <input type="hidden" name="floorplanId" value="<%= floorplan.getFloorplanId()%>"/>
-                                </form>
-                            </div>
-                            <div class="col-md-3 pull-right">
-                                <form action="deletefloorplan" method="POST">
-                                    <button class="btn btn-danger pull-right col-md-12" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                    <input type="hidden" name="floorplanId" value="<%= floorplan.getFloorplanId()%>"/>
-                                </form>
-                            </div>
+            <% if (!floors.isEmpty()) {
+                    for (Floor floor : floors) {
+                        Floorplan floorplan = controllerFacade.getFloorplanByFloorId(floor.getFloorId());
+            %>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h4><strong><%= floor.getFloor()%>.</strong> Floor</h4>
                         </div>
-                        <% } else {%>
-                        <form action="uploadfloorplan" method="POST" enctype="multipart/form-data">
-                            <div class="col-md-3">
-                                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                        <div class="col-md-2">
+                            <p>Size: <strong><%= floor.getSize()%></strong></p>
+                        </div>
+                        <div class="col-md-6">
+                            <% if (floorplan != null) {%>
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <p><%= floorplan.getFloorplanName()%></p>
+                                </div>
+                                <div class="col-md-3 pull-right">
+                                    <form action="downloadfloorplan">
+                                        <button class="btn btn-success pull-right col-md-12" type="submit"><i class="fa fa-download" aria-hidden="true"></i></button>
+                                        <input type="hidden" name="floorplanId" value="<%= floorplan.getFloorplanId()%>"/>
+                                    </form>
+                                </div>
+                                <div class="col-md-3 pull-right">
+                                    <form action="deletefloorplan" method="POST">
+                                        <button class="btn btn-danger pull-right col-md-12" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                        <input type="hidden" name="floorplanId" value="<%= floorplan.getFloorplanId()%>"/>
+                                    </form>
+                                </div>
                             </div>
-                            <div style="margin-bottom: 10px" class="input-group col-md-9">
-                                <span class="input-group-btn">
-                                    <span class="btn btn-primary btn-file">
-                                        Browse&hellip; <input type="file" name="floorplanFile" multiple>
-                                        <input type="hidden" name="floorId" value="<%= floor.getFloorId()%>"/>
+                            <% } else {%>
+                            <form action="uploadfloorplan" method="POST" enctype="multipart/form-data">
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                                </div>
+                                <div style="margin-bottom: 10px" class="input-group col-md-9">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Browse&hellip; <input type="file" name="floorplanFile" multiple>
+                                            <input type="hidden" name="floorId" value="<%= floor.getFloorId()%>"/>
+                                        </span>
                                     </span>
-                                </span>
-                                <input type="text" class="form-control" readonly>
-                            </div>
-                        </form>
-                        <% }%>
-                    </div>
-                    <div class="col-md-2 pull-right">
-                        <form action="deletefloor" method="POST">
-                            <input type="hidden" name="floorId" value="<%=floor.getFloorId()%>">
-                            <button class="btn btn-danger col-md-12 pull-right" onClick="return
+                                    <input type="text" class="form-control" readonly>
+                                </div>
+                            </form>
+                            <% }%>
+                        </div>
+                        <div class="col-md-2 pull-right">
+                            <form action="deletefloor" method="POST">
+                                <input type="hidden" name="floorId" value="<%=floor.getFloorId()%>">
+                                <button class="btn btn-danger col-md-12 pull-right" onClick="return
                                     confirm('Are you sure you want to delete this floor?');" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <% }
+            <% }
             }%>
-    </div>
-    <% }%>
+        </div>
+        <% }%>
 
-    <jsp:include page="footer.jsp" />
+        <jsp:include page="footer.jsp" />

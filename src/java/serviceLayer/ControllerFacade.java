@@ -16,8 +16,8 @@ import serviceLayer.entity.Customer;
 import serviceLayer.entity.Document;
 import serviceLayer.entity.Floor;
 import serviceLayer.entity.Floorplan;
+import serviceLayer.entity.Image;
 import serviceLayer.entity.User;
-
 
 /**
  *
@@ -104,51 +104,72 @@ public class ControllerFacade {
     public InputStream downloadReport(int reportId) throws ClassNotFoundException {
         return controller.downloadReport(reportId);
     }
-    public void saveDocument(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException { 
-        controller.saveDocument(input, name, date,buildingId);
+
+    public void saveDocument(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
+        controller.saveDocument(input, name, date, buildingId);
     }
-    
+
     public List<Document> getAllDocumentsByBuildingId(int buildingId) {
         return controller.getAlDocumentsByBuildingId(buildingId);
     }
-    
+
     public InputStream downloadDocument(int documentId) throws ClassNotFoundException {
         return controller.downloadDocument(documentId);
     }
-    
+
     public String getDocumentNameById(int documentId) {
         return controller.getDocumentNameById(documentId);
     }
-    
+
     public void deleteReportByReportId(int reportId) {
         controller.deleteReportByReportId(reportId);
     }
-    
+
     public void deleteFloorplanByFloorplanId(int floorplanId) {
         controller.deleteFloorplanByFloorplanId(floorplanId);
     }
-    
+
     public Floorplan getFloorplanByFloorId(int floorId) {
         return controller.getFloorplanByFloorId(floorId);
     }
-    
+
     public InputStream downloadFloorplan(int floorplanId) {
         return controller.downloadFloorplan(floorplanId);
     }
-    
+
     public void uploadFloorplan(InputStream input, String name, int floorId) {
         controller.uploadFloorplan(input, name, floorId);
     }
-    
+
     public String getReportNameById(int reportId) {
         return controller.getReportNameById(reportId);
     }
-    
+
     public String getFloorplanNameById(int floorplanId) {
         return controller.getFloorplanNameById(floorplanId);
     }
-    
+
     public void deleteDocumentByDocumentId(int documentId) {
         controller.deleteDocumentByDocumentId(documentId);
+    }
+
+    public void saveImage(InputStream inputStream, String name, int buildingId) throws ClassNotFoundException {
+        controller.saveImage(inputStream, name, buildingId);
+    }
+
+    public List<Image> getAllImagesByBuildingId(int buildingId) {
+        return controller.getAllImagesByBuildingId(buildingId);
+    }
+
+    public InputStream downloadImage(int imageId) throws ClassNotFoundException {
+        return controller.downloadImage(imageId);
+    }
+
+    public void deleteImageByImageId(int imageId) {
+        controller.deleteImageByImageId(imageId);
+    }
+
+    public String getImageNameById(int imageId) {
+        return controller.getImageNameById(imageId);
     }
 }

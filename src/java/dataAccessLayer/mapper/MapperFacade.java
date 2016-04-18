@@ -16,6 +16,7 @@ import serviceLayer.entity.Customer;
 import serviceLayer.entity.Document;
 import serviceLayer.entity.Floor;
 import serviceLayer.entity.Floorplan;
+import serviceLayer.entity.Image;
 import serviceLayer.entity.Report;
 import serviceLayer.entity.User;
 
@@ -28,6 +29,7 @@ public class MapperFacade {
     ReportMapper reportMapper = new ReportMapper();
     DocumentMapper documentMapper = new DocumentMapper();
     FloorplanMapper floorplanMapper = new FloorplanMapper();
+    ImageMapper imageMapper = new ImageMapper();
 
     public void addBuilding(Building b) {
         buildingMapper.addBuilding(b);
@@ -58,7 +60,7 @@ public class MapperFacade {
     public void addFloor(Floor floor) {
         floorMapper.addFloor(floor);
     }
-    
+
     public boolean checkIfFloorExists(int buildingId, int floorNumber) {
         return floorMapper.checkIfFloorExists(buildingId, floorNumber);
     }
@@ -147,41 +149,60 @@ public class MapperFacade {
     public InputStream downloadDocument(int documentId) {
         return documentMapper.downloadDocument(documentId);
     }
-    
+
     public String getDocumentNameById(int documentId) {
         return documentMapper.getDocumentNameById(documentId);
     }
-    
+
     public void deleteReportByReportId(int reportId) {
         reportMapper.deleteReportByReportId(reportId);
     }
-    
+
     public void deleteFloorplanByFloorplanId(int floorplanId) {
         floorplanMapper.deleteFloorplanByFloorplanId(floorplanId);
     }
-    
+
     public Floorplan getFloorplanByFloorId(int floorId) {
         return floorplanMapper.getFloorplanByFloorId(floorId);
     }
-    
+
     public InputStream downloadFloorplan(int floorplanId) {
         return floorplanMapper.downloadFloorplan(floorplanId);
     }
-    
+
     public void uploadFloorplan(InputStream input, String name, int floorId) {
         floorplanMapper.uploadFloorplan(input, name, floorId);
     }
-    
+
     public String getReportNameById(int reportId) {
         return reportMapper.getReportNameById(reportId);
     }
-    
+
     public String getFloorplanNameById(int floorplanId) {
         return floorplanMapper.getFloorplanNameById(floorplanId);
     }
-    
+
     public void deleteDocumentByDocumentId(int documentId) {
         documentMapper.deleteDocumentByDocumentId(documentId);
     }
-    
+
+    public void saveImage(InputStream inputStream, String name, int buildingId) throws ClassNotFoundException {
+        imageMapper.saveImage(inputStream, name, buildingId);
+    }
+
+    public List<Image> getAllImagesByBuildingId(int buildingId) {
+        return imageMapper.getAllImagesByBuildingId(buildingId);
+    }
+
+    public InputStream downloadImage(int imageId) throws ClassNotFoundException {
+        return imageMapper.downloadImage(imageId);
+    }
+
+    public void deleteImageByImageId(int imageId) {
+        imageMapper.deleteImageByImageId(imageId);
+    }
+
+    public String getImageNameById(int imageId) {
+        return imageMapper.getImageNameById(imageId);
+    }
 }

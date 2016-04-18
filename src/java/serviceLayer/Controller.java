@@ -16,6 +16,7 @@ import serviceLayer.entity.Customer;
 import serviceLayer.entity.Document;
 import serviceLayer.entity.Floor;
 import serviceLayer.entity.Floorplan;
+import serviceLayer.entity.Image;
 import serviceLayer.entity.User;
 
 public class Controller {
@@ -191,5 +192,25 @@ public class Controller {
     
     public void deleteDocumentByDocumentId(int documentId) {
         mapperFacade.deleteDocumentByDocumentId(documentId);
+    }
+    
+    public void saveImage(InputStream inputStream, String name, int buildingId) throws ClassNotFoundException {
+        mapperFacade.saveImage(inputStream, name, buildingId);
+    }
+
+    public List<Image> getAllImagesByBuildingId(int buildingId) {
+        return mapperFacade.getAllImagesByBuildingId(buildingId);
+    }
+
+    public InputStream downloadImage(int imageId) throws ClassNotFoundException {
+        return mapperFacade.downloadImage(imageId);
+    }
+
+    public void deleteImageByImageId(int imageId) {
+        mapperFacade.deleteImageByImageId(imageId);
+    }
+
+    public String getImageNameById(int imageId) {
+        return mapperFacade.getImageNameById(imageId);
     }
 }

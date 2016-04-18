@@ -30,7 +30,7 @@ public class ImageMapper {
             ps.setString(2, name);
             ps.setInt(3, buildingId);
 
-            ps.executeQuery();
+            ps.executeUpdate();
 
             ps.close();
         } catch (SQLException ex) {
@@ -64,7 +64,7 @@ public class ImageMapper {
         return images;
     }
 
-    public InputStream downloadImage(ServletContext context, HttpServletResponse response, int imageId) throws ClassNotFoundException {
+    public InputStream downloadImage(int imageId) throws ClassNotFoundException {
         ResultSet rs = null;
         InputStream inputStream = null;
         
@@ -103,7 +103,7 @@ public class ImageMapper {
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             
             ps.setInt(1, imageId);
-            ps.executeQuery();
+            ps.executeUpdate();
             
             ps.close();
         } catch (SQLException ex) {
@@ -117,7 +117,7 @@ public class ImageMapper {
         
         try {
             
-            String query = "SELECT (imageFileName) FROM image WHERE (imageId) = ?";
+            String query = "SELECT (imageName) FROM image WHERE (imageId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             
             ps.setInt(1, imageId);

@@ -35,6 +35,20 @@ public class CheckupMapper {
 
     //Nicolai
     public void createNewCheckup(Checkup checkup) {
+        
+        try {
+            
+            String query = "INSERT INTO Checkup (checkupId, status, email, checkupDate, buildingId) VALUES (?,?,?,?,?)";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            
+            ps.setInt(1, checkup.getCheckupId());
+            ps.setString(2, checkup.getStatus());
+            ps.setString(3, checkup.getCustomerEmail());
+            ps.setString
+            
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
 
     }
 

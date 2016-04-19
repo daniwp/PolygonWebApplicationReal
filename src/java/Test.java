@@ -1,10 +1,6 @@
 
-import dataAccessLayer.mapper.ReportMapper;
 import java.sql.SQLException;
-import java.util.List;
-import serviceLayer.ControllerFacade;
-import serviceLayer.entity.Customer;
-import serviceLayer.entity.Report;
+import serviceLayer.entity.Checkup;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,14 +14,8 @@ import serviceLayer.entity.Report;
 public class Test {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        ControllerFacade cF = new ControllerFacade();
-        ReportMapper fM = new ReportMapper();
-        List<Report> reports = cF.getAllReportsByBuildingId(1);
+        Checkup cU = new Checkup();
         
         
-        for (Report report : reports) {
-            System.out.println(report.getFileName());
-            report.getBuildingId();
-        }
     }
 }

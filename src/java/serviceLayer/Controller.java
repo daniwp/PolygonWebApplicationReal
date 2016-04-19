@@ -18,6 +18,7 @@ import serviceLayer.entity.Floor;
 import serviceLayer.entity.Floorplan;
 import serviceLayer.entity.Image;
 import serviceLayer.entity.User;
+import serviceLayer.entity.Checkup;
 
 public class Controller {
 
@@ -213,4 +214,26 @@ public class Controller {
     public String getImageNameById(int imageId) {
         return mapperFacade.getImageNameById(imageId);
     }
+    
+    public void updateCheckupsStatusById(int checkupId, String status) {
+        mapperFacade.updateCheckupStatusById(checkupId, status);
+    }
+    
+    public void createNewCheckup(int checkupId, String status, String date, String email, int buildingId) {
+        Checkup checkup = new Checkup(status, date, email, buildingId);
+        mapperFacade.createNewCheckup(checkup);
+    }
+    
+    public List<Checkup> getAllCheckupsByBuildingId(int buildingId) {
+        return mapperFacade.getAllCheckupsByBuildingId(buildingId);
+    }
+    
+    public void deleteCheckupById(int checkupId) {
+        mapperFacade.deleteCheckupById(checkupId);
+    }
+    
+    public Checkup getCheckupById(int CheckupId) {
+        return mapperFacade.getCheckupById(CheckupId);
+    }
+    
 }

@@ -92,7 +92,22 @@ public class CheckupMapper {
 
     //Lasse
     public void deleteCheckupById(int checkupId) {
+        
+        try {
+            
+            String query = "DELETE FROM checkup WHERE (checkupId) = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
+            ps.setInt(1, checkupId);
+
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException ee)
+        {
+            ee.printStackTrace();
+        }
+    
     }
 
     //Daniel

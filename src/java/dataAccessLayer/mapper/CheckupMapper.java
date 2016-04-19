@@ -16,7 +16,21 @@ public class CheckupMapper {
 
     // Peter
     public void updateCheckupStatusById(int checkupId, String status) {
-
+        
+        
+        try {
+            String query = "UPDATE checkup SET status = ? Where checkupId = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            
+            ps.setString(1, status);
+            ps.setInt(2, checkupId);
+            
+            ps.executeUpdate();
+            
+        }catch (SQLException ee) {
+            ee.printStackTrace();
+        }
+        
     }
 
     //Nicolai

@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentationLayer.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,36 +13,35 @@ import serviceLayer.ControllerFacade;
 
 /**
  *
- * @author danie
+ * @author Daniel
  */
-@WebServlet(name = "Login", urlPatterns = {"/login"})
-public class Login extends HttpServlet {
+@WebServlet(name = "CancelCheckup", urlPatterns = {"/cancelcheckup"})
+public class CancelCheckup extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         RequestDispatcher rd = null;
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
-
+        
         ControllerFacade controllerFacade = new ControllerFacade();
-
+        
         try {
-
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-
-            if (controllerFacade.validateLogin(username, password, session)) {
-                rd = request.getRequestDispatcher("index.jsp");
-            } else {
-                rd = request.getRequestDispatcher("login.jsp");
-            }
-
-        } catch (Exception ee) {
-            rd = request.getRequestDispatcher("login.jsp");
-            ee.printStackTrace();
+            
+            int checkupId = Integer.parseInt(request.getParameter("checkupId"));
+            String cancelled = "Cancelled";
+            
+            controllerFacade.updateCheckupsStatusById(checkupId, cancelled);
+            
+            rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
         }
-
+        
         rd.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -227,4 +227,8 @@ public class MapperFacade {
     public void deleteCheckupById(int checkupId) {
         checkupMapper.deleteCheckupById(checkupId);
     }
+    
+    public String getEmailById(int customerId) {
+        return customerMapper.getEmailById(customerId);
+    }
 }

@@ -153,294 +153,322 @@
                     <p>Add a new checkup:</p>
                 </div>
             </div>
-        </div>
-        <form action="requestcheckup" method="POST">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="col-md-2">
-                        <p>Date:</p>
-                    </div>
-                    <div class="col-md-4 form-group">
-                        <input class="form-control" type="date" name="checkupDate"/>
-                    </div>
-                </div>
-                <div class="col-md-4 pull-right">
-                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                </div>
-            </div>
-        </form>
-
-        <% List<Checkup> checkups = controllerFacade.getAllCheckupsByBuildingId(buildingId);
-            for (Checkup checkup : checkups) {%>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-3">
-                    <p><%= checkup.getDate() %></p>
-                </div>
-                <div class="col-md-3">
-                    <p><%= checkup.getStatus() %></p>
-                <div class="col-md-2 pull-right">
-                    <form action="cancelcheckup" method="POST">
-                        <button class="btn btn-danger pull-right col-md-12" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
-                        <input type="hidden" name="checkupId" value="<%= checkup.getCheckupId() %>"/>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <br>
-
-        <% }%>
-    </div>
-
-
-    <!-- Building Reports -->
-    <div class="well buildingitem">
-        <div class="row">
-            <h3 class="border">&nbsp;Building reports</h3>
-        </div>
-        <% if (session.getAttribute("admin") != null) {%>
-        <div class="row">
-            <div class="col-md-12">
-                <p>Add a new building report:</p>
-            </div>
-        </div>
-        <form action="uploadreport" method="POST" enctype="multipart/form-data">
-            <div style="margin-bottom: 10px" class="input-group">
-                <span class="input-group-btn">
-                    <span class="btn btn-primary btn-file">
-                        Browse&hellip; <input type="file" name="reportFile" multiple>
-                    </span>
-                </span>
-                <input type="text" class="form-control" readonly>
-            </div>
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="col-md-2">
-                        <p>Date:</p>
-                    </div>
-                    <div class="col-md-4 form-group">
-                        <input class="form-control" type="date" name="reportDate"/>
-                    </div>
-                </div>
-                <div class="col-md-4 pull-right">
-                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                </div>
-            </div>
-        </form>
-        <br><br>
-        <% } %>
-        <% List<Report> reports = controllerFacade.getAllReportsByBuildingId(buildingId);
-            for (Report report : reports) {%>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-3">
-                    <p><%= report.getFileName()%></p>
-                </div>
-                <div class="col-md-3">
-                    <p><%= report.getUploadDate()%></p>
-                </div>
-                <div class="col-md-2 pull-right">
-                    <form action="downloadreport">
-                        <button class="btn btn-success pull-right col-md-12" type="submit"><i class="fa fa-download" aria-hidden="true"></i></button>
-                        <input type="hidden" name="reportId" value="<%= report.getReportId()%>"/>
-                    </form>
-                </div>
-                <% if (session.getAttribute("admin") != null) {%>
-                <div class="col-md-2 pull-right">
-                    <form action="deletereport" method="POST">
-                        <button class="btn btn-danger pull-right col-md-12" onClick="return
-                                confirm('Are you sure you want to delete this floor?');" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
-                        <input type="hidden" name="reportId" value="<%= report.getReportId()%>"/>
-                    </form>
-                </div>
-                <% } %>
-            </div>
-        </div>
-        <br>
-
-        <% }%>
-    </div>
-
-    <!-- Relevent documents -->
-    <div class="well buildingitem">
-        <div class="row">
-            <h3 class="border">&nbsp;Building documents</h3>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p>Add a new building document:</p>
-            </div>
-        </div>
-        <form action="uploaddocument" method="POST" enctype="multipart/form-data">
-            <div style="margin-bottom: 10px" class="input-group">
-                <span class="input-group-btn">
-                    <span class="btn btn-primary btn-file">
-                        Browse&hellip; <input type="file" name="documentFile" multiple>
-                    </span>
-                </span>
-                <input type="text" class="form-control" readonly>
-            </div>
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="col-md-2">
-                        <p>Date:</p>
-                    </div>
-                    <div class="col-md-4 form-group">
-                        <input class="form-control" type="date" name="documentDate"/>
-                    </div>
-                </div>
-                <div class="col-md-4 pull-right">
-                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                </div>
-            </div>
-        </form>
-
-        <% List<Document> documents = controllerFacade.getAllDocumentsByBuildingId(buildingId);
-            for (Document document : documents) {%>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-3">
-                    <p><%= document.getDocumentFileName()%></p>
-                </div>
-                <div class="col-md-3">
-                    <p><%= document.getDocumentUploadDate()%></p>
-                </div>
-                <div class="col-md-2 pull-right">
-                    <form action="downloaddocument">
-                        <button class="btn btn-success pull-right col-md-12" type="submit"><i class="fa fa-download" aria-hidden="true"></i></button>
-                        <input type="hidden" name="documentId" value="<%= document.getDocumentId()%>"/>
-                    </form>
-                </div>
-                <div class="col-md-2 pull-right">
-                    <form action="deletedocument" method="POST">
-                        <button class="btn btn-danger pull-right col-md-12" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
-                        <input type="hidden" name="documentId" value="<%= document.getDocumentId()%>"/>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <br>
-
-        <% }%>
-    </div>
-
-    <!-- Relevent images -->
-    <div class="well buildingitem">
-        <div class="row">
-            <h3 class="border">&nbsp;Building images</h3>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p>Add a new building image:</p>
-            </div>
-        </div>
-        <form action="uploadimage" method="POST" enctype="multipart/form-data">
-            <div style="margin-bottom: 10px" class="input-group">
-                <span class="input-group-btn">
-                    <span class="btn btn-primary btn-file">
-                        Browse&hellip; <input type="file" name="imageFile" multiple>
-                    </span>
-                </span>
-                <input type="text" class="form-control" readonly>
-            </div>
-            <div class="row">
-                <div class="col-md-4 pull-right">
-                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                </div>
-            </div>
-        </form>
-        <br><br>
-        <% List<Image> images = controllerFacade.getAllImagesByBuildingId(buildingId);
-            for (Image image : images) {%>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-3">
-                    <p><%= image.getImageName()%></p>
-                </div>
-                <div class="col-md-2 pull-right">
-                    <form action="downloadimage">
-                        <button class="btn btn-success pull-right col-md-12" type="submit"><i class="fa fa-download" aria-hidden="true"></i></button>
-                        <input type="hidden" name="imageId" value="<%= image.getImageId()%>"/>
-                    </form>
-                </div>
-                <div class="col-md-2 pull-right">
-                    <form action="deleteimage" method="POST">
-                        <button class="btn btn-danger pull-right col-md-12" onClick="return
-                                confirm('Are you sure you want to delete this image?');" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
-                        <input type="hidden" name="imageId" value="<%= image.getImageId()%>"/>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <br>
-        <% } %>
-
-        <% if (!floors.isEmpty()) {
-                for (Floor floor : floors) {
-                    Floorplan floorplan = controllerFacade.getFloorplanByFloorId(floor.getFloorId());
-        %>
-        <div class="panel panel-primary">
-            <div class="panel-body">
+            <form action="requestcheckup" method="POST">
                 <div class="row">
-                    <div class="col-md-2">
-                        <h4><strong><%= floor.getFloor()%>.</strong> Floor</h4>
-                    </div>
-                    <div class="col-md-2">
-                        <p>Size: <strong><%= floor.getSize()%></strong></p>
-                    </div>
-                    <div class="col-md-6">
-                        <% if (floorplan != null) {%>
-                        <div class="col-md-12">
-                            <div class="col-md-6">
-                                <p><%= floorplan.getFloorplanName()%></p>
-                            </div>
-                            <div class="col-md-3 pull-right">
-                                <form action="downloadfloorplan">
-                                    <button class="btn btn-success pull-right col-md-12" type="submit"><i class="fa fa-download" aria-hidden="true"></i></button>
-                                    <input type="hidden" name="floorplanId" value="<%= floorplan.getFloorplanId()%>"/>
-                                </form>
-                            </div>
-                            <div class="col-md-3 pull-right">
-                                <form action="deletefloorplan" method="POST">
-                                    <button class="btn btn-danger pull-right col-md-12" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                    <input type="hidden" name="floorplanId" value="<%= floorplan.getFloorplanId()%>"/>
-                                </form>
-                            </div>
+                    <div class="col-md-8">
+                        <div class="col-md-2">
+                            <p>Date:</p>
                         </div>
-                        <% } else {%>
-                        <form action="uploadfloorplan" method="POST" enctype="multipart/form-data">
-                            <div class="col-md-3">
-                                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                        <div class="col-md-4 form-group">
+                            <input class="form-control" type="date" name="checkupDate" required/>
+                        </div>
+                    </div>
+                    <div class="col-md-4 pull-right">
+                        <button type="submit" class="btn btn-primary pull-right">Request</button>
+                    </div>
+                </div>
+                <br>
+            </form>
+
+            <% List<Checkup> checkups = controllerFacade.getAllCheckupsByBuildingId(buildingId);
+                for (Checkup checkup : checkups) {%>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <p>Request date: <strong><%= checkup.getDate()%></strong></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>Status: <strong><%= checkup.getStatus()%></strong></p>
+                    </div>
+                    <% if (session.getAttribute("admin") != null) {%>
+                    <div class="form-group col-md-4">
+                        <form action="changecheckupstatus" method="POST">
+                            <div class="col-md-8">
+                                <select class="form-control" id="sel1" name="status">
+                                    <option value="Cancelled">Cancel</option>
+                                    <option value="Accepted">Accept</option>
+                                    <option value="Completed">Complete</option>
+                                </select>
                             </div>
-                            <div style="margin-bottom: 10px" class="input-group col-md-9">
-                                <span class="input-group-btn">
-                                    <span class="btn btn-primary btn-file">
-                                        Browse&hellip; <input type="file" name="floorplanFile" multiple>
-                                        <input type="hidden" name="floorId" value="<%= floor.getFloorId()%>"/>
-                                    </span>
-                                </span>
-                                <input type="text" class="form-control" readonly>
+                            <div class="col-md-4">
+                                <button class="btn btn-primary" type="submit">Change</button>
+                                <input type="hidden" name="checkupId" value="<%= checkup.getCheckupId()%>"/>
                             </div>
                         </form>
-                        <% }%>
+                    </div>
+                    <% } %>
+                    <% if (session.getAttribute("customer") != null && checkup.getStatus().equals("Pending...")) {%>
+                    <div class="form-group col-md-2 pull-right">
+                        <form action="cancelcheckup" method="POST">
+                            <button class="btn btn-danger pull-right col-md-12" type="submit">Cancel <i class="fa fa-times" aria-hidden="true"></i></button>
+                            <input type="hidden" name="checkupId" value="<%= checkup.getCheckupId()%>"/>
+                        </form>
+                    </div>
+                    <% } %>
+                    <% if (checkup.getStatus().equals("Cancelled") || session.getAttribute("admin") != null) {%>
+                    <div class="col-md-2 pull-right">
+                        <form action="deletecheckup" method="POST">
+                            <button class="btn btn-danger pull-right col-md-12" type="submit">Delete item <i class="fa fa-times" aria-hidden="true"></i></button>
+                            <input type="hidden" name="checkupId" value="<%= checkup.getCheckupId()%>"/>
+                        </form>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+            <% }%>
+            <br>
+        </div>
+
+
+        <!-- Building Reports -->
+        <div class="well buildingitem">
+            <div class="row">
+                <h3 class="border">&nbsp;Building reports</h3>
+            </div>
+            <% if (session.getAttribute("admin") != null) {%>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Add a new building report:</p>
+                </div>
+            </div>
+            <form action="uploadreport" method="POST" enctype="multipart/form-data">
+                <div style="margin-bottom: 10px" class="input-group">
+                    <span class="input-group-btn">
+                        <span class="btn btn-primary btn-file">
+                            Browse&hellip; <input type="file" name="reportFile" multiple>
+                        </span>
+                    </span>
+                    <input type="text" class="form-control" readonly>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="col-md-2">
+                            <p>Date:</p>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <input class="form-control" type="date" name="reportDate"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4 pull-right">
+                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <% } %>
+            <% List<Report> reports = controllerFacade.getAllReportsByBuildingId(buildingId);
+                for (Report report : reports) {%>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <p><%= report.getFileName()%></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p><%= report.getUploadDate()%></p>
                     </div>
                     <div class="col-md-2 pull-right">
-                        <form action="deletefloor" method="POST">
-                            <input type="hidden" name="floorId" value="<%=floor.getFloorId()%>">
-                            <button class="btn btn-danger col-md-12 pull-right" onClick="return
-                                    confirm('Are you sure you want to delete this floor?');" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
+                        <form action="downloadreport">
+                            <button class="btn btn-success pull-right col-md-12" type="submit"><i class="fa fa-download" aria-hidden="true"></i></button>
+                            <input type="hidden" name="reportId" value="<%= report.getReportId()%>"/>
+                        </form>
+                    </div>
+                    <% if (session.getAttribute("admin") != null) {%>
+                    <div class="col-md-2 pull-right">
+                        <form action="deletereport" method="POST">
+                            <button class="btn btn-danger pull-right col-md-12" onClick="return
+                                    confirm('Are you sure you want to delete this floor?');" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <input type="hidden" name="reportId" value="<%= report.getReportId()%>"/>
+                        </form>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+            <br>
+
+            <% }%>
+        </div>
+
+        <!-- Relevent documents -->
+        <div class="well buildingitem">
+            <div class="row">
+                <h3 class="border">&nbsp;Building documents</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Add a new building document:</p>
+                </div>
+            </div>
+            <form action="uploaddocument" method="POST" enctype="multipart/form-data">
+                <div style="margin-bottom: 10px" class="input-group">
+                    <span class="input-group-btn">
+                        <span class="btn btn-primary btn-file">
+                            Browse&hellip; <input type="file" name="documentFile" multiple>
+                        </span>
+                    </span>
+                    <input type="text" class="form-control" readonly>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="col-md-2">
+                            <p>Date:</p>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <input class="form-control" type="date" name="documentDate"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4 pull-right">
+                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                    </div>
+                </div>
+                <br>
+            </form>
+
+            <% List<Document> documents = controllerFacade.getAllDocumentsByBuildingId(buildingId);
+                for (Document document : documents) {%>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <p><%= document.getDocumentFileName()%></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p><%= document.getDocumentUploadDate()%></p>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <form action="downloaddocument">
+                            <button class="btn btn-success pull-right col-md-12" type="submit"><i class="fa fa-download" aria-hidden="true"></i></button>
+                            <input type="hidden" name="documentId" value="<%= document.getDocumentId()%>"/>
+                        </form>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <form action="deletedocument" method="POST">
+                            <button class="btn btn-danger pull-right col-md-12" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <input type="hidden" name="documentId" value="<%= document.getDocumentId()%>"/>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-        <% }
-            }%>
-    </div>
-    <% }%>
+            <br>
 
-    <jsp:include page="footer.jsp" />
+            <% }%>
+        </div>
+
+        <!-- Relevent images -->
+        <div class="well buildingitem">
+            <div class="row">
+                <h3 class="border">&nbsp;Building images</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Add a new building image:</p>
+                </div>
+            </div>
+            <form action="uploadimage" method="POST" enctype="multipart/form-data">
+                <div style="margin-bottom: 10px" class="input-group">
+                    <span class="input-group-btn">
+                        <span class="btn btn-primary btn-file">
+                            Browse&hellip; <input type="file" name="imageFile" multiple>
+                        </span>
+                    </span>
+                    <input type="text" class="form-control" readonly>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 pull-right">
+                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                    </div>
+                </div>
+                <br>
+            </form>
+            <% List<Image> images = controllerFacade.getAllImagesByBuildingId(buildingId);
+                for (Image image : images) {%>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3">
+                        <p><%= image.getImageName()%></p>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <form action="downloadimage">
+                            <button class="btn btn-success pull-right col-md-12" type="submit"><i class="fa fa-download" aria-hidden="true"></i></button>
+                            <input type="hidden" name="imageId" value="<%= image.getImageId()%>"/>
+                        </form>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <form action="deleteimage" method="POST">
+                            <button class="btn btn-danger pull-right col-md-12" onClick="return
+                                    confirm('Are you sure you want to delete this image?');" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <input type="hidden" name="imageId" value="<%= image.getImageId()%>"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <% } %>
+
+            <% if (!floors.isEmpty()) {
+                    for (Floor floor : floors) {
+                        Floorplan floorplan = controllerFacade.getFloorplanByFloorId(floor.getFloorId());
+            %>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h4><strong><%= floor.getFloor()%>.</strong> Floor</h4>
+                        </div>
+                        <div class="col-md-2">
+                            <p>Size: <strong><%= floor.getSize()%></strong></p>
+                        </div>
+                        <div class="col-md-6">
+                            <% if (floorplan != null) {%>
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <p><%= floorplan.getFloorplanName()%></p>
+                                </div>
+                                <div class="col-md-3 pull-right">
+                                    <form action="downloadfloorplan">
+                                        <button class="btn btn-success pull-right col-md-12" type="submit"><i class="fa fa-download" aria-hidden="true"></i></button>
+                                        <input type="hidden" name="floorplanId" value="<%= floorplan.getFloorplanId()%>"/>
+                                    </form>
+                                </div>
+                                <div class="col-md-3 pull-right">
+                                    <form action="deletefloorplan" method="POST">
+                                        <button class="btn btn-danger pull-right col-md-12" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                        <input type="hidden" name="floorplanId" value="<%= floorplan.getFloorplanId()%>"/>
+                                    </form>
+                                </div>
+                            </div>
+                            <% } else {%>
+                            <form action="uploadfloorplan" method="POST" enctype="multipart/form-data">
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                                </div>
+                                <div style="margin-bottom: 10px" class="input-group col-md-9">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Browse&hellip; <input type="file" name="floorplanFile" multiple>
+                                            <input type="hidden" name="floorId" value="<%= floor.getFloorId()%>"/>
+                                        </span>
+                                    </span>
+                                    <input type="text" class="form-control" readonly>
+                                </div>
+                            </form>
+                            <% }%>
+                        </div>
+                        <div class="col-md-2 pull-right">
+                            <form action="deletefloor" method="POST">
+                                <input type="hidden" name="floorId" value="<%=floor.getFloorId()%>">
+                                <button class="btn btn-danger col-md-12 pull-right" onClick="return
+                                        confirm('Are you sure you want to delete this floor?');" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% }
+                }%>
+        </div>
+        <% }%>
+
+        <jsp:include page="footer.jsp" />

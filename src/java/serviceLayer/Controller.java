@@ -219,7 +219,7 @@ public class Controller {
         mapperFacade.updateCheckupStatusById(checkupId, status);
     }
     
-    public void createNewCheckup(int checkupId, String status, String date, String email, int buildingId) {
+    public void createNewCheckup(String status, String date, String email, int buildingId) {
         Checkup checkup = new Checkup(status, date, email, buildingId);
         mapperFacade.createNewCheckup(checkup);
     }
@@ -234,6 +234,10 @@ public class Controller {
     
     public Checkup getCheckupById(int CheckupId) {
         return mapperFacade.getCheckupById(CheckupId);
+    }
+    
+    public String getEmailById(int customerId) {
+        return mapperFacade.getEmailById(customerId);
     }
     
 }

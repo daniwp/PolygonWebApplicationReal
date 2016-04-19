@@ -186,12 +186,16 @@ public class ControllerFacade {
         return controller.getCheckupById(checkupId);
     }
     
-    public void createNewCheckup(int checkupId, String status,String date, String email, int buildingId) {
+    public void createNewCheckup(String status,String date, String email, int buildingId) {
         Checkup checkup = new Checkup();
-        controller.createNewCheckup(checkupId, status, date, email, buildingId);
+        controller.createNewCheckup(status, date, email, buildingId);
     }
     
     public void deleteCheckupById(int checkupId) {
         controller.deleteCheckupById(checkupId);
+    }
+    
+    public String getEmailById(int customerId) {
+        return controller.getEmailById(customerId);
     }
 }

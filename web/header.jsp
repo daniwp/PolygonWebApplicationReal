@@ -52,11 +52,11 @@
 
                     <!-- Right side items when logged out--> 
                     <ul class="nav navbar-nav navbar-right">
-                        <% if (session.getAttribute("loggedIn") == null) { %>
+                        <% if (session.getAttribute("customer") == null && session.getAttribute("admin") == null) { %>
                         <li><a href="login.jsp">Login</a></li>
                             <% } %>
 
-                        <!-- Drop down for User -->
+                        <!-- Dropdown for User -->
                         <% if (session.getAttribute("loggedIn") != null && session.getAttribute("customer") != null) {%>
                         <% Customer customer = (Customer) session.getAttribute("customer");%>
                         <li class="dropdown">
@@ -68,7 +68,8 @@
                             </ul>
                         </li> 
                         <% }%>
-
+                        
+                        <!-- Dropdown for Admin -->
                         <% if (session.getAttribute("loggedIn") != null && session.getAttribute("admin") != null) { %>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>

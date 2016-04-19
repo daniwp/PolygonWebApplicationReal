@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentationLayer.servlet;
 
 import java.io.IOException;
@@ -14,39 +9,44 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import serviceLayer.ControllerFacade;
+import serviceLayer.entity.Customer;
 
 /**
  *
- * @author danie
+ * @author Daniel
  */
-@WebServlet(name = "Login", urlPatterns = {"/login"})
-public class Login extends HttpServlet {
+@WebServlet(name = "RequestCheckup", urlPatterns = {"/requestcheckup"})
+public class RequestCheckup extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         RequestDispatcher rd = null;
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
-
+        
         ControllerFacade controllerFacade = new ControllerFacade();
 
         try {
-
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-
-            if (controllerFacade.validateLogin(username, password, session)) {
-                rd = request.getRequestDispatcher("index.jsp");
+            String email = "";
+            String status = "Pending...";
+            String date = request.getParameter("checkupDate");
+            
+            if (session.getAttribute("admin") != null) {
+                email = controllerFacade.getEmailById(Integer.parseInt((String) session.getAttribute("customerId")));
             } else {
-                rd = request.getRequestDispatcher("login.jsp");
+                email = ((Customer)session.getAttribute("customer")).getCustomerEmail(); 
             }
+            int buildingId = Integer.parseInt((String) session.getAttribute("buildingId"));
+            controllerFacade.createNewCheckup(status, date, email, buildingId);
 
-        } catch (Exception ee) {
-            rd = request.getRequestDispatcher("login.jsp");
-            ee.printStackTrace();
+            rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
+
+        } catch (Exception ex) {
+            rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
         }
-
         rd.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

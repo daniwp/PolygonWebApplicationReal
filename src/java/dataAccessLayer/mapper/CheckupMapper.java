@@ -69,9 +69,10 @@ public class CheckupMapper {
             while (rs.next()) {
                 int checkupId = rs.getInt("checkupId");
                 String status = rs.getString("status");
+                String date = rs.getString("checkupDate");
                 String email = rs.getString("email");
 
-                checkup = new Checkup(checkupId, status, email, buildingId);
+                checkup = new Checkup(checkupId, status, date, email, buildingId);
                 checkups.add(checkup);
             }
 
@@ -105,10 +106,11 @@ public class CheckupMapper {
             while (rs.next()) {
                 
                 String status = rs.getString("status");
+                String date = rs.getString("checkupDate");
                 String email = rs.getString("email");
                 int buildingId = rs.getInt("buildingId");
 
-                checkup = new Checkup(checkupId, status, email, buildingId);
+                checkup = new Checkup(checkupId, status, date, email, buildingId);
                 
             }
 

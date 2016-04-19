@@ -35,6 +35,24 @@ public class CheckupMapper {
 
     //Nicolai
     public void createNewCheckup(Checkup checkup) {
+        
+        try {
+            
+            String query = "INSERT INTO Checkup (checkupId, status, email, date, buildingId) VALUES (?,?,?,?,?)";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            
+            ps.setInt(1, checkup.getCheckupId());
+            ps.setString(2, checkup.getStatus());
+            ps.setString(3, checkup.getCustomerEmail());
+            ps.setString(4, checkup.getDate());
+            ps.setInt(5, checkup.getBuildingId());
+            
+            ps.executeUpdate();
+            ps.close();
+            
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
 
     }
 
@@ -55,9 +73,10 @@ public class CheckupMapper {
             while (rs.next()) {
                 int checkupId = rs.getInt("checkupId");
                 String status = rs.getString("status");
+                String date = rs.getString("checkupDate");
                 String email = rs.getString("email");
 
-                checkup = new Checkup(checkupId, status, email, buildingId);
+                checkup = new Checkup(checkupId, status, date, email, buildingId);
                 checkups.add(checkup);
             }
 
@@ -91,10 +110,11 @@ public class CheckupMapper {
             while (rs.next()) {
                 
                 String status = rs.getString("status");
+                String date = rs.getString("checkupDate");
                 String email = rs.getString("email");
                 int buildingId = rs.getInt("buildingId");
 
-                checkup = new Checkup(checkupId, status, email, buildingId);
+                checkup = new Checkup(checkupId, status, date, email, buildingId);
                 
             }
 

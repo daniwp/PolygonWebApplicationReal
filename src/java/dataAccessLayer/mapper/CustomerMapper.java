@@ -168,4 +168,28 @@ public class CustomerMapper {
         }
         return userId;
     }
+    
+    public String getEmailById(int customerId) {
+        ResultSet rs = null;
+        String email = null;
+        
+        try {
+            String query = "SELECT (customerEmail) FROM customer WHERE (customerId) = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            
+            ps.setInt(1, customerId);
+            rs = ps.executeQuery();
+            
+            if (rs.next()) {
+               email = rs.getString("customerEmail");
+            }
+            
+            ps.close();
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return email;
+    }
 }

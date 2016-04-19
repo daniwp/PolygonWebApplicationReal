@@ -10,14 +10,14 @@ public class Checkup {
     private int buildingId;
     private String customerEmail;
 
-    public Checkup(int checkupId, String status, int buildingId, String customerEmail) {
+    public Checkup(int checkupId, String status, String customerEmail, int buildingId) {
         this.checkupId = checkupId;
         this.status = status;
         this.buildingId = buildingId;
         this.customerEmail = customerEmail;
     }
 
-    public Checkup(String status, int buildingId, String customerEmail) {
+    public Checkup(String status, String customerEmail, int buildingId) {
         this.status = status;
         this.buildingId = buildingId;
         this.customerEmail = customerEmail;

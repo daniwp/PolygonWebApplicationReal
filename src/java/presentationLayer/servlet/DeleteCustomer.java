@@ -35,7 +35,7 @@ public class DeleteCustomer extends HttpServlet {
 
             int customerId = Integer.parseInt(request.getParameter("customerId"));
 
-            controllerFacade.deleteUserAndCustomerByCustomerId(customerId);
+            controllerFacade.deleteCustomerByCustomerId(customerId);
 
             rd = request.getRequestDispatcher("viewCustomers.jsp");
 

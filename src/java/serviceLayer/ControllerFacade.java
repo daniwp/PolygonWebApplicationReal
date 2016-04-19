@@ -26,176 +26,184 @@ import serviceLayer.entity.Checkup;
  */
 public class ControllerFacade {
 
-    Controller controller = new Controller();
+    BuildingController buildingController = new BuildingController();
+    CheckupController checkupController = new CheckupController();
+    CustomerController customerController = new CustomerController();
+    DocumentController documentController = new DocumentController();
+    FloorController floorController = new FloorController();
+    ImageController imageController = new ImageController();
+    ReportController reportController = new ReportController();
+    UserController userController = new UserController();
+    FloorplanController floorplanController = new FloorplanController();
 
     public void addBuilding(String name, String address, int zipcodes, String city, int buildingYear, int floors, double totalSize, String buildingOwner, int buildingCondition, int costumerId) throws SQLException, ClassNotFoundException {
-        controller.addBuilding(name, address, zipcodes, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, costumerId);
+        buildingController.addBuilding(name, address, zipcodes, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, costumerId);
     }
 
     //Takes a list of floor objects and adds them to the database
     public void addFloor(int floorNumber, double size, int buildingId) throws FloorAlreadyExistsException {
-        controller.addFloor(floorNumber, size, buildingId);
+        floorController.addFloor(floorNumber, size, buildingId);
     }
-
+    
     // creates a customer and inserts it into the database
     public void addCustomer(String companyName, String companyOwnerFirstName, String companyOwnerLastName, String customerEmail, int userId) throws SQLException, ClassNotFoundException, UserAlreadyExistsException {
-        controller.addCustomer(companyName, companyOwnerFirstName, companyOwnerLastName, customerEmail, userId);
+        customerController.addCustomer(companyName, companyOwnerFirstName, companyOwnerLastName, customerEmail, userId);
     }
 
-    public void addUserAndCustomer(String companyName, String customerFirstName, String customerLastName, String customerEmail, String username, String password, int type) throws UserAlreadyExistsException {
-        controller.addUserAndCustomer(companyName, customerFirstName, customerLastName, customerEmail, username, password, type);
+    public void addCustomer(String companyName, String customerFirstName, String customerLastName, String customerEmail, String username, String password, int type) throws UserAlreadyExistsException {
+        customerController.addCustomer(companyName, customerFirstName, customerLastName, customerEmail, username, password, type);
     }
 
     public void deleteBuildingAndFloorsByBuildingId(int buildingId) {
-        controller.deleteBuildingAndFloorsByBuildingId(buildingId);
+        buildingController.deleteBuildingByBuildingId(buildingId);
     }
 
     public boolean validateLogin(String customerUsername, String customerPassword, HttpSession curSession) {
-        return controller.validateLogin(customerUsername, customerPassword, curSession);
+        return userController.validateLogin(customerUsername, customerPassword, curSession);
     }
-
+    
     public int getBuildingIdByName(String name) {
-        return controller.getBuildingIdByName(name);
+        return buildingController.getBuildingIdByName(name);
     }
 
     public Building getBuildingByBuildingId(int buildingId) {
-        return controller.getBuildingByBuildingId(buildingId);
+        return buildingController.getBuildingByBuildingId(buildingId);
     }
 
     public List<Building> getAllBuildingsByCustomerId(int CustomerId) {
-        return controller.getAllBuildingsByCustomerId(CustomerId);
+        return buildingController.getAllBuildingsByCustomerId(CustomerId);
     }
 
     public void deleteFloorByFloorId(int floorId) {
-        controller.deleteFloorByFloorId(floorId);
+        floorController.deleteFloorByFloorId(floorId);
     }
 
     public List<Floor> getAllFloorsByBuildingId(int buildingId) {
-        return controller.getAllFloorsByBuildingId(buildingId);
+        return floorController.getAllFloorsByBuildingId(buildingId);
     }
 
-    public void updateNumberOfFloorsByBuildingId(int buildingId) {
-        controller.updateNumberOfFloorsByBuildingId(buildingId);
+    public void updateBuildingFloorsByBuildingId(int buildingId) {
+        buildingController.updateBuildingFloorsByBuildingId(buildingId);
     }
 
     public void addUser(String username, String password, int type) throws UserAlreadyExistsException {
-        controller.addUser(username, password, type);
+        userController.addUser(username, password, type);
     }
 
     public List<Customer> getAllCustomers() {
-        return controller.getAllCustomers();
+        return customerController.getAllCustomers();
     }
 
     public Customer getCustomerByCustomerId(int customerId) {
-        return controller.getCustomerByCustomerId(customerId);
+        return customerController.getCustomerByCustomerId(customerId);
     }
 
-    public void deleteUserAndCustomerByCustomerId(int customerId) {
-        controller.deleteUserAndCustomerByCustomerId(customerId);
+    public void deleteCustomerByCustomerId(int customerId) {
+        customerController.deleteCustomerByCustomerId(customerId);
     }
 
     public void saveReport(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
-        controller.saveReport(input, name, date, buildingId);
+        reportController.saveReport(input, name, date, buildingId);
     }
 
     public List<Report> getAllReportsByBuildingId(int buildingId) {
-        return controller.getAllReportsByBuildingId(buildingId);
+        return reportController.getAllReportsByBuildingId(buildingId);
     }
 
     public InputStream downloadReport(int reportId) throws ClassNotFoundException {
-        return controller.downloadReport(reportId);
+        return reportController.downloadReport(reportId);
     }
 
     public void saveDocument(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
-        controller.saveDocument(input, name, date, buildingId);
+        documentController.saveDocument(input, name, date, buildingId);
     }
 
     public List<Document> getAllDocumentsByBuildingId(int buildingId) {
-        return controller.getAlDocumentsByBuildingId(buildingId);
+        return documentController.getAlDocumentsByBuildingId(buildingId);
     }
 
     public InputStream downloadDocument(int documentId) throws ClassNotFoundException {
-        return controller.downloadDocument(documentId);
+        return documentController.downloadDocument(documentId);
     }
 
     public String getDocumentNameById(int documentId) {
-        return controller.getDocumentNameById(documentId);
+        return documentController.getDocumentNameById(documentId);
     }
 
     public void deleteReportByReportId(int reportId) {
-        controller.deleteReportByReportId(reportId);
+        reportController.deleteReportByReportId(reportId);
     }
 
     public void deleteFloorplanByFloorplanId(int floorplanId) {
-        controller.deleteFloorplanByFloorplanId(floorplanId);
+        floorplanController.deleteFloorplanByFloorplanId(floorplanId);
     }
 
     public Floorplan getFloorplanByFloorId(int floorId) {
-        return controller.getFloorplanByFloorId(floorId);
+        return floorplanController.getFloorplanByFloorId(floorId);
     }
 
     public InputStream downloadFloorplan(int floorplanId) {
-        return controller.downloadFloorplan(floorplanId);
+        return floorplanController.downloadFloorplan(floorplanId);
     }
 
     public void uploadFloorplan(InputStream input, String name, int floorId) {
-        controller.uploadFloorplan(input, name, floorId);
+        floorplanController.uploadFloorplan(input, name, floorId);
     }
 
     public String getReportNameById(int reportId) {
-        return controller.getReportNameById(reportId);
+        return reportController.getReportNameById(reportId);
     }
 
     public String getFloorplanNameById(int floorplanId) {
-        return controller.getFloorplanNameById(floorplanId);
+        return floorplanController.getFloorplanNameById(floorplanId);
     }
 
     public void deleteDocumentByDocumentId(int documentId) {
-        controller.deleteDocumentByDocumentId(documentId);
+        documentController.deleteDocumentByDocumentId(documentId);
     }
 
     public void saveImage(InputStream inputStream, String name, int buildingId) throws ClassNotFoundException {
-        controller.saveImage(inputStream, name, buildingId);
+        imageController.saveImage(inputStream, name, buildingId);
     }
-
+    
     public List<Image> getAllImagesByBuildingId(int buildingId) {
-        return controller.getAllImagesByBuildingId(buildingId);
+        return imageController.getAllImagesByBuildingId(buildingId);
     }
 
     public InputStream downloadImage(int imageId) throws ClassNotFoundException {
-        return controller.downloadImage(imageId);
+        return imageController.downloadImage(imageId);
     }
 
     public void deleteImageByImageId(int imageId) {
-        controller.deleteImageByImageId(imageId);
+        imageController.deleteImageByImageId(imageId);
     }
 
     public String getImageNameById(int imageId) {
-        return controller.getImageNameById(imageId);
+        return imageController.getImageNameById(imageId);
     }
     
     public void updateCheckupsStatusById(int checkupId, String Status) {
-        controller.updateCheckupsStatusById(checkupId, Status);
+        checkupController.updateCheckupsStatusById(checkupId, Status);
     }
     
     public List<Checkup> getAllCheckupsByBuildingId(int buildingId) {
-        return controller.getAllCheckupsByBuildingId(buildingId);
+        return checkupController.getAllCheckupsByBuildingId(buildingId);
     }
     
     public Checkup getCheckupById(int checkupId) {
-        return controller.getCheckupById(checkupId);
+        return checkupController.getCheckupById(checkupId);
     }
     
     public void createNewCheckup(String status,String date, String email, int buildingId) {
         Checkup checkup = new Checkup();
-        controller.createNewCheckup(status, date, email, buildingId);
+        checkupController.createNewCheckup(status, date, email, buildingId);
     }
     
     public void deleteCheckupById(int checkupId) {
-        controller.deleteCheckupById(checkupId);
+        checkupController.deleteCheckupById(checkupId);
     }
     
-    public String getEmailById(int customerId) {
-        return controller.getEmailById(customerId);
+    public String getCustomerEmailById(int customerId) {
+        return customerController.getCustomerEmailById(customerId);
     }
 }

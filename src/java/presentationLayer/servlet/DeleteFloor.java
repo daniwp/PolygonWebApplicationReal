@@ -37,7 +37,7 @@ public class DeleteFloor extends HttpServlet {
             int buildingId = Integer.parseInt((String) session.getAttribute("buildingId"));
 
             controllerFacade.deleteFloorByFloorId(floorId);
-            controllerFacade.updateNumberOfFloorsByBuildingId(buildingId);
+            controllerFacade.updateBuildingFloorsByBuildingId(buildingId);
 
         } catch (Exception e) {
             e.printStackTrace();

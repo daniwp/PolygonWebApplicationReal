@@ -33,7 +33,7 @@ public class RequestCheckup extends HttpServlet {
             String date = request.getParameter("checkupDate");
             
             if (session.getAttribute("admin") != null) {
-                email = controllerFacade.getEmailById(Integer.parseInt((String) session.getAttribute("customerId")));
+                email = controllerFacade.getCustomerEmailById(Integer.parseInt((String) session.getAttribute("customerId")));
             } else {
                 email = ((Customer)session.getAttribute("customer")).getCustomerEmail(); 
             }

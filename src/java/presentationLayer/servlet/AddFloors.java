@@ -45,7 +45,7 @@ public class AddFloors extends HttpServlet {
 
             }
 
-            controllerFacade.updateNumberOfFloorsByBuildingId(buildingId);
+            controllerFacade.updateBuildingFloorsByBuildingId(buildingId);
             
             rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
             

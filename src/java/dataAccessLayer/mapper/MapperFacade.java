@@ -79,6 +79,10 @@ public class MapperFacade {
     public void deleteFloorByFloorId(int floorId) {
         floorMapper.deleteFloorByFloorId(floorId);
     }
+    
+    public void deleteFloorplanByFloorId(int floorId) {
+        floorplanMapper.deleteFloorplanByFloorId(floorId);
+    }
 
     public void addCustomer(Customer customer) {
         customerMapper.addCustomer(customer);

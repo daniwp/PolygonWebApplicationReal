@@ -115,6 +115,21 @@ public class FloorplanMapper {
             ex.printStackTrace();
         }
     }
+    
+    public void deleteFloorplanByFloorId(int floorId) {
+
+        try {
+            String query = "DELETE FROM floorplan WHERE (floorId) = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+
+            ps.setInt(1, floorId);
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     public String getFloorplanNameById(int floorplanId) {
         ResultSet rs = null;

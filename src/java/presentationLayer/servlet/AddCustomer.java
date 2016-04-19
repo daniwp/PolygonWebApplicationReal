@@ -45,7 +45,7 @@ public class AddCustomer extends HttpServlet {
             int type = 1;
 
             
-            controllerFacade.addUserAndCustomer(companyName, customerFirstName, customerLastName, customerEmail, customerUsername, customerPassword, type);
+            controllerFacade.addCustomer(companyName, customerFirstName, customerLastName, customerEmail, customerUsername, customerPassword, type);
 
             rd = request.getRequestDispatcher("viewCustomers.jsp");
         } catch (UserAlreadyExistsException ex) {

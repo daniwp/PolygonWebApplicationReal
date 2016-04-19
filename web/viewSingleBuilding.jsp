@@ -1,3 +1,4 @@
+<%@page import="serviceLayer.entity.Checkup"%>
 <%@page import="serviceLayer.entity.Image"%>
 <%@page import="serviceLayer.entity.Floorplan"%>
 <%@page import="serviceLayer.entity.Document"%>
@@ -140,7 +141,7 @@
             </div>
             <br>
         </form>
-        <% }  %>
+        <% }%>
 
         <!-- Building Checkups -->
         <div class="well buildingitem">
@@ -169,27 +170,20 @@
             </div>
         </form>
 
-        <% List<Document> documents = controllerFacade.getAllDocumentsByBuildingId(buildingId);
-            for (Document document : documents) {%>
+        <% List<Checkup> checkups = controllerFacade.getAllCheckupsByBuildingId(buildingId);
+            for (Checkup checkup : checkups) {%>
 
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-3">
-                    <p><%= document.getDocumentFileName()%></p>
+                    <p><%= checkup.getDate() %></p>
                 </div>
                 <div class="col-md-3">
-                    <p><%= document.getDocumentUploadDate()%></p>
-                </div>
+                    <p><%= checkup.getStatus() %></p>
                 <div class="col-md-2 pull-right">
-                    <form action="downloaddocument">
-                        <button class="btn btn-success pull-right col-md-12" type="submit"><i class="fa fa-download" aria-hidden="true"></i></button>
-                        <input type="hidden" name="documentId" value="<%= document.getDocumentId()%>"/>
-                    </form>
-                </div>
-                <div class="col-md-2 pull-right">
-                    <form action="deletedocument" method="POST">
+                    <form action="cancelcheckup" method="POST">
                         <button class="btn btn-danger pull-right col-md-12" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
-                        <input type="hidden" name="documentId" value="<%= document.getDocumentId()%>"/>
+                        <input type="hidden" name="checkupId" value="<%= checkup.getCheckupId() %>"/>
                     </form>
                 </div>
             </div>

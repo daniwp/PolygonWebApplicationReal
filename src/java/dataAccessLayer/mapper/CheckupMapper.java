@@ -1,6 +1,9 @@
 
 package dataAccessLayer.mapper;
 
+import dataAccessLayer.DBConnector;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import serviceLayer.entity.Checkup;
 
@@ -27,7 +30,18 @@ public class CheckupMapper {
     
     //Lass
     public void deleteCheckupById(int checkupId) {
-        
+        try {
+            String query = "DELETE FROM building WHERE (checkupId) = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+
+            ps.setInt(1, checkupId);
+
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException ee) {
+            ee.printStackTrace();
+        }
     }
     
     //Daniel

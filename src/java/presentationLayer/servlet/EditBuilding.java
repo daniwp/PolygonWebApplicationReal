@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author PeterHenriksen
  */
-@WebServlet(name = "EditBuilding", urlPatterns = {"/editBuilding"})
+@WebServlet(name = "EditBuilding", urlPatterns = {"/editbuilding"})
 public class EditBuilding extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

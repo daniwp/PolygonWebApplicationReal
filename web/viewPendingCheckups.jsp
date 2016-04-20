@@ -5,7 +5,7 @@
 <%@page import="serviceLayer.ControllerFacade"%>
 <jsp:include page="header.jsp" />
 
-<div class="container">
+<div class="container well">
     <div class="col-md-12">
         <h1 class="page-header">Pending checkups</h1><br>
 
@@ -20,8 +20,14 @@
                     <div class="col-md-6">
                         <h3>Company: <strong><%= pendingCheckup.getCompanyName()%></strong></h3>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h3>Building: <strong><%= pendingCheckup.getBuildingName()%></strong></h3>
+                    </div>
+                    <div class="col-md-2">
+                        <form action="viewbuilding" method="POST">
+                            <button class="btn btn-primary" type="submit">Go to building</button>
+                            <input type="hidden" name="buildingId" value="<%= pendingCheckup.getBuildingId() %>"/>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -29,10 +35,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-3">
-                        <p>Request date: <strong><%= pendingCheckup.getCheckup().getDate()%></strong></p>
+                        <h4>Request date: <strong><%= pendingCheckup.getCheckup().getDate()%></strong></h4>
                     </div>
                     <div class="col-md-3">
-                        <p>Status: <strong><%= pendingCheckup.getCheckup().getStatus()%></strong></p>
+                        <h4>Status: <strong><%= pendingCheckup.getCheckup().getStatus()%></strong></h4>
                     </div>
                     <div class="form-group col-md-4">
                         <form action="changecheckupstatusviewpending" method="POST">

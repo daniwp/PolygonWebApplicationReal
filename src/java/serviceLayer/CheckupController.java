@@ -28,12 +28,13 @@ public class CheckupController {
         
         for (Checkup checkup : checkups) {
             
-             Building building = mapperFacade.getBuildingByBuildingId(checkup.getBuildingId());
+             int buildingId = checkup.getBuildingId();
+             Building building = mapperFacade.getBuildingByBuildingId(buildingId);
              String buildingName = building.getName();
              Customer customer = mapperFacade.getCustomerByCustomerId(building.getCustomerId());
              String companyName = customer.getCompanyName();
              
-             PendingCheckup pendingCheckup = new PendingCheckup(checkup, companyName, buildingName);
+             PendingCheckup pendingCheckup = new PendingCheckup(checkup, companyName, buildingName, buildingId);
              pendingCheckups.add(pendingCheckup);
              
         }

@@ -27,6 +27,7 @@ public class ViewBuilding extends HttpServlet {
         if (session.getAttribute("nrOfFloors") != null) {
             session.removeAttribute("nrOfFloors");
         }
+        
         session.setAttribute("buildingId", request.getParameter("buildingId"));
         rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
         rd.forward(request, response);

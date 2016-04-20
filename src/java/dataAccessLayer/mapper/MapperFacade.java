@@ -32,6 +32,7 @@ public class MapperFacade {
     FloorplanMapper floorplanMapper = new FloorplanMapper();
     ImageMapper imageMapper = new ImageMapper();
     CheckupMapper checkupMapper = new CheckupMapper();
+    
 
     public void addBuilding(Building b) {
         buildingMapper.addBuilding(b);
@@ -234,5 +235,9 @@ public class MapperFacade {
     
     public String getEmailById(int customerId) {
         return customerMapper.getEmailById(customerId);
+    }
+    
+    public void editBuildingByBuildingId(Building building) throws SQLException {
+        buildingMapper.editBuildingByBuildingId(building);
     }
 }

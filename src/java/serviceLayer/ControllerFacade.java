@@ -19,6 +19,7 @@ import serviceLayer.entity.Floorplan;
 import serviceLayer.entity.Image;
 import serviceLayer.entity.User;
 import serviceLayer.entity.Checkup;
+import serviceLayer.entity.PendingCheckup;
 
 /**
  *
@@ -36,6 +37,10 @@ public class ControllerFacade {
     UserController userController = new UserController();
     FloorplanController floorplanController = new FloorplanController();
 
+    public List<PendingCheckup> getAllPendingCheckups() {
+        return checkupController.getAllPendingCheckups();
+    }
+    
     public void addBuilding(String name, String address, int zipcodes, String city, int buildingYear, int floors, double totalSize, String buildingOwner, int buildingCondition, int costumerId) throws SQLException, ClassNotFoundException {
         buildingController.addBuilding(name, address, zipcodes, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, costumerId);
     }

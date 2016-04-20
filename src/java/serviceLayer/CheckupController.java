@@ -6,8 +6,12 @@
 package serviceLayer;
 
 import dataAccessLayer.mapper.MapperFacade;
+import java.util.ArrayList;
 import java.util.List;
+import serviceLayer.entity.Building;
 import serviceLayer.entity.Checkup;
+import serviceLayer.entity.Customer;
+import serviceLayer.entity.PendingCheckup;
 
 /**
  *
@@ -16,6 +20,26 @@ import serviceLayer.entity.Checkup;
 public class CheckupController {
     
     MapperFacade mapperFacade = new MapperFacade();
+    
+    public List<PendingCheckup> getAllPendingCheckups() {
+        List<PendingCheckup> pendingCheckups = new ArrayList();
+        
+        List<Checkup> checkups = mapperFacade.getAllPendingCheckups();
+        
+        for (Checkup checkup : checkups) {
+            
+             Building building = mapperFacade.getBuildingByBuildingId(checkup.getBuildingId());
+             String buildingName = building.getName();
+             Customer customer = mapperFacade.getCustomerByCustomerId(building.getCustomerId());
+             String companyName = customer.getCompanyName();
+             
+             PendingCheckup pendingCheckup = new PendingCheckup(checkup, companyName, buildingName);
+             pendingCheckups.add(pendingCheckup);
+             
+        }
+        
+        return pendingCheckups;
+    }
     
     public void updateCheckupsStatusById(int checkupId, String status) {
         mapperFacade.updateCheckupStatusById(checkupId, status);

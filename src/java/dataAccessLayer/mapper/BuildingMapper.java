@@ -232,4 +232,30 @@ public class BuildingMapper {
         }
     }
 
+    public void editBuildingByBuildingId(Building building) throws SQLException {
+        
+        try {
+            
+            String query = "UPDATE building SET buildingName = ?, address = ?, zipcode = ?, city = ?, buildingYear = ?, floors = ?, buildingOwner = ?, buildingCondition = ? WHERE buildingId = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+        
+            ps.setString(1, building.getName());
+            ps.setString(2, building.getAddress());
+            ps.setInt(3, building.getZipcodes());
+            ps.setString(4, building.getCity());
+            ps.setInt(5, building.getBuildingYear());
+            ps.setInt(6, building.getFloors());
+            ps.setString(7, building.getBuildingOwner());
+            ps.setInt(8, building.getBuildingCondition());
+        
+            ps.executeUpdate();
+        
+            ps.close();
+        } catch (SQLException ee) {
+          ee.printStackTrace();
+        }
+    }
 }
+    
+    
+

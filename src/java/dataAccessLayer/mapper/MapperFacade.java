@@ -33,6 +33,9 @@ public class MapperFacade {
     ImageMapper imageMapper = new ImageMapper();
     CheckupMapper checkupMapper = new CheckupMapper();
     
+    public List<Checkup> getAllPendingCheckups() {
+        return checkupMapper.getAllPendingCheckups();
+    }
 
     public void addBuilding(Building b) {
         buildingMapper.addBuilding(b);

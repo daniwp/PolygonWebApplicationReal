@@ -14,6 +14,38 @@ import serviceLayer.entity.Checkup;
  * @author danie
  */
 public class CheckupMapper {
+    
+    public List<Checkup> getAllPendingCheckups() {
+        List<Checkup> pendingCheckups = new ArrayList();
+
+        try {
+
+            String query = "SELECT * FROM checkup WHERE status = 'Pending...'";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                
+                int checkupId = rs.getInt("checkupId");
+                String status = rs.getString("status");
+                String date = rs.getString("checkupDate");
+                String email = rs.getString("email");
+                int buildingId = rs.getInt("buildingId");
+                
+                Checkup checkup = new Checkup(checkupId, status, date, email, buildingId);
+                pendingCheckups.add(checkup);
+                
+            }
+            
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return pendingCheckups;
+    }
 
     // Peter
     public void updateCheckupStatusById(int checkupId, String status) {

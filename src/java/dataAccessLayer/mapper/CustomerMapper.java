@@ -168,28 +168,48 @@ public class CustomerMapper {
         }
         return userId;
     }
-    
+
     public String getEmailById(int customerId) {
         ResultSet rs = null;
         String email = null;
-        
+
         try {
             String query = "SELECT (customerEmail) FROM customer WHERE (customerId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
-            
+
             ps.setInt(1, customerId);
             rs = ps.executeQuery();
-            
+
             if (rs.next()) {
-               email = rs.getString("customerEmail");
+                email = rs.getString("customerEmail");
             }
-            
+
             ps.close();
             rs.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return email;
+    }
+
+    public void editCustomerByCustomerId(Customer customer) throws SQLException {
+        try {
+            String query = "UPDATE customer SET companyName = ?, customerEmail = ?, companyOwnerFirstName = ?, companyOwnerLastName = ? WHERE customerId = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            
+            ps.setString(1, customer.getCompanyName());
+            ps.setString(2, customer.getCustomerEmail());
+            ps.setString(3, customer.getCustomerFirstName());
+            ps.setString(4, customer.getCustomerLastName());
+            
+            ps.executeUpdate();
+            
+            ps.close();
+                    
+        } catch (SQLException ee) {
+            ee.printStackTrace();
+        }
+
     }
 }

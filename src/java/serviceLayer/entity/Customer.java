@@ -35,11 +35,15 @@ public class Customer {
         this.userId = userId;
     }
 
-    public Customer() {
+    public Customer(int customerId, String companyName, String customerFirstName, String customerLastName, String customerEmail) {
+        this.customerId = customerId;
+        this.companyName = companyName;
+        this.customerFirstName = customerFirstName;
+        this.customerLastName = customerLastName;
+        this.customerEmail = customerEmail;
     }
-
-    public Customer(int customerId, String companyName, String customerEmail, String companyOwnerFirstName, String companyOwnerLastName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public Customer() {
     }
 
     public int getUserId() {

@@ -219,4 +219,8 @@ public class ControllerFacade {
     public void editBuildingByBuildingId(Building building) throws SQLException {
         buildingController.editBuildingByBuildingId(building);
     }
+    
+    public void updateCustomer(int customerId, String companyName, String customerFirstName, String customerLastName, String customerEmail) throws SQLException {
+        customerController.updateCustomer(customerId, companyName,customerFirstName, customerLastName, customerEmail);
+    }
 }

@@ -37,6 +37,10 @@ public class ControllerFacade {
     UserController userController = new UserController();
     FloorplanController floorplanController = new FloorplanController();
 
+    public int getCustomerIdByBuildingId(int buildingId) {
+        return customerController.getCustomerIdByBuildingId(buildingId);
+    }
+    
     public List<PendingCheckup> getAllPendingCheckups() {
         return checkupController.getAllPendingCheckups();
     }

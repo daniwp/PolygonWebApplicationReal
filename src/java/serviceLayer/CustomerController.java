@@ -20,6 +20,10 @@ public class CustomerController {
 
     MapperFacade mapperFacade = new MapperFacade();
     BuildingController buildingController = new BuildingController();
+    
+    public int getCustomerIdByBuildingId(int buildingId) {
+        return mapperFacade.getBuildingByBuildingId(buildingId).getCustomerId();
+    }
 
     public String getCustomerEmailById(int customerId) {
         return mapperFacade.getEmailById(customerId);

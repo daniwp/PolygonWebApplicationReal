@@ -5,8 +5,6 @@
  */
 package serviceLayer.entity;
 
-import java.sql.Blob;
-
 /**
  *
  * @author PeterHenriksen

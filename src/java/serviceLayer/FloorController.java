@@ -2,13 +2,8 @@ package serviceLayer;
 
 import dataAccessLayer.mapper.MapperFacade;
 import exceptions.FloorAlreadyExistsException;
-import java.io.InputStream;
 import java.util.List;
-import javax.servlet.http.HttpSession;
-import serviceLayer.entity.Customer;
 import serviceLayer.entity.Floor;
-import serviceLayer.entity.Floorplan;
-import serviceLayer.entity.User;
 
 /**
  *

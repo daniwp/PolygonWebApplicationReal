@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import serviceLayer.ControllerFacade;
-import serviceLayer.entity.Customer;
 
 @WebServlet(name = "AddBuilding", urlPatterns = {"/addbuilding"})
 public class AddBuilding extends HttpServlet {

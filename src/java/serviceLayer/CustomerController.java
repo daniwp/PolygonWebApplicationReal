@@ -58,5 +58,10 @@ public class CustomerController {
         Customer customer = new Customer(companyName, customerFirstName, customerLastName, customerEmail, userId);
         mapperFacade.addCustomer(customer);
     }
+    
+    public void updateCustomer(int customerId, String companyName, String customerFirstName, String customerLastName, String customerEmail) throws SQLException {
+        Customer customer = new Customer (customerId, companyName, customerFirstName, customerLastName, customerEmail);
+        mapperFacade.updateCustomer(customer);
+    }
 
 }

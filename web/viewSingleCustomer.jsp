@@ -25,9 +25,18 @@
         <div class="well buildingitem">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="page-header">Customer info:</h3>
+                    <div class = "col-md-6">
+                        <h3> Customer info:</h3>
+                    </div>
+                    <div class = "col-md-6">
+                        <form action="vieweditcustomer" method="POST">
+                            <input type="hidden" name="customerId" value="<%=customer.getCustomerId()%>">
+                            <button class="btn btn-success pull-right" type="submit"><i class="fa fa-fw fa-pencil-square-o"></i> Edit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <br>
             <div class="row">
                 <div class="col-md-4">
                     <p class="border">Company owner name: <strong><%= customer.getCustomerFirstName() + " " + customer.getCustomerLastName()%></strong></p>

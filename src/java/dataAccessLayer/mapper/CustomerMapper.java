@@ -193,7 +193,7 @@ public class CustomerMapper {
         return email;
     }
 
-    public void editCustomerByCustomerId(Customer customer) throws SQLException {
+    public void updateCustomer(Customer customer) throws SQLException {
         try {
             String query = "UPDATE customer SET companyName = ?, customerEmail = ?, companyOwnerFirstName = ?, companyOwnerLastName = ? WHERE customerId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
@@ -202,6 +202,7 @@ public class CustomerMapper {
             ps.setString(2, customer.getCustomerEmail());
             ps.setString(3, customer.getCustomerFirstName());
             ps.setString(4, customer.getCustomerLastName());
+            ps.setInt(5, customer.getCustomerId());
             
             ps.executeUpdate();
             

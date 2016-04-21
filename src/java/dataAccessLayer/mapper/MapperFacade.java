@@ -243,4 +243,8 @@ public class MapperFacade {
     public void editBuildingByBuildingId(Building building) throws SQLException {
         buildingMapper.editBuildingByBuildingId(building);
     }
+    
+    public void updateCustomer(Customer customer) throws SQLException {
+        customerMapper.updateCustomer(customer);
+    }
 }

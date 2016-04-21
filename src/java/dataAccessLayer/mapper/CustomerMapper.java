@@ -1,15 +1,12 @@
 package dataAccessLayer.mapper;
 
 import dataAccessLayer.DBConnector;
-import exceptions.UserAlreadyExistsException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import static java.util.Collections.list;
 import java.util.List;
 import serviceLayer.entity.Customer;
-import serviceLayer.entity.User;
 
 public class CustomerMapper {
 
@@ -17,7 +14,6 @@ public class CustomerMapper {
     public void addCustomer(Customer customer) {
 
         try {
-
             String query = "INSERT INTO customer (companyName, companyOwnerFirstName, companyOwnerLastName,  customerEmail, userId) VALUES (?,?,?,?,?)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
@@ -34,18 +30,19 @@ public class CustomerMapper {
             ee.printStackTrace();
         }
     }
-
+    
+    // Daniel
     public Customer getCustomerByUserId(int userId) {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
         Customer customer = null;
 
         try {
-            String query = "SELECT * FROM customer WHERE userId = ?";
-            ps = DBConnector.getConnection().prepareStatement(query);
+            String query = "SELECT (customerId, companyName, customerEmail, companyOwnerFirstName, companyOwnerLastName)"
+                    + " FROM customer WHERE userId = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+            
             ps.setInt(1, userId);
 
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 int customerId = rs.getInt("customerId");
@@ -67,13 +64,12 @@ public class CustomerMapper {
 
     public List<Customer> getAllCustomers() {
         List<Customer> customers = new ArrayList();
-        Customer customer;
-        ResultSet rs = null;
+        
         try {
 
-            String query = "Select * FROM customer ORDER BY (companyName)";
+            String query = "SELECT (customerId, companyName, customerEmail, companyOwnerFirstName, companyOwnerLastName, userId) FROM customer ORDER BY (companyName)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
 
@@ -84,7 +80,7 @@ public class CustomerMapper {
                 String companyOwnerLastName = rs.getString("companyOwnerLastName");
                 int userId = rs.getInt("userId");
 
-                customer = new Customer(customerId, companyName, companyOwnerFirstName, companyOwnerLastName, customerEmail, userId);
+                Customer customer = new Customer(customerId, companyName, companyOwnerFirstName, companyOwnerLastName, customerEmail, userId);
                 customers.add(customer);
 
             }
@@ -99,16 +95,15 @@ public class CustomerMapper {
     }
 
     public Customer getCustomerByCustomerId(int customerId) {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
         Customer customer = null;
 
         try {
-            String query = "SELECT * FROM customer WHERE customerId = ?";
-            ps = DBConnector.getConnection().prepareStatement(query);
+            String query = "SELECT (companyName, customerEmail, companyOwnerFirstName, companyOwnerLastName, userId)"
+                    + " FROM customer WHERE customerId = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setInt(1, customerId);
 
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 String companyName = rs.getString("companyName");
@@ -130,6 +125,7 @@ public class CustomerMapper {
 
 //made by Lasse
     public void deleteCustomerByCustomerId(int customerId, int userId) {
+        
         try {
             String query = "DELETE FROM customer WHERE (customerId) = ? AND (userId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
@@ -146,16 +142,14 @@ public class CustomerMapper {
     }
 
     public int getUserIdByCustomerId(int customerId) {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
         int userId = 0;
 
         try {
             String query = "SELECT (userId) FROM customer WHERE customerId = ?";
-            ps = DBConnector.getConnection().prepareStatement(query);
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setInt(1, customerId);
 
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 userId = rs.getInt("userId");
@@ -166,11 +160,11 @@ public class CustomerMapper {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        
         return userId;
     }
 
     public String getEmailById(int customerId) {
-        ResultSet rs = null;
         String email = null;
 
         try {
@@ -178,7 +172,7 @@ public class CustomerMapper {
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, customerId);
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 email = rs.getString("customerEmail");
@@ -194,6 +188,7 @@ public class CustomerMapper {
     }
 
     public void updateCustomer(Customer customer) throws SQLException {
+        
         try {
             String query = "UPDATE customer SET companyName = ?, customerEmail = ?, companyOwnerFirstName = ?, companyOwnerLastName = ? WHERE customerId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
@@ -207,10 +202,8 @@ public class CustomerMapper {
             ps.executeUpdate();
             
             ps.close();
-                    
         } catch (SQLException ee) {
             ee.printStackTrace();
         }
-
     }
 }

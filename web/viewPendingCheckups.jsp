@@ -57,7 +57,8 @@
                     </div>
                     <div class="col-md-2 pull-right">
                         <form action="deletependingcheckup" method="POST">
-                            <button class="btn btn-danger pull-right col-md-12" type="submit">Delete item <i class="fa fa-times" aria-hidden="true"></i></button>
+                            <button class="btn btn-danger pull-right col-md-12" type="submit" onClick="return
+                                    confirm('Are you sure you want to delete this floor?')>Delete item <i class="fa fa-times" aria-hidden="true"></i></button>
                             <input type="hidden" name="checkupId" value="<%= pendingCheckup.getCheckup().getCheckupId()%>"/>
                         </form>
                     </div>

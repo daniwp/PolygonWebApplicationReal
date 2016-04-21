@@ -3,17 +3,12 @@ package dataAccessLayer.mapper;
 import dataAccessLayer.DBConnector;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletResponse;
 import serviceLayer.entity.Report;
 
 /**
@@ -37,7 +32,6 @@ public class ReportMapper {
             ps.executeUpdate();
 
             ps.close();
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -45,23 +39,22 @@ public class ReportMapper {
 
     public List<Report> getAllReportsByBuildingId(int buildingId) {
         List<Report> reports = new ArrayList();
-        ResultSet rs = null;
-        Report report = null;
 
         try {
 
-            String query = "SELECT * FROM report WHERE (buildingId) = ?";
+            String query = "SELECT (reportId, reportFileName, reportUploadName) FROM report WHERE (buildingId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, buildingId);
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+
                 int reportId = rs.getInt("reportId");
                 String fileName = rs.getString("reportFileName");
                 String date = rs.getString("reportUploadDate");
 
-                report = new Report(reportId, fileName, date, buildingId);
+                Report report = new Report(reportId, fileName, date, buildingId);
                 reports.add(report);
             }
 
@@ -72,30 +65,25 @@ public class ReportMapper {
         return reports;
     }
 
-    public InputStream downloadReport(int reportId){
-        ResultSet rs = null;
+    public InputStream downloadReport(int reportId) {
         InputStream inputStream = null;
-                
+
         try {
 
-            String query = "SELECT * FROM report WHERE (reportId) = ?";
+            String query = "SELECT (reportFile) FROM report WHERE (reportId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, reportId);
 
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
 
                 Blob blob = rs.getBlob("reportFile");
-
                 inputStream = blob.getBinaryStream();
-
-                inputStream.close();
-                System.out.println("File saved");
-                
             }
 
+            inputStream.close();
             ps.close();
             rs.close();
         } catch (SQLException | IOException ex) {
@@ -108,31 +96,32 @@ public class ReportMapper {
     public void deleteReportByReportId(int reportId) {
 
         try {
+            
             String query = "DELETE FROM report WHERE (reportId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
-            
+
             ps.setInt(1, reportId);
             ps.executeUpdate();
-            
+
             ps.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-    
+
     public String getReportNameById(int reportId) {
-        ResultSet rs = null;
         String reportName = null;
-        
+
         try {
 
             String query = "SELECT (reportFileName) FROM report WHERE (reportId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, reportId);
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
+                
                 reportName = rs.getString("reportFileName");
             }
 
@@ -141,8 +130,8 @@ public class ReportMapper {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
         return reportName;
     }
-    
+
 }

@@ -12,7 +12,7 @@
                         <p>Company name: </p>
                     </div>    
                     <div class="col-md-3">
-                        <input class="form-control pull-left" type="text" name="companyName" value="<%= customer.getCompanyName()%>">
+                        <input class="form-control pull-left" type="text" name="companyName" value="<%= customer.getCompanyName()%>" required />
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                         <p>Customer first name: </p>
                     </div>    
                     <div class="col-md-6">
-                        <input class="form-control pull-left" type="text" name="customerFirstName" value="<%= customer.getCustomerFirstName()%>">
+                        <input class="form-control pull-left" type="text" name="customerFirstName" value="<%= customer.getCustomerFirstName()%>" required />
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -33,7 +33,7 @@
                         <p>Customer last name: </p>
                     </div>    
                     <div class="col-md-6">
-                        <input class="form-control" type="text" name="customerLastName" value="<%= customer.getCustomerLastName()%>">
+                        <input class="form-control" type="text" name="customerLastName" value="<%= customer.getCustomerLastName()%>" required />
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                         <p>Customer Email: </p>
                     </div>    
                     <div class="col-md-3">
-                        <input class="form-control pull-left" type="text" name="customerEmail" value="<%= customer.getCustomerEmail()%>">
+                        <input class="form-control pull-left" type="text" name="customerEmail" value="<%= customer.getCustomerEmail()%>" required />
                     </div>
                 </div>
             </div>

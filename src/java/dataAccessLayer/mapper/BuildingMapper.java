@@ -39,14 +39,14 @@ public class BuildingMapper {
     // In this method we get all the information about the building up from the database.
     public List<Building> getAllBuildingsByCustomerId(int customerId) {
         List<Building> buildings = new ArrayList();
-        Building building;
-        ResultSet rs = null;
+        
         try {
 
-            String query = "SELECT * FROM building WHERE customerId = ? ORDER BY (buildingName)";
+            String query = "SELECT (buildingId, buildingName, address, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, customerId)"
+                    + " FROM building WHERE customerId = ? ORDER BY (buildingName)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setInt(1, customerId);
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
 
@@ -62,7 +62,7 @@ public class BuildingMapper {
                 int buildingCondition = rs.getInt("buildingCondition");
                 int buildingcustomerId = rs.getInt("customerId");
 
-                building = new Building(buildingId, buildingName, buildingAddress, buildingZip, buildingCity, buildingYear, buildingFloor, buildingSize, buildingOwner, buildingCondition, buildingcustomerId);
+                Building building = new Building(buildingId, buildingName, buildingAddress, buildingZip, buildingCity, buildingYear, buildingFloor, buildingSize, buildingOwner, buildingCondition, buildingcustomerId);
 
                 buildings.add(building);
 
@@ -109,15 +109,14 @@ public class BuildingMapper {
 
     // Daniel
     public List<Integer> getBuildingIdsByCustomerId(int customerId) {
-        ResultSet rs = null;
         List<Integer> buildingIds = new ArrayList();
 
         try {
-            String query = "Select buildingId from building WHERE customerId = ?";
+            String query = "SELECT (buildingId) FROM building WHERE customerId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setInt(1, customerId);
 
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 buildingIds.add(rs.getInt("buildingId"));
@@ -134,14 +133,14 @@ public class BuildingMapper {
     // Daniel
     public Building getBuildingByBuildingId(int buildingId) {
         Building building = null;
-        ResultSet rs = null;
 
         try {
-            String query = "SELECT * FROM building WHERE buildingId = ?";
+            String query = "SELECT (buildingId, buildingName, address, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, customerId)"
+                    + " FROM building WHERE buildingId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, buildingId);
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 String buildingName = rs.getString("buildingName");
@@ -165,21 +164,21 @@ public class BuildingMapper {
         }
         return building;
     }
-
+    
+    // Daniel
     public int getBuildingIdByName(String name) {
-        ResultSet rs = null;
         int buildingId = 0;
+        
         try {
-            String query = "Select buildingId from building WHERE buildingName = ?";
+            String query = "SELECT (buildingId) FROM building WHERE buildingName = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setString(1, name);
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
-            while (rs.next()) {
-
+            if (rs.next()) {
                 buildingId = rs.getInt("buildingId");
-
             }
+            
             ps.close();
             rs.close();
         } catch (Exception e) {
@@ -189,16 +188,15 @@ public class BuildingMapper {
     }
 
     public int getNumberOfFloorsByBuildingId(int buildingId) {
-        ResultSet rs = null;
         int numberOfFloors = 0;
 
         try {
 
-            String query = "Select * from floor WHERE buildingId = ?";
+            String query = "SELECT * FROM floor WHERE buildingId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, buildingId);
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 numberOfFloors++;
@@ -212,13 +210,14 @@ public class BuildingMapper {
 
         return numberOfFloors;
     }
-
+    
+    //Daniel
     public void updateBuildingFloorsByBuildingId(int buildingId) {
 
         try {
             int floors = getNumberOfFloorsByBuildingId(buildingId);
 
-            String query = "UPDATE building SET floors=(?) where (buildingId) = (?)";
+            String query = "UPDATE building SET floors=(?) WHERE (buildingId) = (?)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, floors);

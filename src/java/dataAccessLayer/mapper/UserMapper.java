@@ -5,23 +5,23 @@ import exceptions.UserAlreadyExistsException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import serviceLayer.entity.Customer;
 import serviceLayer.entity.User;
 
 public class UserMapper {
 
-    // Author: Daniel & Nicolai
+    // Daniel & Nicolai
     public User validateUser(String username, String password) {
-        ResultSet rs = null;
         User user = null;
+        
         try {
-            String query = "SELECT * FROM user WHERE username = ? and password = ?";
+            
+            String query = "SELECT (userId, username, password, type) FROM user WHERE username = ? and password = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setString(1, username);
             ps.setString(2, password);
 
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
 
@@ -31,31 +31,31 @@ public class UserMapper {
                 int type = rs.getInt("type");
 
                 user = new User(userId, uName, pWord, type);
-
             }
+            
             rs.close();
             ps.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        
         return user;
     }
 
     // Daniel
     // Returns null if a user with the username already exists
     public User checkIfUserExistsByUsername(String username) throws SQLException {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
         User user = null;
 
         try {
-            String query = "SELECT * FROM user WHERE username = ?";
-            ps = DBConnector.getConnection().prepareStatement(query);
+            String query = "SELECT (username) FROM user WHERE username = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setString(1, username);
 
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+                
                 user = new User(rs.getString("username"));
             }
 
@@ -64,6 +64,7 @@ public class UserMapper {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        
         return user;
     }
 
@@ -91,18 +92,17 @@ public class UserMapper {
     }
     
     public int getUserIdByUsername(String username) {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
         int userId = 0;
         
         try {
-            String query = "SELECT userId FROM user WHERE username = ?";
-            ps = DBConnector.getConnection().prepareStatement(query);
+            String query = "SELECT (userId) FROM user WHERE username = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setString(1, username);
 
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+                
                 userId = rs.getInt("userId");
             }
             
@@ -111,16 +111,18 @@ public class UserMapper {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        
         return userId;
     }
     
     public void deleteUserByUserId(int userId) {
+        
         try {
+            
             String query = "DELETE FROM user WHERE (userId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, userId);
-
             ps.executeUpdate();
 
             ps.close();

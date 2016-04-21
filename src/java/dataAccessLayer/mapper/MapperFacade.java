@@ -1,16 +1,9 @@
 package dataAccessLayer.mapper;
 
-import dataAccessLayer.DBConnector;
 import exceptions.UserAlreadyExistsException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletResponse;
 import serviceLayer.entity.Building;
 import serviceLayer.entity.Customer;
 import serviceLayer.entity.Document;
@@ -33,10 +26,12 @@ public class MapperFacade {
     ImageMapper imageMapper = new ImageMapper();
     CheckupMapper checkupMapper = new CheckupMapper();
     
+    // Daniel
     public List<Checkup> getAllPendingCheckups() {
         return checkupMapper.getAllPendingCheckups();
     }
-
+    
+    
     public void addBuilding(Building b) {
         buildingMapper.addBuilding(b);
     }
@@ -59,6 +54,7 @@ public class MapperFacade {
         return buildingMapper.getBuildingIdByName(name);
     }
 
+    // Daniel
     public void updateBuildingFloorsByBuildingId(int buildingId) {
         buildingMapper.updateBuildingFloorsByBuildingId(buildingId);
     }

@@ -3,7 +3,6 @@ package dataAccessLayer.mapper;
 import dataAccessLayer.DBConnector;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.SQLException;
 import java.util.List;
@@ -19,8 +18,7 @@ public class CheckupMapper {
         List<Checkup> pendingCheckups = new ArrayList();
 
         try {
-
-            String query = "SELECT * FROM checkup WHERE status = 'Pending...'";
+            String query = "SELECT (checkupId, status, checkupDate, email, buildingId) FROM checkup WHERE status = 'Pending...'";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             
             ResultSet rs = ps.executeQuery();
@@ -80,7 +78,6 @@ public class CheckupMapper {
 
             ps.executeUpdate();
             ps.close();
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -90,16 +87,13 @@ public class CheckupMapper {
     //Daniel
     public List<Checkup> getAllCheckupsByBuildingId(int buildingId) {
         List<Checkup> checkups = new ArrayList();
-        ResultSet rs = null;
-        Checkup checkup = null;
 
         try {
-
-            String query = "SELECT * FROM checkup WHERE (buildingId) = ?";
+            String query = "SELECT (checkupId, status, checkupDate, email) FROM checkup WHERE (buildingId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, buildingId);
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 int checkupId = rs.getInt("checkupId");
@@ -107,7 +101,7 @@ public class CheckupMapper {
                 String date = rs.getString("checkupDate");
                 String email = rs.getString("email");
 
-                checkup = new Checkup(checkupId, status, date, email, buildingId);
+                Checkup checkup = new Checkup(checkupId, status, date, email, buildingId);
                 checkups.add(checkup);
             }
 
@@ -124,7 +118,6 @@ public class CheckupMapper {
     public void deleteCheckupById(int checkupId) {
 
         try {
-
             String query = "DELETE FROM checkup WHERE (checkupId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
@@ -141,16 +134,15 @@ public class CheckupMapper {
 
     //Daniel
     public Checkup getCheckupById(int checkupId) {
-        ResultSet rs = null;
         Checkup checkup = null;
 
         try {
 
-            String query = "SELECT * FROM checkup WHERE (checkupId) = ?";
+            String query = "SELECT (status, checkupDate, email, buildingId) FROM checkup WHERE (checkupId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, checkupId);
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
 

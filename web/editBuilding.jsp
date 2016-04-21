@@ -15,46 +15,46 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="form-group">
-                        <p>Building Name * </p><input class="form-control" type="text" value ="<%= building.getName() %>" name="buildingName" id="buildingName" >
+                        <p>Building Name * </p><input class="form-control" type="text" value ="<%= building.getName() %>" name="buildingName" id="buildingName" required />
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group">
-                        <p>Owner name * </p><input class="form-control" type="text" value="<%= building.getBuildingOwner() %>" name="ownerName" id="ownerName" >
+                        <p>Owner name * </p><input class="form-control" type="text" value="<%= building.getBuildingOwner() %>" name="ownerName" id="ownerName" required />
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group">
-                        <p>Address * </p><input class="form-control" type="text" value ="<%= building.getAddress() %>" name="buildingAddress" id="buildingAddress">
+                        <p>Address * </p><input class="form-control" type="text" value ="<%= building.getAddress() %>" name="buildingAddress" id="buildingAddress" required />
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group">
-                        <p>City *</p><input class="form-control" type="text" value="<%= building.getCity() %>" name="buildingCity" id="buildingCity">
+                        <p>City *</p><input class="form-control" type="text" value="<%= building.getCity() %>" name="buildingCity" id="buildingCity" required />
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Zipcode *</p><input class="form-control" type="text" value="<%= building.getZipcodes() %>" name="buildingZipcode" id="buildingZipcode" >
+                        <p>Zipcode *</p><input class="form-control" type="text" value="<%= building.getZipcodes() %>" name="buildingZipcode" id="buildingZipcode" required />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Building year *</p><input class="form-control" type="text" value="<%= building.getBuildingYear() %>" name="buildingYear" id="buildingYear" >
+                        <p>Building year *</p><input class="form-control" type="text" value="<%= building.getBuildingYear() %>" name="buildingYear" id="buildingYear" required />
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Nr. of floors *</p><input class="form-control" type="text" value="<%= building.getFloors() %>" name="nrOfFloors" id="nrOfFloors" >
+                        <p>Nr. of floors *</p><input class="form-control" type="text" value="<%= building.getFloors() %>" name="nrOfFloors" id="nrOfFloors" required />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <p>Total m2 *</p><input class="form-control" type="text" value="<%= building.getTotalSize() %>" name="totalM2" id="totalM2" >
+                        <p>Total m2 *</p><input class="form-control" type="text" value="<%= building.getTotalSize() %>" name="totalM2" id="totalM2" required />
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-group">
-                        <input class="form-control" type="number" name="conditionLevel" id="conditionLevel" >
+                        <input class="form-control" type="number" name="conditionLevel" id="conditionLevel" required />
                     </div>
                 </div>
             </div>

@@ -211,7 +211,8 @@
                     <% if (checkup.getStatus().equals("Cancelled") || session.getAttribute("admin") != null) {%>
                     <div class="col-md-2 pull-right">
                         <form action="deletecheckup" method="POST">
-                            <button class="btn btn-danger pull-right col-md-12" type="submit">Delete item <i class="fa fa-times" aria-hidden="true"></i></button>
+                            <button class="btn btn-danger pull-right col-md-12" type="submit" onClick="return
+                                    confirm('Are you sure you want to delete this floor?')>Delete item <i class="fa fa-times" aria-hidden="true"></i></button>
                             <input type="hidden" name="checkupId" value="<%= checkup.getCheckupId()%>"/>
                         </form>
                     </div>
@@ -238,10 +239,10 @@
                 <div style="margin-bottom: 10px" class="input-group">
                     <span class="input-group-btn">
                         <span class="btn btn-primary btn-file">
-                            Browse&hellip; <input type="file" name="reportFile" multiple>
+                            Browse&hellip; <input type="file" name="reportFile" required>
                         </span>
                     </span>
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" readonly required>
                 </div>
                 <div class="row">
                     <div class="col-md-8">
@@ -249,7 +250,7 @@
                             <p>Date:</p>
                         </div>
                         <div class="col-md-4 form-group">
-                            <input class="form-control" type="date" name="reportDate"/>
+                            <input class="form-control" type="date" name="reportDate" required/>
                         </div>
                     </div>
                     <div class="col-md-4 pull-right">
@@ -306,10 +307,10 @@
                 <div style="margin-bottom: 10px" class="input-group">
                     <span class="input-group-btn">
                         <span class="btn btn-primary btn-file">
-                            Browse&hellip; <input type="file" name="documentFile" multiple>
+                            Browse&hellip; <input type="file" name="documentFile" required>
                         </span>
                     </span>
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" readonly required>
                 </div>
                 <div class="row">
                     <div class="col-md-8">
@@ -317,7 +318,7 @@
                             <p>Date:</p>
                         </div>
                         <div class="col-md-4 form-group">
-                            <input class="form-control" type="date" name="documentDate"/>
+                            <input class="form-control" type="date" name="documentDate" required/>
                         </div>
                     </div>
                     <div class="col-md-4 pull-right">
@@ -325,7 +326,7 @@
                     </div>
                 </div>
                 <br>
-            </form>
+            </form>  
 
             <% List<Document> documents = controllerFacade.getAllDocumentsByBuildingId(buildingId);
                 for (Document document : documents) {%>
@@ -374,7 +375,7 @@
                             Browse&hellip; <input type="file" name="imageFile" multiple>
                         </span>
                     </span>
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" readonly required>
                 </div>
                 <div class="row">
                     <div class="col-md-4 pull-right">
@@ -450,11 +451,11 @@
                             <div style="margin-bottom: 10px" class="input-group col-md-9">
                                 <span class="input-group-btn">
                                     <span class="btn btn-primary btn-file">
-                                        Browse&hellip; <input type="file" name="floorplanFile" multiple>
+                                        Browse&hellip; <input type="file" name="floorplanFile" required>
                                         <input type="hidden" name="floorId" value="<%= floor.getFloorId()%>"/>
                                     </span>
                                 </span>
-                                <input type="text" class="form-control" readonly>
+                                <input type="text" class="form-control" readonly required>
                             </div>
                         </form>
                         <% }%>

@@ -8,17 +8,13 @@ package dataAccessLayer.mapper;
 import dataAccessLayer.DBConnector;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletResponse;
 import serviceLayer.entity.Document;
-import serviceLayer.entity.Report;
 
 /**
  *
@@ -29,7 +25,6 @@ public class DocumentMapper {
     public void saveDocument(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
 
         try {
-
             String query = "INSERT INTO document(documentFile, documentFileName, documentUploadDate, buildingId) values (?, ?, ?, ?)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
@@ -41,25 +36,23 @@ public class DocumentMapper {
             ps.executeUpdate();
 
             ps.close();
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
 
     public List<Document> getAllDocumentsByBuildingId(int buildingId) {
         List<Document> documents = new ArrayList();
-        ResultSet rs = null;
-        Document document = null;
 
         try {
 
-            String query = "SELECT * FROM document WHERE (BuildingId) = ?";
+            String query = "SELECT (documentId, documentFileName, documentUploadDate)"
+                    + " FROM document WHERE (BuildingId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, buildingId);
-            rs = ps.executeQuery();
+
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
 
@@ -67,40 +60,36 @@ public class DocumentMapper {
                 String documentFileName = rs.getString("documentFileName");
                 String documentDate = rs.getString("documentUploadDate");
 
-                document = new Document(documentId, documentFileName, documentDate, buildingId);
+                Document document = new Document(documentId, documentFileName, documentDate, buildingId);
                 documents.add(document);
             }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+
         return documents;
     }
 
     public InputStream downloadDocument(int documentId) {
-        ResultSet rs = null;
         InputStream inputStream = null;
-                
+
         try {
 
-            String query = "SELECT * FROM document WHERE (documentId) = ?";
+            String query = "SELECT (documentFile) FROM document WHERE (documentId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, documentId);
 
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-
-                Blob blob = rs.getBlob("documentFile");
-
-                inputStream = blob.getBinaryStream();
-
-                inputStream.close();
-                System.out.println("File saved");
                 
+                Blob blob = rs.getBlob("documentFile");
+                inputStream = blob.getBinaryStream();
             }
 
+            inputStream.close();
             ps.close();
             rs.close();
         } catch (SQLException | IOException ex) {
@@ -109,18 +98,17 @@ public class DocumentMapper {
 
         return inputStream;
     }
-    
+
     public String getDocumentNameById(int documentId) {
-        ResultSet rs = null;
         String documentName = null;
-        
+
         try {
 
             String query = "SELECT (documentFileName) FROM document WHERE (documentId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, documentId);
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 documentName = rs.getString("documentFileName");
@@ -131,13 +119,14 @@ public class DocumentMapper {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
         return documentName;
     }
-    
+
     public void deleteDocumentByDocumentId(int documentId) {
 
         try {
+            
             String query = "DELETE FROM document WHERE (documentId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 

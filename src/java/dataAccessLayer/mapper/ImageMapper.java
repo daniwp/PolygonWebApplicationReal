@@ -40,7 +40,7 @@ public class ImageMapper {
         List<Image> images = new ArrayList();
 
         try {
-            String query = "SELECT (imageId, imageName) FROM image WHERE (buildingId) = ?";
+            String query = "SELECT imageId, imageName FROM image WHERE (buildingId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, buildingId);
@@ -65,7 +65,7 @@ public class ImageMapper {
 
         try {
 
-            String query = "SELECT (imageFile) FROM image WHERE (imageId) = ?";
+            String query = "SELECT imageFile FROM image WHERE (imageId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, imageId);
@@ -108,7 +108,7 @@ public class ImageMapper {
 
         try {
 
-            String query = "SELECT (imageName) FROM image WHERE (imageId) = ?";
+            String query = "SELECT imageName FROM image WHERE (imageId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, imageId);

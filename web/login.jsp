@@ -20,7 +20,6 @@
                     <p>Password: </p><input class="form-control" type="password" name="password" required>
                 </div>
                 <button class="btn btn-primary">Login</button>
-                <a href="register.jsp" class="btn btn-primary">Register</a>
             </form>
         </div>
     </div>

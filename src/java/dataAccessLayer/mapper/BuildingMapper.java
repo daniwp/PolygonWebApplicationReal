@@ -14,7 +14,8 @@ public class BuildingMapper {
     public void addBuilding(Building b) {
 
         try {
-            String query = "INSERT INTO building (buildingName, address, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, customerId) VALUES (?,?,?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO building (buildingName, address, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, customerId) "
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setString(1, b.getName());
@@ -42,7 +43,7 @@ public class BuildingMapper {
         
         try {
 
-            String query = "SELECT (buildingId, buildingName, address, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, customerId)"
+            String query = "SELECT buildingId, buildingName, address, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, customerId"
                     + " FROM building WHERE customerId = ? ORDER BY (buildingName)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setInt(1, customerId);
@@ -112,7 +113,7 @@ public class BuildingMapper {
         List<Integer> buildingIds = new ArrayList();
 
         try {
-            String query = "SELECT (buildingId) FROM building WHERE customerId = ?";
+            String query = "SELECT buildingId FROM building WHERE customerId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setInt(1, customerId);
 
@@ -135,7 +136,7 @@ public class BuildingMapper {
         Building building = null;
 
         try {
-            String query = "SELECT (buildingId, buildingName, address, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, customerId)"
+            String query = "SELECT buildingId, buildingName, address, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, customerId"
                     + " FROM building WHERE buildingId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
@@ -170,7 +171,7 @@ public class BuildingMapper {
         int buildingId = 0;
         
         try {
-            String query = "SELECT (buildingId) FROM building WHERE buildingName = ?";
+            String query = "SELECT buildingId FROM building WHERE buildingName = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();

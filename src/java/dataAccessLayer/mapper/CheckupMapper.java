@@ -18,7 +18,7 @@ public class CheckupMapper {
         List<Checkup> pendingCheckups = new ArrayList();
 
         try {
-            String query = "SELECT (checkupId, status, checkupDate, email, buildingId) FROM checkup WHERE status = 'Pending...'";
+            String query = "SELECT checkupId, status, checkupDate, email, buildingId FROM checkup WHERE status = 'Pending...'";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             
             ResultSet rs = ps.executeQuery();
@@ -89,7 +89,7 @@ public class CheckupMapper {
         List<Checkup> checkups = new ArrayList();
 
         try {
-            String query = "SELECT (checkupId, status, checkupDate, email) FROM checkup WHERE (buildingId) = ?";
+            String query = "SELECT checkupId, status, checkupDate, email FROM checkup WHERE (buildingId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, buildingId);
@@ -138,7 +138,7 @@ public class CheckupMapper {
 
         try {
 
-            String query = "SELECT (status, checkupDate, email, buildingId) FROM checkup WHERE (checkupId) = ?";
+            String query = "SELECT status, checkupDate, email, buildingId FROM checkup WHERE (checkupId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, checkupId);

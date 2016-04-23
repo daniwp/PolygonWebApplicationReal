@@ -39,7 +39,7 @@ public class FloorplanMapper {
 
         try {
 
-            String query = "SELECT (floorplan) FROM floorplan WHERE (floorplanId) = ?";
+            String query = "SELECT floorplan FROM floorplan WHERE (floorplanId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, floorplanId);
@@ -67,7 +67,7 @@ public class FloorplanMapper {
 
         try {
 
-            String query = "SELECT (floorplanId, floorplanName)"
+            String query = "SELECT floorplanId, floorplanName"
                     + " FROM floorplan WHERE (floorId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
@@ -126,7 +126,7 @@ public class FloorplanMapper {
 
         try {
 
-            String query = "SELECT (floorplanName) FROM floorplan WHERE (floorplanId) = ?";
+            String query = "SELECT floorplanName FROM floorplan WHERE (floorplanId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, floorplanId);

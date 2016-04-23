@@ -15,7 +15,7 @@ public class UserMapper {
         
         try {
             
-            String query = "SELECT (userId, username, password, type) FROM user WHERE username = ? and password = ?";
+            String query = "SELECT userId, username, password, type FROM user WHERE username = ? AND password = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setString(1, username);
@@ -48,7 +48,7 @@ public class UserMapper {
         User user = null;
 
         try {
-            String query = "SELECT (username) FROM user WHERE username = ?";
+            String query = "SELECT username FROM user WHERE username = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setString(1, username);
 
@@ -95,7 +95,7 @@ public class UserMapper {
         int userId = 0;
         
         try {
-            String query = "SELECT (userId) FROM user WHERE username = ?";
+            String query = "SELECT userId FROM user WHERE username = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setString(1, username);
 

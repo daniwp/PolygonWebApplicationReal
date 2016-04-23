@@ -46,7 +46,7 @@ public class DocumentMapper {
 
         try {
 
-            String query = "SELECT (documentId, documentFileName, documentUploadDate)"
+            String query = "SELECT documentId, documentFileName, documentUploadDate"
                     + " FROM document WHERE (BuildingId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
@@ -76,7 +76,7 @@ public class DocumentMapper {
 
         try {
 
-            String query = "SELECT (documentFile) FROM document WHERE (documentId) = ?";
+            String query = "SELECT documentFile FROM document WHERE (documentId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, documentId);
@@ -104,7 +104,7 @@ public class DocumentMapper {
 
         try {
 
-            String query = "SELECT (documentFileName) FROM document WHERE (documentId) = ?";
+            String query = "SELECT documentFileName FROM document WHERE (documentId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, documentId);

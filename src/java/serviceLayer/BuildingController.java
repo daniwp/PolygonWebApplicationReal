@@ -4,6 +4,11 @@ import dataAccessLayer.mapper.MapperFacade;
 import java.sql.SQLException;
 import java.util.List;
 import serviceLayer.entity.Building;
+import serviceLayer.entity.Checkup;
+import serviceLayer.entity.Document;
+import serviceLayer.entity.Floor;
+import serviceLayer.entity.Image;
+import serviceLayer.entity.Report;
 
 /**
  *
@@ -11,6 +16,12 @@ import serviceLayer.entity.Building;
  */
 public class BuildingController {
 
+    FloorController floorController = new FloorController();
+    CheckupController checkupController = new CheckupController();
+    ReportController reportController = new ReportController();
+    ImageController imageController = new ImageController();
+    DocumentController documentController = new DocumentController();
+    
     MapperFacade mapperFacade = new MapperFacade();
 
     // Creates a building and then inserts it into the database
@@ -19,9 +30,30 @@ public class BuildingController {
 
         mapperFacade.addBuilding(building);
     }
-
+    
+    //Daniel
     public void deleteBuildingByBuildingId(int buildingId) {
-        mapperFacade.deleteFloorsByBuildingId(buildingId);
+        
+        for (Document document : documentController.getAlDocumentsByBuildingId(buildingId)) {
+            documentController.deleteDocumentByDocumentId(document.getDocumentId());
+        }
+        
+        for (Image image : imageController.getAllImagesByBuildingId(buildingId)) {
+            imageController.deleteImageByImageId(image.getImageId());
+        }
+        
+        for (Report report : reportController.getAllReportsByBuildingId(buildingId)) {
+            reportController.deleteReportByReportId(report.getReportId());
+        }
+        
+        for (Checkup checkup : checkupController.getAllCheckupsByBuildingId(buildingId)) {
+            checkupController.deleteCheckupById(checkup.getCheckupId());
+        }
+        
+        for (Floor floor : floorController.getAllFloorsByBuildingId(buildingId)) {
+            floorController.deleteFloorByFloorId(floor.getFloorId());
+        }
+        
         mapperFacade.deleteBuildingByBuildingId(buildingId);
     }
 
@@ -43,9 +75,9 @@ public class BuildingController {
     public void updateBuildingFloorsByBuildingId(int buildingId) {
         mapperFacade.updateBuildingFloorsByBuildingId(buildingId);
     }
-    
+
     public void editBuildingByBuildingId(Building building) throws SQLException {
         mapperFacade.editBuildingByBuildingId(building);
     }
-    
+
 }

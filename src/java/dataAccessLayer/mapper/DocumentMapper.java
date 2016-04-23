@@ -138,4 +138,20 @@ public class DocumentMapper {
             ex.printStackTrace();
         }
     }
+    
+    public void deleteDocumentsByBuildingId(int buildingId) {
+
+        try {
+            
+            String query = "DELETE FROM document WHERE (buildingId) = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+
+            ps.setInt(1, buildingId);
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

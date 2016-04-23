@@ -102,6 +102,21 @@ public class ImageMapper {
             ex.printStackTrace();
         }
     }
+    
+    public void deleteImagesByBuildingId(int buildingId) {
+
+        try {
+            String query = "DELETE FROM image WHERE (buildingId) = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+
+            ps.setInt(1, buildingId);
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     public String getImageNameById(int imageId) {
         String imageName = null;

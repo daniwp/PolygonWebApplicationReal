@@ -129,7 +129,23 @@ public class CheckupMapper {
         } catch (SQLException ee) {
             ee.printStackTrace();
         }
+    }
+    
+    //Daniel
+    public void deleteCheckupsByBuildingId(int buildingId) {
 
+        try {
+            String query = "DELETE FROM checkup WHERE (buildingId) = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+
+            ps.setInt(1, buildingId);
+
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException ee) {
+            ee.printStackTrace();
+        }
     }
 
     //Daniel

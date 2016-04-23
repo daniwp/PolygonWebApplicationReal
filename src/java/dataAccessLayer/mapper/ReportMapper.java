@@ -42,7 +42,7 @@ public class ReportMapper {
 
         try {
 
-            String query = "SELECT reportId, reportFileName, reportUploadName FROM report WHERE (buildingId) = ?";
+            String query = "SELECT reportId, reportFileName, reportUploadDate FROM report WHERE (buildingId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, buildingId);
@@ -101,6 +101,23 @@ public class ReportMapper {
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, reportId);
+            ps.executeUpdate();
+
+            ps.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    //Daniel
+    public void deleteReportsByBuildingId(int buildingId) {
+
+        try {
+            
+            String query = "DELETE FROM report WHERE (buildingId) = ?";
+            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
+
+            ps.setInt(1, buildingId);
             ps.executeUpdate();
 
             ps.close();

@@ -53,24 +53,6 @@ public class FloorMapper {
         }
     }
 
-    //Made by Nicolai
-    public void deleteFloorsByBuildingId(int buildingId) {
-        
-        try {
-            
-            String query = "DELETE FROM floor WHERE buildingId = ?";
-            PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
-
-            ps.setInt(1, buildingId);
-
-            ps.executeUpdate();
-
-            ps.close();
-        } catch (SQLException ee) {
-            ee.printStackTrace();
-        }
-    }
-
     public List<Floor> getAllFloorsByBuildingID(int buildingId) {
         List<Floor> floors = new ArrayList();
         

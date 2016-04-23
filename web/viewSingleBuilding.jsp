@@ -370,7 +370,7 @@
                 <div style="margin-bottom: 10px" class="input-group">
                     <span class="input-group-btn">
                         <span class="btn btn-primary btn-file">
-                            Browse&hellip; <input type="file" name="imageFile" multiple>
+                            Browse&hellip; <input type="file" name="imageFile" required>
                         </span>
                     </span>
                     <input type="text" class="form-control" readonly required>

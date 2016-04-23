@@ -49,9 +49,9 @@ $(document).ready(function () {
                 required: true,
                 number: true,
                 minlength: 1,
-                maxlength: 6,
+                maxlength: 20,
                 min: 1,
-                max: 9999
+                max: 999999
             },
             conditionLevel: {
                 required: true,

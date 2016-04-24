@@ -11,6 +11,7 @@ import serviceLayer.entity.Building;
 public class BuildingMapper {
 
     //made by Lasse
+    //Adds a building into our database
     public void addBuilding(Building b) {
 
         try {
@@ -76,6 +77,7 @@ public class BuildingMapper {
     }
 
     //made by Lasse
+    //Deletes a building by the buildingId in our database
     public void deleteBuildingByBuildingId(int buildingId) {
         try {
             String query = "DELETE FROM building WHERE (buildingId) = ?";
@@ -92,6 +94,7 @@ public class BuildingMapper {
     }
 
     // Daniel
+    // Deletes a building by the customerId
     public void deleteBuildingByCustomerId(int customerId) {
         try {
             String query = "DELETE FROM building WHERE (customerId) = ?";

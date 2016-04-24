@@ -23,6 +23,7 @@ public class FloorController {
         }
     }
 
+    //Daniel
     public void deleteFloorByFloorId(int floorId) {
         mapperFacade.deleteFloorplanByFloorId(floorId);
         mapperFacade.deleteFloorByFloorId(floorId);

@@ -48,8 +48,7 @@
                     </form>
                     <form action="DeleteCustomer" method="POST">
                         <input type="hidden" name="buildingId" value="<%=building.getBuildingId()%>">
-                        <button class="btn btn-danger pull-right" type="submit" onClick="return
-                                    confirm('Are you sure you want to delete this floor?')><i class="fa fa-fw fa-ban"></i> Delete</button>
+                        <button class="btn btn-danger pull-right" type="submit" onClick="return confirm('Are you sure you want to delete this building and all attached files? You can not retrieve the data once deleted!')><i class="fa fa-fw fa-ban"></i> Delete</button>
                     </form>
                 </div>
             </div>

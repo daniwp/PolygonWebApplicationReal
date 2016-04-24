@@ -211,8 +211,7 @@
                     <% if (checkup.getStatus().equals("Cancelled") || session.getAttribute("admin") != null) {%>
                     <div class="col-md-2 pull-right">
                         <form action="deletecheckup" method="POST">
-                            <button class="btn btn-danger pull-right col-md-12" type="submit" onClick="return
-                                    confirm('Are you sure you want to delete this floor?')>Delete item <i class="fa fa-times" aria-hidden="true"></i></button>
+                            <button class="btn btn-danger pull-right col-md-12" onClick="return confirm('Are you sure you want to delete this checkup?');" type="submit" >Delete item <i class="fa fa-times" aria-hidden="true"></i></button>
                             <input type="hidden" name="checkupId" value="<%= checkup.getCheckupId()%>"/>
                         </form>
                     </div>
@@ -280,8 +279,7 @@
                     <% if (session.getAttribute("admin") != null) {%>
                     <div class="col-md-2 pull-right">
                         <form action="deletereport" method="POST">
-                            <button class="btn btn-danger pull-right col-md-12" onClick="return
-                                    confirm('Are you sure you want to delete this floor?');" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <button class="btn btn-danger pull-right col-md-12" onClick="return confirm('Are you sure you want to delete this report?');" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
                             <input type="hidden" name="reportId" value="<%= report.getReportId()%>"/>
                         </form>
                     </div>
@@ -372,7 +370,7 @@
                 <div style="margin-bottom: 10px" class="input-group">
                     <span class="input-group-btn">
                         <span class="btn btn-primary btn-file">
-                            Browse&hellip; <input type="file" name="imageFile" multiple>
+                            Browse&hellip; <input type="file" name="imageFile" required>
                         </span>
                     </span>
                     <input type="text" class="form-control" readonly required>
@@ -400,8 +398,7 @@
                     </div>
                     <div class="col-md-2 pull-right">
                         <form action="deleteimage" method="POST">
-                            <button class="btn btn-danger pull-right col-md-12" onClick="return
-                                    confirm('Are you sure you want to delete this image?');" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <button class="btn btn-danger pull-right col-md-12" onClick="return confirm('Are you sure you want to delete this image?');" type="submit"><i class="fa fa-times" aria-hidden="true"></i></button>
                             <input type="hidden" name="imageId" value="<%= image.getImageId()%>"/>
                         </form>
                     </div>
@@ -463,8 +460,7 @@
                     <div class="col-md-2 pull-right">
                         <form action="deletefloor" method="POST">
                             <input type="hidden" name="floorId" value="<%=floor.getFloorId()%>">
-                            <button class="btn btn-danger col-md-12 pull-right" onClick="return
-                                    confirm('Are you sure you want to delete this floor?');" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
+                            <button class="btn btn-danger col-md-12 pull-right" onClick="return confirm('Are you sure you want to delete this floor and the attached floorplan?');" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>
                         </form>
                     </div>
                 </div>

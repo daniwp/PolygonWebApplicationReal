@@ -36,7 +36,7 @@ public class CustomerMapper {
         Customer customer = null;
 
         try {
-            String query = "SELECT (customerId, companyName, customerEmail, companyOwnerFirstName, companyOwnerLastName)"
+            String query = "SELECT customerId, companyName, customerEmail, companyOwnerFirstName, companyOwnerLastName"
                     + " FROM customer WHERE userId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             
@@ -67,7 +67,7 @@ public class CustomerMapper {
         
         try {
 
-            String query = "SELECT (customerId, companyName, customerEmail, companyOwnerFirstName, companyOwnerLastName, userId) FROM customer ORDER BY (companyName)";
+            String query = "SELECT customerId, companyName, customerEmail, companyOwnerFirstName, companyOwnerLastName, userId FROM customer ORDER BY (companyName)";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
@@ -98,7 +98,7 @@ public class CustomerMapper {
         Customer customer = null;
 
         try {
-            String query = "SELECT (companyName, customerEmail, companyOwnerFirstName, companyOwnerLastName, userId)"
+            String query = "SELECT companyName, customerEmail, companyOwnerFirstName, companyOwnerLastName, userId"
                     + " FROM customer WHERE customerId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setInt(1, customerId);
@@ -145,7 +145,7 @@ public class CustomerMapper {
         int userId = 0;
 
         try {
-            String query = "SELECT (userId) FROM customer WHERE customerId = ?";
+            String query = "SELECT userId FROM customer WHERE customerId = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
             ps.setInt(1, customerId);
 
@@ -168,7 +168,7 @@ public class CustomerMapper {
         String email = null;
 
         try {
-            String query = "SELECT (customerEmail) FROM customer WHERE (customerId) = ?";
+            String query = "SELECT customerEmail FROM customer WHERE (customerId) = ?";
             PreparedStatement ps = DBConnector.getConnection().prepareStatement(query);
 
             ps.setInt(1, customerId);

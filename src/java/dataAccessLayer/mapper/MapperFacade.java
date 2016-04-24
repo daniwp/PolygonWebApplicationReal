@@ -67,11 +67,6 @@ public class MapperFacade {
         return floorMapper.checkIfFloorExists(buildingId, floorNumber);
     }
 
-    //Made by Nicolai
-    public void deleteFloorsByBuildingId(int buildingId) {
-        floorMapper.deleteFloorsByBuildingId(buildingId);
-    }
-
     public List<Floor> getAllFloorsByBuildingID(int buildingId) {
         return floorMapper.getAllFloorsByBuildingID(buildingId);
     }
@@ -243,4 +238,26 @@ public class MapperFacade {
     public void updateCustomer(Customer customer) throws SQLException {
         customerMapper.updateCustomer(customer);
     }
+    
+    //Daniel
+    public void deleteReportsByBuildingId(int buildingId) {
+        reportMapper.deleteReportsByBuildingId(buildingId);
+    }
+    
+    //Daniel
+    public void deleteImagesByBuildingId(int buildingId) {
+        imageMapper.deleteImagesByBuildingId(buildingId);
+    }
+    
+    //Daniel
+    public void deleteDocumentsByBuildingId(int buildingId) {
+        documentMapper.deleteDocumentsByBuildingId(buildingId);
+    }
+    
+    //Daniel
+    public void deleteCheckupsByBuildingId(int buildingId) {
+        checkupMapper.deleteCheckupsByBuildingId(buildingId);
+    }
+    
+    
 }

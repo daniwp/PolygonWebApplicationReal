@@ -5,11 +5,8 @@
  */
 
 import dataAccessLayer.mapper.MapperFacade;
-import java.util.List;
-import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import serviceLayer.entity.Building;
 
 /**
  *
@@ -42,7 +39,7 @@ public class JUnitTest {
         int expectedCondition = 1;
         int resultCID = mapperFacade.getBuildingByBuildingId(1).getCustomerId();
         int expectedCID = 1;
-
+        
         assertEquals(expectedName, resultName);
         assertEquals(expectedAddress, resultAddress);
         assertEquals(expectedZipcode, resultZipcode);

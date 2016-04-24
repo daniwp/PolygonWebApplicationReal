@@ -76,7 +76,8 @@ public class BuildingController {
         mapperFacade.updateBuildingFloorsByBuildingId(buildingId);
     }
 
-    public void editBuildingByBuildingId(Building building) throws SQLException {
+    public void editBuildingByBuildingId(int buildingId, String name, String address, int zipcode, String city, int buildingYear, int floors, double totalSize, String buildingOwner, int buildingCondition) throws SQLException {
+        Building building = new Building(buildingId, name, address, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition);
         mapperFacade.editBuildingByBuildingId(building);
     }
 

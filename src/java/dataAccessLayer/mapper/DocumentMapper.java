@@ -42,7 +42,7 @@ public class DocumentMapper {
         }
     }
 
-    // Here we can get all documents related to a building
+    // Here we return a list of all documents related to a building
     public List<Document> getAllDocumentsByBuildingId(int buildingId) {
         List<Document> documents = new ArrayList();
 
@@ -73,7 +73,7 @@ public class DocumentMapper {
         return documents;
     }
 
-    // Here we can download a document
+    // Here we return the input stream of a document by its ID
     public InputStream downloadDocument(int documentId) {
         InputStream inputStream = null;
 
@@ -102,7 +102,7 @@ public class DocumentMapper {
         return inputStream;
     }
 
-    // Here we can get a document name by document id
+    // Here we can get a document name by its ID
     public String getDocumentNameById(int documentId) {
         String documentName = null;
 
@@ -127,7 +127,7 @@ public class DocumentMapper {
         return documentName;
     }
 
-    // Here we can delete a document
+    // Here we can delete a document by its ID
     public void deleteDocumentByDocumentId(int documentId) {
 
         try {

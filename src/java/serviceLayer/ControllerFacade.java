@@ -211,8 +211,8 @@ public class ControllerFacade {
         return customerController.getCustomerEmailById(customerId);
     }
     
-    public void editBuildingByBuildingId(Building building) throws SQLException {
-        buildingController.editBuildingByBuildingId(building);
+    public void editBuildingByBuildingId(int buildingId, String name, String address, int zipcode, String city, int buildingYear, int floors, double totalSize, String buildingOwner, int buildingCondition) throws SQLException {
+        buildingController.editBuildingByBuildingId(buildingId, name, address, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition);
     }
     
     public void updateCustomer(int customerId, String companyName, String customerFirstName, String customerLastName, String customerEmail) throws SQLException {

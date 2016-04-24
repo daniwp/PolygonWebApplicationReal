@@ -14,7 +14,7 @@ import serviceLayer.entity.Checkup;
  */
 public class CheckupMapper {
     
-    // Here we get information about all pending checkups
+    // Here we return a list of all checkups when a pending status
     public List<Checkup> getAllPendingCheckups() {
         List<Checkup> pendingCheckups = new ArrayList();
 
@@ -47,7 +47,7 @@ public class CheckupMapper {
     }
 
     // Peter
-    // Here we can update a checkup status
+    // Here we can update a checkup status by its ID
     public void updateCheckupStatusById(int checkupId, String status) {
 
         try {
@@ -66,7 +66,7 @@ public class CheckupMapper {
     }
 
     //Nicolai
-    // Here we create a checkup
+    // Here we create a new checkup
     public void createNewCheckup(Checkup checkup) {
 
         try {
@@ -88,7 +88,7 @@ public class CheckupMapper {
     }
 
     //Daniel
-    // Here we get information about all checkups by building id
+    // Here we return a list of all checkups on a building by its ID
     public List<Checkup> getAllCheckupsByBuildingId(int buildingId) {
         List<Checkup> checkups = new ArrayList();
 
@@ -119,7 +119,7 @@ public class CheckupMapper {
     }
 
     //Lasse
-    // Here we can delete a checkup
+    // Here we can delete a checkup by its ID
     public void deleteCheckupById(int checkupId) {
 
         try {
@@ -137,7 +137,7 @@ public class CheckupMapper {
     }
     
     //Daniel
-    //Here we can delete a checkup by a building id
+    //Here we can delete all checkups on a building by its ID
     public void deleteCheckupsByBuildingId(int buildingId) {
 
         try {
@@ -155,7 +155,7 @@ public class CheckupMapper {
     }
 
     //Daniel
-    //Here we can get information about a checkup
+    //Here we retrieve a checkup by its ID
     public Checkup getCheckupById(int checkupId) {
         Checkup checkup = null;
 

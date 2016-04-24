@@ -17,6 +17,8 @@ import serviceLayer.entity.Report;
  */
 public class ReportMapper {
 
+    // Daniel
+    // Inserts a new report into the database
     public void saveReport(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
 
         try {
@@ -37,6 +39,8 @@ public class ReportMapper {
         }
     }
 
+    // Daniel
+    // Returns a list of all reports related to a building
     public List<Report> getAllReportsByBuildingId(int buildingId) {
         List<Report> reports = new ArrayList();
 
@@ -65,6 +69,8 @@ public class ReportMapper {
         return reports;
     }
 
+    // Daniel
+    // Returns the input stream of report by its ID
     public InputStream downloadReport(int reportId) {
         InputStream inputStream = null;
 
@@ -93,6 +99,8 @@ public class ReportMapper {
         return inputStream;
     }
 
+    // Daniel
+    // Deletes a report by its ID
     public void deleteReportByReportId(int reportId) {
 
         try {
@@ -109,7 +117,8 @@ public class ReportMapper {
         }
     }
     
-    //Daniel
+    // Daniel
+    // Deletes all reports related to the given buildingID
     public void deleteReportsByBuildingId(int buildingId) {
 
         try {
@@ -126,6 +135,8 @@ public class ReportMapper {
         }
     }
 
+    // Daniel
+    // Returns the name of a report by its ID
     public String getReportNameById(int reportId) {
         String reportName = null;
 

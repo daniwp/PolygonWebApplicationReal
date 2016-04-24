@@ -11,7 +11,7 @@
 <div class="container well">
     <div class="col-md-8 col-md-offset-2">
         <h1 class="page-header">Edit Building</h1>
-        <form data-disable="true" action="editBuilding" method="POST" id="addbuildingform">
+        <form data-disable="true" action="editbuilding" method="POST" id="addbuildingform">
             <div class="col-md-12">
                 <div class="row">
                     <div class="form-group">
@@ -68,7 +68,7 @@
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-group">
-                        <input class="form-control" type="number" name="conditionLevel" id="conditionLevel" required />
+                        <input class="form-control" type="number" name="conditionLevel" value="<%= building.getBuildingCondition() %>" id="conditionLevel" required />
                     </div>
                 </div>
             </div>
@@ -109,7 +109,7 @@
             </div>
             <br>
             <input type="hidden" name="buildingId" value="<%= session.getAttribute("buildingId") %>">
-            <button type="submit" class="btn btn-primary col-md-4 col-md-offset-4 ">Edit Building</button>
+            <button type="submit" class="btn btn-primary col-md-4 col-md-offset-4 ">Save changes</button>
             <br><br>
             <br><br>
             <br><br>

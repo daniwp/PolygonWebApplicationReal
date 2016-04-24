@@ -10,6 +10,7 @@ import serviceLayer.entity.User;
 public class UserMapper {
 
     // Daniel & Nicolai
+    // Returns a user if there is a user with the given username & password
     public User validateUser(String username, String password) {
         User user = null;
         
@@ -43,7 +44,7 @@ public class UserMapper {
     }
 
     // Daniel
-    // Returns null if a user with the username already exists
+    // Returns null if a user with the username already exists 
     public User checkIfUserExistsByUsername(String username) throws SQLException {
         User user = null;
 
@@ -68,6 +69,7 @@ public class UserMapper {
         return user;
     }
 
+    // Inserts a new user to the database and throws UserAlreadyExistsException if the user already exists
     public void addUser(User user) throws UserAlreadyExistsException {
 
         try {
@@ -91,6 +93,7 @@ public class UserMapper {
         }
     }
     
+    // Returns the user ID by its username
     public int getUserIdByUsername(String username) {
         int userId = 0;
         
@@ -115,6 +118,7 @@ public class UserMapper {
         return userId;
     }
     
+    // Deletes a user by its ID
     public void deleteUserByUserId(int userId) {
         
         try {

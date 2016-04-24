@@ -14,8 +14,9 @@ import serviceLayer.entity.Floorplan;
  * @author Daniel
  */
 public class FloorplanMapper {
-
-    // Here we can upload floorplans
+    
+    // Daniel
+    // Here we can upload a floorplan
     public void uploadFloorplan(InputStream input, String name, int floorId) {
 
         try {
@@ -35,7 +36,8 @@ public class FloorplanMapper {
         }
     }
 
-    //Here we can dowload uploaded floorplans
+    // Daniel
+    // Here we return the input stream of a floorplan by its ID
     public InputStream downloadFloorplan(int floorplanId) {
         InputStream inputStream = null;
 
@@ -63,8 +65,9 @@ public class FloorplanMapper {
 
         return inputStream;
     }
-
-    // Here we can get all floorplans by floor id
+    
+    // Daniel
+    // Here we retrieve a floorplan by its ID
     public Floorplan getFloorplanByFloorId(int floorId) {
         Floorplan floorplan = null;
 
@@ -92,7 +95,8 @@ public class FloorplanMapper {
         return floorplan;
     }
 
-    // here we can delete a floorplan
+    // Daniel
+    // Here we can delete a floorplan by its ID
     public void deleteFloorplanByFloorplanId(int floorplanId) {
 
         try {
@@ -108,8 +112,9 @@ public class FloorplanMapper {
             ex.printStackTrace();
         }
     }
-
-    // here we can delete a floorplan
+    
+    // Daniel
+    // Here we can delete a floorplan by its floors ID
     public void deleteFloorplanByFloorId(int floorId) {
 
         try {
@@ -126,7 +131,7 @@ public class FloorplanMapper {
         }
     }
 
-    // Here we can get a floorplans name by its id
+    // Here we can get a floorplans file name by its ID
     public String getFloorplanNameById(int floorplanId) {
         String floorplanName = null;
 

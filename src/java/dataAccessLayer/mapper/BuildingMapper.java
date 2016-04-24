@@ -11,7 +11,7 @@ import serviceLayer.entity.Building;
 public class BuildingMapper {
 
     //made by Lasse
-    //Adds a building into our database
+    //Adds a new building into our database
     public void addBuilding(Building b) {
 
         try {
@@ -38,7 +38,7 @@ public class BuildingMapper {
         }
     }
 
-    // In this method we get all the information about the building up from the database.
+    // In this method we return a list of a customer's buildings by the customer ID
     public List<Building> getAllBuildingsByCustomerId(int customerId) {
         List<Building> buildings = new ArrayList();
         
@@ -194,7 +194,8 @@ public class BuildingMapper {
         return buildingId;
     }
 
-    // Here we get the information about how many floors a building has, by the buildings id
+    // Daniel
+    // Here we get the information about how many floors a building has, by the buildings ID
     public int getNumberOfFloorsByBuildingId(int buildingId) {
         int numberOfFloors = 0;
 
@@ -220,7 +221,7 @@ public class BuildingMapper {
     }
     
     //Daniel
-    // Here we can update our building floors by the buildings id
+    // Here we can update our buildings number of floors by the buildings ID
     public void updateBuildingFloorsByBuildingId(int buildingId) {
 
         try {
@@ -239,8 +240,9 @@ public class BuildingMapper {
             ee.printStackTrace();
         }
     }
-
-    // Here we can edit a building
+    
+    // Peter
+    // Here we replace an existing buildings information by the ones we get in the parameter
     public void editBuildingByBuildingId(Building building) throws SQLException {
         
         try {
@@ -256,6 +258,7 @@ public class BuildingMapper {
             ps.setInt(6, building.getFloors());
             ps.setString(7, building.getBuildingOwner());
             ps.setInt(8, building.getBuildingCondition());
+            ps.setInt(9, building.getBuildingId());
         
             ps.executeUpdate();
         

@@ -11,6 +11,7 @@ import serviceLayer.entity.Floor;
 public class FloorMapper {
     
 //Made by Nicolai
+    // Here we check if a floor exists
     public boolean checkIfFloorExists(int buildingId, int floorNumber) {
         
         try {
@@ -34,6 +35,7 @@ public class FloorMapper {
         return false;
     }
 
+    // Here we can add a floor
     public void addFloor(Floor floor) {
         
         try {
@@ -53,6 +55,7 @@ public class FloorMapper {
         }
     }
 
+    //Here we get all floors related to a building
     public List<Floor> getAllFloorsByBuildingID(int buildingId) {
         List<Floor> floors = new ArrayList();
         
@@ -84,6 +87,7 @@ public class FloorMapper {
         return floors;
     }
 
+    //Here we can delete a floor
     public void deleteFloorByFloorId(int floorId) {
         
         try {

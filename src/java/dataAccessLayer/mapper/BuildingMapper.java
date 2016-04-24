@@ -112,6 +112,7 @@ public class BuildingMapper {
     }
 
     // Daniel
+    // Here we get all the information about a building by a customer id
     public List<Integer> getBuildingIdsByCustomerId(int customerId) {
         List<Integer> buildingIds = new ArrayList();
 
@@ -135,6 +136,7 @@ public class BuildingMapper {
     }
 
     // Daniel
+    // Here we get all the information about a building by a building id
     public Building getBuildingByBuildingId(int buildingId) {
         Building building = null;
 
@@ -170,6 +172,7 @@ public class BuildingMapper {
     }
     
     // Daniel
+    // here we get a buildings id by its name
     public int getBuildingIdByName(String name) {
         int buildingId = 0;
         
@@ -191,6 +194,7 @@ public class BuildingMapper {
         return buildingId;
     }
 
+    // Here we get the information about how many floors a building has, by the buildings id
     public int getNumberOfFloorsByBuildingId(int buildingId) {
         int numberOfFloors = 0;
 
@@ -216,6 +220,7 @@ public class BuildingMapper {
     }
     
     //Daniel
+    // Here we can update our building floors by the buildings id
     public void updateBuildingFloorsByBuildingId(int buildingId) {
 
         try {
@@ -235,6 +240,7 @@ public class BuildingMapper {
         }
     }
 
+    // Here we can edit a building
     public void editBuildingByBuildingId(Building building) throws SQLException {
         
         try {

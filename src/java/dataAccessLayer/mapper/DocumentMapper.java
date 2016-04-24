@@ -22,6 +22,7 @@ import serviceLayer.entity.Document;
  */
 public class DocumentMapper {
 
+    // Here we can save a document
     public void saveDocument(InputStream input, String name, String date, int buildingId) throws ClassNotFoundException {
 
         try {
@@ -41,6 +42,7 @@ public class DocumentMapper {
         }
     }
 
+    // Here we can get all documents related to a building
     public List<Document> getAllDocumentsByBuildingId(int buildingId) {
         List<Document> documents = new ArrayList();
 
@@ -71,6 +73,7 @@ public class DocumentMapper {
         return documents;
     }
 
+    // Here we can download a document
     public InputStream downloadDocument(int documentId) {
         InputStream inputStream = null;
 
@@ -99,6 +102,7 @@ public class DocumentMapper {
         return inputStream;
     }
 
+    // Here we can get a document name by document id
     public String getDocumentNameById(int documentId) {
         String documentName = null;
 
@@ -123,6 +127,7 @@ public class DocumentMapper {
         return documentName;
     }
 
+    // Here we can delete a document
     public void deleteDocumentByDocumentId(int documentId) {
 
         try {
@@ -139,6 +144,7 @@ public class DocumentMapper {
         }
     }
     
+    // Here we can delete all documents related to a building
     public void deleteDocumentsByBuildingId(int buildingId) {
 
         try {

@@ -17,6 +17,7 @@ import serviceLayer.entity.Image;
  */
 public class ImageMapper {
 
+    // Here we can save images
     public void saveImage(InputStream input, String name, int buildingId) throws ClassNotFoundException {
 
         try {
@@ -36,6 +37,7 @@ public class ImageMapper {
         }
     }
 
+    // Here we can get all images related to a building by its id
     public List<Image> getAllImagesByBuildingId(int buildingId) {
         List<Image> images = new ArrayList();
 
@@ -60,6 +62,7 @@ public class ImageMapper {
         return images;
     }
 
+    // Here we can download an image
     public InputStream downloadImage(int imageId) throws ClassNotFoundException {
         InputStream inputStream = null;
 
@@ -88,6 +91,7 @@ public class ImageMapper {
         return inputStream;
     }
 
+    // Here we can delete an image
     public void deleteImageByImageId(int imageId) {
 
         try {
@@ -103,6 +107,7 @@ public class ImageMapper {
         }
     }
     
+    // Here we can delete all images related to a building
     public void deleteImagesByBuildingId(int buildingId) {
 
         try {
@@ -118,6 +123,7 @@ public class ImageMapper {
         }
     }
 
+    // Here we can get an image name by its id
     public String getImageNameById(int imageId) {
         String imageName = null;
 

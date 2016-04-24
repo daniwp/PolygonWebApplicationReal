@@ -11,6 +11,7 @@ import serviceLayer.entity.Customer;
 public class CustomerMapper {
 
     //made by Lasse and Nicolai
+    // Here we add a customer to our database
     public void addCustomer(Customer customer) {
 
         try {
@@ -32,6 +33,7 @@ public class CustomerMapper {
     }
     
     // Daniel
+    // Here we get information from the database about a customer
     public Customer getCustomerByUserId(int userId) {
         Customer customer = null;
 
@@ -62,6 +64,7 @@ public class CustomerMapper {
         return customer;
     }
 
+    //Here we get information about all customers
     public List<Customer> getAllCustomers() {
         List<Customer> customers = new ArrayList();
         
@@ -94,6 +97,7 @@ public class CustomerMapper {
 
     }
 
+    // Here we get information about a customer by customer id
     public Customer getCustomerByCustomerId(int customerId) {
         Customer customer = null;
 
@@ -124,6 +128,7 @@ public class CustomerMapper {
     }
 
 //made by Lasse
+    // Here we delete a customer by customer id
     public void deleteCustomerByCustomerId(int customerId, int userId) {
         
         try {
@@ -141,6 +146,7 @@ public class CustomerMapper {
         }
     }
 
+    // Here we get a customers user id
     public int getUserIdByCustomerId(int customerId) {
         int userId = 0;
 
@@ -164,6 +170,7 @@ public class CustomerMapper {
         return userId;
     }
 
+    // Here we get a customer email
     public String getEmailById(int customerId) {
         String email = null;
 
@@ -187,6 +194,7 @@ public class CustomerMapper {
         return email;
     }
 
+    // Here we can update a customer
     public void updateCustomer(Customer customer) throws SQLException {
         
         try {

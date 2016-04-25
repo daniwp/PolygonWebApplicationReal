@@ -52,6 +52,7 @@
             </div>
         </div>
         <br>
+        <a class="btn btn-primary pull-left" href="viewSingleCustomer.jsp"><i class="fa fa-fw fa-angle-double-left"></i> Back</a>
         <button class="btn btn-primary col-md-2 col-md-offset-5" type="submit">Edit customer</button>
 
 

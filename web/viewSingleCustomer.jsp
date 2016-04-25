@@ -82,7 +82,7 @@
                     <input type="hidden" name="buildingId" value="<%=building.getBuildingId()%>">
                     <button class="btn btn-primary pull-left" type="submit"><i class="fa fa-fw fa-eye"></i> View</button>
                 </form>
-                <form action="editbuilding" method="POST">
+                <form action="vieweditbuilding" method="POST">
                     <input type="hidden" name="buildingId" value="<%=building.getBuildingId()%>">
                     <button style="margin-left: 5px" class="btn btn-success pull-left" type="submit"><i class="fa fa-fw fa-pencil-square-o"></i> Edit</button>
                 </form>

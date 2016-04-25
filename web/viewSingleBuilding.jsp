@@ -21,6 +21,15 @@
 <div class="container well">
     <div class="col-md-10 col-md-offset-1">
 
+        <% if (session.getAttribute("saveComplete") != null) {%>
+
+        <div class="alert alert-success">
+            <p class="text-center"><%= session.getAttribute("saveComplete")%></p>
+        </div>
+
+        <% } %>
+        <% session.removeAttribute("saveComplete"); %>
+
         <%if (building != null) {%>
 
         <div class="row">
@@ -28,7 +37,15 @@
         </div>
         <div class="well buildingitem">
             <div class="row">
-                <h3 class="page-header col-md-12">Building info:</h3>
+                <div class="col-md-10">
+                    <h3 class="page-header col-md-12">Building info:</h3>
+                </div>
+                <div class="col-md-2">
+                    <form action="vieweditbuilding" method="POST">
+                        <input type="hidden" name="buildingId" value="<%=buildingId%>">
+                        <button style="margin-left: 5px" class="btn btn-success pull-right" type="submit"><i class="fa fa-fw fa-pencil-square-o"></i> Edit</button>
+                    </form>
+                </div>
             </div>
             <div class="row border">
                 <div class="col-md-4">

@@ -107,7 +107,8 @@
                 </div>
             </div>
             <br>
-            <input type="hidden" name="customerId" value="<%= session.getAttribute("customerId") %>">
+            <a class="btn btn-primary pull-left" href="viewSingleCustomer.jsp"><i class="fa fa-fw fa-angle-double-left"></i> Back</a>
+            <input type="hidden" name="customerId" value="<%= session.getAttribute("customerId")%>">
             <button type="submit" class="btn btn-primary col-md-4 col-md-offset-4 ">Add building</button>
             <br><br>
             <br><br>

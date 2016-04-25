@@ -27,8 +27,6 @@ public class ViewEditBuilding extends HttpServlet {
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(30 * 60);
         
-        
-
         session.setAttribute("buildingId", request.getParameter("buildingId"));
         rd = request.getRequestDispatcher("editBuilding.jsp");
         rd.forward(request, response);

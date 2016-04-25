@@ -11,15 +11,16 @@ import serviceLayer.entity.User;
  * @author Daniel
  */
 public class UserController {
-    
+
     MapperFacade mapperFacade = new MapperFacade();
-    
+
     public boolean validateLogin(String customerUsername, String customerPassword, HttpSession curSession) {
         User user = mapperFacade.validateUser(customerUsername, customerPassword);
-        user.setUserId(mapperFacade.getUserIdByUsername(customerUsername));
-        Customer customer = mapperFacade.getCustomerByUserId(user.getUserId());
 
         if (user != null) {
+            user.setUserId(mapperFacade.getUserIdByUsername(customerUsername));
+            Customer customer = mapperFacade.getCustomerByUserId(user.getUserId());
+
             curSession.setAttribute("loggedIn", true);
             if (user.getType() == 1) {
                 curSession.setAttribute("customer", customer);
@@ -32,10 +33,10 @@ public class UserController {
             return false;
         }
     }
-    
+
     public void addUser(String username, String password, int type) throws UserAlreadyExistsException {
         User user = new User(username, password, type);
         mapperFacade.addUser(user);
     }
-    
+
 }

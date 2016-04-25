@@ -40,6 +40,9 @@ public class EditBuilding extends HttpServlet {
             int buildingId = Integer.parseInt(request.getParameter("buildingId"));
 
             controllerFacade.editBuildingByBuildingId(buildingId, buildingName, address, zipcode, city, buildingYear, numberOfFloors, totalM2, ownerName, buildingCondition);
+            
+            session.setAttribute("saveComplete", "Your changes has been saved successfully");
+            
             rd = request.getRequestDispatcher("viewSingleBuilding.jsp");
 
         } catch (Exception e) {

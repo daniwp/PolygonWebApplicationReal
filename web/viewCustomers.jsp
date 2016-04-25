@@ -44,6 +44,10 @@
                         <input type="hidden" name="customerId" value="<%=customer.getCustomerId()%>">
                         <button class="btn btn-primary pull-left" type="submit"><i class="fa fa-fw fa-eye"></i> View</button>
                     </form>
+                    <form action="vieweditcustomer" method="POST">
+                        <input type="hidden" name="customerId" value="<%=customer.getCustomerId()%>">
+                        <button style="margin-left: 5px" class="btn btn-success pull-left" type="submit"><i class="fa fa-fw fa-pencil-square-o"></i> Edit</button>
+                    </form>
                     <form action="deletecustomer" method="POST">
                         <input type="hidden" name="customerId" value="<%=customer.getCustomerId()%>">
                         <button class="btn btn-danger pull-right" onClick="return confirm('Are you sure you want to delete this customer and all buildings attached? The data will not be retrievable if you accept!');" type="submit"><i class="fa fa-fw fa-ban"></i> Delete</button>

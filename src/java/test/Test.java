@@ -1,3 +1,5 @@
+package test;
+
 
 import java.sql.SQLException;
 import serviceLayer.entity.Checkup;

@@ -5,6 +5,7 @@
     <div class="col-md-8 col-md-offset-2">
         <h1 class="page-header">Add floors</h1>
         <form action="addfloor" method="POST">
+            <!-- Generates a floor item for every nrOfFloors in the session -->
             <% if (request.getParameter("nrOfFloors") != null) {
                     for (int i = 0; i < Integer.parseInt(request.getParameter("nrOfFloors")); i++) {%> 
             <div class="row well flooritem">
@@ -35,6 +36,7 @@
             <% } %>
             <button type="submit" class="btn btn-primary col-md-2 col-md-offset-5">Submit</button>
             <% } else {%>
+            <!-- If something went wrong and the nrOfFloors attribute is not set display error message -->
             <br><br>
             <div class="alert alert-danger">
                 <p class="text-center">Something went wrong ): <br> Please try again</p>

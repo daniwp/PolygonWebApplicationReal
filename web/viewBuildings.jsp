@@ -8,7 +8,7 @@
 <div class="container page-wrapper">
     <div class="row">
         <div class="col-md-12">
-            <%
+            <%  // Only displays this sites content if a user/admin is logged in
                 if (session.getAttribute("loggedIn") != null) { %>
             <div class="row">
                 <div class="col-md-12">
@@ -18,6 +18,7 @@
             <% Customer customer = (Customer) session.getAttribute("customer");
                 ControllerFacade controllerFacade = new ControllerFacade();
                 List<Building> buildings = controllerFacade.getAllBuildingsByCustomerId(customer.getCustomerId());%>    
+            <!-- Generates a building item for each building the customer has by the customers ID which is stores as an object in the session -->
             <% for (Building building : buildings) {%>
 
             <div class="panel panel-primary">

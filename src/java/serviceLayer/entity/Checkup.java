@@ -31,39 +31,19 @@ public class Checkup {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-    
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-    
     public int getCheckupId() {
         return checkupId;
-    }
-
-    public void setCheckupId(int checkupId) {
-        this.checkupId = checkupId;
     }
 
     public int getBuildingId() {
         return buildingId;
     }
 
-    public void setBuildingId(int buildingId) {
-        this.buildingId = buildingId;
-    }
-
     public String getCustomerEmail() {
         return customerEmail;
-    }
-
-    public void setCustomerEmail(String customerEmail) {
-        this.customerEmail = customerEmail;
     }
 }

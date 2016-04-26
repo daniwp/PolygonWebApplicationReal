@@ -33,26 +33,11 @@ public class Image {
         return imageId;
     }
 
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
-    }
-
     public String getImageName() {
         return imageName;
-    }
-
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
     }
 
     public int getBuildingId() {
         return buildingId;
     }
-
-    public void setBuildingId(int buildingId) {
-        this.buildingId = buildingId;
-    }
-    
-    
-    
 }

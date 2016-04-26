@@ -36,32 +36,15 @@ public class Report {
         return uploadDate;
     }
 
-    public void setUploadDate(String uploadDate) {
-        this.uploadDate = uploadDate;
-    }
-
     public String getFileName() {
         return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
     }
 
     public int getBuildingId() {
         return buildingId;
     }
 
-    public void setBuildingId(int buildingId) {
-        this.buildingId = buildingId;
-    }
-
     public int getReportId() {
         return reportId;
     }
-
-    public void setReportId(int reportId) {
-        this.reportId = reportId;
-    }
-
 }

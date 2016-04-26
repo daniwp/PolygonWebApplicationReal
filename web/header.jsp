@@ -1,3 +1,4 @@
+<%@page import="serviceLayer.ControllerFacade"%>
 <%@page import="serviceLayer.entity.Customer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,7 +21,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <!-- Brand name button -->
+                    <!-- Brand name button image (.svg) -->
                     <a href="index.jsp" class="navbar-brand"><svg width="200px" height="40px" viewBox="0 0 360 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
                         <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
                         <title>Polygon Logo</title>
@@ -58,12 +59,14 @@
 
                         <!-- Dropdown for User -->
                         <% if (session.getAttribute("loggedIn") != null && session.getAttribute("customer") != null) {%>
-                        <% Customer customer = (Customer) session.getAttribute("customer");%>
+                        <% Customer customer = (Customer) session.getAttribute("customer");
+                           customer = new ControllerFacade().getCustomerByCustomerId(customer.getCustomerId()); %>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= customer.getCustomerFirstName()%> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="addBuilding.jsp">Add building</a></li>
                                 <li><a href="viewBuildings.jsp">View my buildings</a></li>
+                                <li><a href="viewProfile.jsp">View profile</a></li>
                                 <li><a href="logout">Logout</a></li>
                             </ul>
                         </li> 

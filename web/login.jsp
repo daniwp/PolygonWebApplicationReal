@@ -4,6 +4,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <h1 class="page-header">Login page</h1>
+            <!-- Displays an error message box if the login was not validated successfully -->
             <% if (session.getAttribute("loginError") != null) { %>
             
             <div class="alert alert-danger">

@@ -50,48 +50,23 @@ public class Customer {
         return userId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     public int getCustomerId() {
         return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
     }
 
     public String getCompanyName() {
         return companyName;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
     public String getCustomerFirstName() {
         return customerFirstName;
-    }
-
-    public void setCustomerFirstName(String customerFirstName) {
-        this.customerFirstName = customerFirstName;
     }
 
     public String getCustomerLastName() {
         return customerLastName;
     }
 
-    public void setCustomerLastName(String customerLastName) {
-        this.customerLastName = customerLastName;
-    }
-
     public String getCustomerEmail() {
         return customerEmail;
     }
-
-    public void setCustomerEmail(String customerEmail) {
-        this.customerEmail = customerEmail;
-    }
-
 }

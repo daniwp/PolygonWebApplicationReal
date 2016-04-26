@@ -29,25 +29,11 @@ public class Floorplan {
         return floorplanId;
     }
 
-    public void setFloorplanId(int floorplanId) {
-        this.floorplanId = floorplanId;
-    }
-
     public String getFloorplanName() {
         return floorplanName;
-    }
-
-    public void setFloorplanName(String floorplanName) {
-        this.floorplanName = floorplanName;
     }
 
     public int getFloorId() {
         return floorId;
     }
-
-    public void setFloorId(int floorId) {
-        this.floorId = floorId;
-    }
-    
-    
 }

@@ -11,9 +11,8 @@
 <%@page import="serviceLayer.entity.Building"%>
 <jsp:include page="header.jsp" />
 
-<%
-    ControllerFacade controllerFacade = new ControllerFacade();
-    if (session.getAttribute("loggedIn") != null) {
+<% ControllerFacade controllerFacade = new ControllerFacade(); %>
+<% if (session.getAttribute("loggedIn") != null) {
         int buildingId = Integer.parseInt((String) session.getAttribute("buildingId"));
         Building building = controllerFacade.getBuildingByBuildingId(buildingId);
         List<Floor> floors = controllerFacade.getAllFloorsByBuildingId(buildingId); %>
@@ -21,6 +20,7 @@
 <div class="container well">
     <div class="col-md-10 col-md-offset-1">
 
+        <!-- Displays a success box when you have successfully edited a buildings information -->
         <% if (session.getAttribute("saveComplete") != null) {%>
 
         <div class="alert alert-success">
@@ -30,8 +30,8 @@
         <% } %>
         <% session.removeAttribute("saveComplete"); %>
 
+        <!-- If there is a building with the given building Id display it here -->
         <%if (building != null) {%>
-
         <div class="row">
             <h1 class="page-header"><%= building.getName()%></h1>
         </div>
@@ -89,6 +89,7 @@
         <% }%>
         <div class="row">
             <div class="col-md-1 pull-left">
+                <!-- A back button  -->
                 <% if (session.getAttribute("admin") != null) {%>
                 <form action="backadmin" method="POST">
                     <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-angle-double-left"></i> Back</button>

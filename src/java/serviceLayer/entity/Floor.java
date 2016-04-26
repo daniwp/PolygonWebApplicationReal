@@ -32,40 +32,20 @@ public class Floor {
 
     public Floor() {
     }
-
-    
     
     public int getFloorId() {
         return floorId;
-    }
-
-    public void setFloorId(int floorId) {
-        this.floorId = floorId;
     }
 
     public int getFloor() {
         return floor;
     }
 
-    public void setFloor(int floor) {
-        this.floor = floor;
-    }
-
     public double getSize() {
         return size;
-    }
-
-    public void setSize(double size) {
-        this.size = size;
     }
 
     public int getBuildingId() {
         return buildingId;
     }
-
-    public void setBuildingId(int buildingId) {
-        this.buildingId = buildingId;
-    }
-
-
 }

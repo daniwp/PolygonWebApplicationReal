@@ -35,36 +35,15 @@ public class Document {
         return documentId;
     }
 
-    public void setDocumentId(int documentId) {
-        this.documentId = documentId;
-    }
-
     public String getDocumentFileName() {
         return documentFileName;
-    }
-
-    public void setDocumentFileName(String documentFileName) {
-        this.documentFileName = documentFileName;
     }
 
     public String getDocumentUploadDate() {
         return documentUploadDate;
     }
 
-    public void setDocumentUploadDate(String documentUploadDate) {
-        this.documentUploadDate = documentUploadDate;
-    }
-
     public int getBuildingId() {
         return buildingId;
     }
-
-    public void setBuildingId(int buildingId) {
-        this.buildingId = buildingId;
-    }
-    
-    
-    
-    
-    
 }

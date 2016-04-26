@@ -25,27 +25,30 @@ public class EditCustomer extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                
-            RequestDispatcher rd = null;
-            HttpSession session = request.getSession();
-            session.setMaxInactiveInterval(30*60);
-            
-            int customerId = Integer.parseInt((String)session.getAttribute("customerId"));
-            String companyName = request.getParameter("companyName");
-            String customerFirstName = request.getParameter("customerFirstName");
-            String customerLastName = request.getParameter("customerLastName");
-            String customerEmail = request.getParameter("customerEmail");
-            
-            ControllerFacade controllerFacade = new ControllerFacade();
+
+        RequestDispatcher rd = null;
+        HttpSession session = request.getSession();
+        session.setMaxInactiveInterval(30 * 60);
+
+        int customerId = Integer.parseInt((String) session.getAttribute("customerId"));
+        String companyName = request.getParameter("companyName");
+        String customerFirstName = request.getParameter("customerFirstName");
+        String customerLastName = request.getParameter("customerLastName");
+        String customerEmail = request.getParameter("customerEmail");
+
+        ControllerFacade controllerFacade = new ControllerFacade();
         try {
             controllerFacade.updateCustomer(customerId, companyName, customerFirstName, customerLastName, customerEmail);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-            
+        if (session.getAttribute("admin") != null) {
             rd = request.getRequestDispatcher("/viewSingleCustomer.jsp");
-            rd.forward(request, response);
-            
+        } else {
+            rd = request.getRequestDispatcher("/viewProfile.jsp");
+        }
+        rd.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

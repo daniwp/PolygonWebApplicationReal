@@ -9,11 +9,9 @@
     <div class="col-md-12">
         <h1 class="page-header">Pending checkups</h1><br>
 
-        <%
-            List<PendingCheckup> pendingCheckups = new ControllerFacade().getAllPendingCheckups();
-
-            for (PendingCheckup pendingCheckup : pendingCheckups) {
-        %>
+        <% List<PendingCheckup> pendingCheckups = new ControllerFacade().getAllPendingCheckups(); %>
+        <!-- Generates a pending checkup item for each checkups stored in the database with the status: Pending... -->
+        <% for (PendingCheckup pendingCheckup : pendingCheckups) {%>
         <div class="col-md-12 well buildingitem">
             <div class="row border">
                 <div class="col-md-12">
@@ -26,7 +24,7 @@
                     <div class="col-md-2">
                         <form action="viewbuilding" method="POST">
                             <button class="btn btn-primary" type="submit">Go to building</button>
-                            <input type="hidden" name="buildingId" value="<%= pendingCheckup.getBuildingId() %>"/>
+                            <input type="hidden" name="buildingId" value="<%= pendingCheckup.getBuildingId()%>"/>
                         </form>
                     </div>
                 </div>

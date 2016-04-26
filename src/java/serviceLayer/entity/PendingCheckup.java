@@ -22,32 +22,15 @@ public class PendingCheckup {
         return buildingId;
     }
 
-    public void setBuildingId(int buildingId) {
-        this.buildingId = buildingId;
-    }
-
     public Checkup getCheckup() {
         return checkup;
-    }
-
-    public void setCheckup(Checkup checkup) {
-        this.checkup = checkup;
     }
 
     public String getCompanyName() {
         return companyName;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
     public String getBuildingName() {
         return buildingName;
     }
-
-    public void setBuildingName(String buildingName) {
-        this.buildingName = buildingName;
-    }
-
 }

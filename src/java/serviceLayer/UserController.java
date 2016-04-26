@@ -27,6 +27,7 @@ public class UserController {
             } else if (user.getType() == 0) {
                 curSession.setAttribute("admin", true);
             }
+            
             return true;
         } else {
             curSession.setAttribute("loginError", "An error occurred. Please try again.");

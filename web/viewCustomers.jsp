@@ -9,19 +9,17 @@
 <div class="container page-wrapper">
     <div class="row">
         <div class="col-md-12">
-            <%
-                if (session.getAttribute("loggedIn") != null) { %>
+            <%  // Only displays this sites content if an admin is logged in
+                if (session.getAttribute("admin") != null) { %>
             <div class="row">
                 <div class="col-md-12">
                     <a href="createCustomer.jsp" class="btn btn-success pull-left" ><i class="fa fa-plus"></i> Add customer</a>
                 </div>
             </div><br>
             <% ControllerFacade controllerFacade = new ControllerFacade();
-                List<Customer> customers = controllerFacade.getAllCustomers();
-                for (Customer customer : customers) {
-
-            %>
-
+                List<Customer> customers = controllerFacade.getAllCustomers(); %>
+            <!-- Generates a customer item for each customer in the database -->
+            <%    for (Customer customer : customers) {%>
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-building fa-fw"></i>&nbsp;&nbsp;<%= customer.getCompanyName()%></h3>

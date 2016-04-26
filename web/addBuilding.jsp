@@ -7,6 +7,7 @@
         session.setAttribute("customerId", ((Customer) session.getAttribute("customer")).getCustomerId());
     }
 %>
+
 <div class="container well">
     <div class="col-md-8 col-md-offset-2">
         <h1 class="page-header">Add building</h1>

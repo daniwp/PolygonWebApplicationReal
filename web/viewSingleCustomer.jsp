@@ -6,6 +6,9 @@
 <jsp:include page="header.jsp" />
 
 <%
+    // This page can only be seen it the admin attribute it set in the session
+    // A Customer is set by the the customerId attribute in the session
+    // A list of the customers buildings are then set
     if (session.getAttribute("admin") != null) {
         ControllerFacade controllerFacade = new ControllerFacade();
         int customerId = Integer.parseInt((String) session.getAttribute("customerId"));
@@ -16,7 +19,6 @@
     <div class="col-md-10 col-md-offset-1">
 
         <%if (customer != null) {%>
-
         <div class="row">
             <div class="col-md-12">
                 <h1 class="page-header"><%= customer.getCompanyName()%></h1>
@@ -58,6 +60,8 @@
             </div>
         </div>
         <br>
+
+        <!-- Generates a building item for each building owned by the customer -->
         <% for (Building building : buildings) {%>
         <br>
         <div class="panel panel-primary">
@@ -92,8 +96,6 @@
                 </form>
             </div>
         </div>
-
-
         <% }
             }%>
     </div>

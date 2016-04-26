@@ -32,6 +32,7 @@ public class BuildingController {
     }
     
     //Daniel
+    //Deletes all documents, images, reports, checkup, floorplans and floors of the building before itself is deleted
     public void deleteBuildingByBuildingId(int buildingId) {
         
         for (Document document : documentController.getAlDocumentsByBuildingId(buildingId)) {
@@ -62,20 +63,17 @@ public class BuildingController {
     }
 
     public Building getBuildingByBuildingId(int buildingId) {
-        Building building = new Building();
-        building = mapperFacade.getBuildingByBuildingId(buildingId);
-        return building;
+        return mapperFacade.getBuildingByBuildingId(buildingId);
     }
 
-    public List<Building> getAllBuildingsByCustomerId(int CustomerId) {
-        List<Building> buildings = mapperFacade.getAllBuildingsByCustomerId(CustomerId);
-        return buildings;
+    public List<Building> getAllBuildingsByCustomerId(int customerId) {
+        return mapperFacade.getAllBuildingsByCustomerId(customerId);
     }
 
     public void updateBuildingFloorsByBuildingId(int buildingId) {
         mapperFacade.updateBuildingFloorsByBuildingId(buildingId);
     }
-
+    
     public void editBuildingByBuildingId(int buildingId, String name, String address, int zipcode, String city, int buildingYear, int floors, double totalSize, String buildingOwner, int buildingCondition) throws SQLException {
         Building building = new Building(buildingId, name, address, zipcode, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition);
         mapperFacade.editBuildingByBuildingId(building);

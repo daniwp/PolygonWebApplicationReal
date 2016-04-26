@@ -21,6 +21,7 @@ public class CheckupController {
     
     MapperFacade mapperFacade = new MapperFacade();
     
+    // Returns a list of all checkups with the pending status in a wrapper object PendingCheckup
     public List<PendingCheckup> getAllPendingCheckups() {
         List<PendingCheckup> pendingCheckups = new ArrayList();
         

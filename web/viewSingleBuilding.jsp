@@ -89,32 +89,35 @@
         <% }%>
         <div class="row">
             <div class="col-md-1 pull-left">
-                <!-- A back button  -->
+                <!-- A back button that sets customer ID and redirects to viewSingleCustomer -->
                 <% if (session.getAttribute("admin") != null) {%>
                 <form action="backadmin" method="POST">
                     <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-angle-double-left"></i> Back</button>
                 </form>
-                <form action="showaddfloors" method="POST">
-                    <% }
-                        if (session.getAttribute("customer") != null) { %>
-                    <a class="btn btn-primary" href="viewBuildings.jsp"><i class="fa fa-fw fa-angle-double-left"></i> Back</a>
-                    <% }%>
+                <!-- Back button for customer to viewBuildings -->
+                <% } %>
+                <% if (session.getAttribute("customer") != null) { %>
+                <a class="btn btn-primary" href="viewBuildings.jsp"><i class="fa fa-fw fa-angle-double-left"></i> Back</a>
+                <% }%>
             </div>
-            <div class="col-md-2 pull-right">
-                <button class="btn btn-primary" type="submit">Add more floors</button>
-            </div>
-            <div class="col-md-4 pull-right">
-                <div class="col-md-5 col-md-offset-2">
-                    <p>Nr. of floors</p>
+            <!-- Sets an attribute in the session with the number of floors you added in the input field -->
+            <form action="showaddfloors" method="POST">
+                <div class="col-md-2 pull-right">
+                    <button class="btn btn-primary" type="submit">Add more floors</button>
                 </div>
-                <div class="col-md-5">
-                    <input class="form-control" type="number" maxlength="3" name="nrOfFloors" required>
+                <div class="col-md-4 pull-right">
+                    <div class="col-md-5 col-md-offset-2">
+                        <p>Nr. of floors</p>
+                    </div>
+                    <div class="col-md-5">
+                        <input class="form-control" type="number" maxlength="3" name="nrOfFloors" required>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
-        </form>
         <br><br>
 
+        <!-- Displays a error message box if floorAlreadyExists attribute is set (See AddFloor servlet) -->
         <% if (session.getAttribute("floorAlreadyExists") != null) {%>
         <div class="alert alert-danger">
             <p class="text-center"><%= session.getAttribute("floorAlreadyExists")%> </p>
@@ -123,6 +126,8 @@
             session.removeAttribute("floorAlreadyExists"); %>
 
         <!-- Floors -->
+        <!-- Creates an add floor item for each nrOfFloors set in the session if it exists -->
+        <!-- Then when submitted the floors are added and the attribute nrOfFloors is removed -->
         <% if (session.getAttribute("nrOfFloors") != null) {
                 for (int i = 0; i < Integer.parseInt((String) session.getAttribute("nrOfFloors")); i++) {%> 
 
@@ -190,6 +195,7 @@
                 <br>
             </form>
 
+            <!-- Generates a checkup item for each chuckup on the building by its ID -->
             <% List<Checkup> checkups = controllerFacade.getAllCheckupsByBuildingId(buildingId);
                 for (Checkup checkup : checkups) {%>
 
@@ -240,12 +246,13 @@
             <br>
         </div>
 
-
         <!-- Building Reports -->
         <div class="well buildingitem">
             <div class="row">
                 <h3 class="border">&nbsp;Building reports</h3>
             </div>
+
+            <!-- If the admin attribute is set in the session, the admin can change the checkup status -->
             <% if (session.getAttribute("admin") != null) {%>
             <div class="row">
                 <div class="col-md-12">
@@ -277,6 +284,8 @@
             </form>
             <br>
             <% } %>
+
+            <!-- Generates a report item for each report on the building by its ID -->
             <% List<Report> reports = controllerFacade.getAllReportsByBuildingId(buildingId);
                 for (Report report : reports) {%>
 
@@ -294,6 +303,8 @@
                             <input type="hidden" name="reportId" value="<%= report.getReportId()%>"/>
                         </form>
                     </div>
+
+                    <!-- If the admin attribute is set in the session, the admin can delete the checkups -->
                     <% if (session.getAttribute("admin") != null) {%>
                     <div class="col-md-2 pull-right">
                         <form action="deletereport" method="POST">
@@ -344,6 +355,7 @@
                 <br>
             </form>  
 
+            <!-- Generates a document item for each document on the building by its ID -->
             <% List<Document> documents = controllerFacade.getAllDocumentsByBuildingId(buildingId);
                 for (Document document : documents) {%>
 
@@ -400,6 +412,8 @@
                 </div>
                 <br>
             </form>
+
+            <!-- Generates an image item for each image on the building by its ID -->
             <% List<Image> images = controllerFacade.getAllImagesByBuildingId(buildingId);
                 for (Image image : images) {%>
 
@@ -426,6 +440,7 @@
             <% } %>
         </div>
 
+        <!-- Generates a floor item for each floor added to the building by the building ID -->
         <% if (!floors.isEmpty()) {
                 for (Floor floor : floors) {
                     Floorplan floorplan = controllerFacade.getFloorplanByFloorId(floor.getFloorId());
@@ -440,6 +455,7 @@
                         <p>Size: <strong><%= floor.getSize()%></strong></p>
                     </div>
                     <div class="col-md-6">
+                        <!-- If there is a floorplan attached to the floor, you can download or delete it -->
                         <% if (floorplan != null) {%>
                         <div class="col-md-12">
                             <div class="col-md-6">
@@ -458,6 +474,7 @@
                                 </form>
                             </div>
                         </div>
+                        <!-- If there is not floor plan, the user/admin can upload one -->
                         <% } else {%>
                         <form action="uploadfloorplan" method="POST" enctype="multipart/form-data">
                             <div class="col-md-3">

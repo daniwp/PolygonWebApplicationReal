@@ -44,12 +44,10 @@ public class ControllerFacade {
         buildingController.addBuilding(name, address, zipcodes, city, buildingYear, floors, totalSize, buildingOwner, buildingCondition, costumerId);
     }
 
-    //Takes a list of floor objects and adds them to the database
     public void addFloor(int floorNumber, double size, int buildingId) throws FloorAlreadyExistsException {
         floorController.addFloor(floorNumber, size, buildingId);
     }
     
-    // creates a customer and inserts it into the database
     public void addCustomer(String companyName, String companyOwnerFirstName, String companyOwnerLastName, String customerEmail, int userId) throws SQLException, ClassNotFoundException, UserAlreadyExistsException {
         customerController.addCustomer(companyName, companyOwnerFirstName, companyOwnerLastName, customerEmail, userId);
     }

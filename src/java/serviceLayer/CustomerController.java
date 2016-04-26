@@ -33,6 +33,7 @@ public class CustomerController {
         return mapperFacade.getAllCustomers();
     }
 
+    // Deletes every building owned by the customer and all files/floors attached to them before the customer and user is deleted
     public void deleteCustomerByCustomerId(int customerId) {
         int userId = mapperFacade.getUserIdByCustomerId(customerId);
         List<Integer> buildingIds = mapperFacade.getBuildingIdsByCustomerId(customerId);
@@ -49,12 +50,12 @@ public class CustomerController {
         return mapperFacade.getCustomerByCustomerId(customerId);
     }
 
-    // creates a customer and inserts it into the database
     public void addCustomer(String companyName, String companyOwnerFirstName, String companyOwnerLastName, String customerEmail, int userId) throws SQLException, ClassNotFoundException, UserAlreadyExistsException {
         Customer customer = new Customer(companyName, companyOwnerFirstName, companyOwnerLastName, customerEmail, userId);
         mapperFacade.addCustomer(customer);
     }
     
+    // Adds a user and the a customer with the created users ID
     public void addCustomer(String companyName, String customerFirstName, String customerLastName, String customerEmail, String username, String password, int type) throws UserAlreadyExistsException {
         User user = new User(username, password, type);
         mapperFacade.addUser(user);

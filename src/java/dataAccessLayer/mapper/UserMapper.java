@@ -30,7 +30,7 @@ public class UserMapper {
                 String uName = rs.getString("username");
                 String pWord = rs.getString("password");
                 int type = rs.getInt("type");
-
+                
                 user = new User(userId, uName, pWord, type);
             }
             

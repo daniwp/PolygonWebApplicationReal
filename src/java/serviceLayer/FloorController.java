@@ -13,7 +13,9 @@ public class FloorController {
     
     MapperFacade mapperFacade = new MapperFacade();
     
-    //Takes a list of floor objects and adds them to the database
+    //Daniel
+    //Adds a floor to the database with the given buildingId.
+    //Throws exception if a floor with that floor number already exists
     public void addFloor(int floorNumber, double size, int buildingId) throws FloorAlreadyExistsException {
         if (mapperFacade.checkIfFloorExists(buildingId, floorNumber)) {
             throw new FloorAlreadyExistsException("Some floors were not added, as one or more floors already exists");

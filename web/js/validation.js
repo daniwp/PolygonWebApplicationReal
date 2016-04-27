@@ -43,7 +43,7 @@ $(document).ready(function () {
                 number: true,
                 step: 1,
                 min: -20,
-                max: 20
+                max: 500
             },
             totalM2: {
                 required: true,

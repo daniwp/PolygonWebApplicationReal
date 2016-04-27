@@ -25,9 +25,7 @@ public class CheckupController {
     public List<PendingCheckup> getAllPendingCheckups() {
         List<PendingCheckup> pendingCheckups = new ArrayList();
         
-        List<Checkup> checkups = mapperFacade.getAllPendingCheckups();
-        
-        for (Checkup checkup : checkups) {
+        for (Checkup checkup : mapperFacade.getAllPendingCheckups()) {
             
              int buildingId = checkup.getBuildingId();
              Building building = mapperFacade.getBuildingByBuildingId(buildingId);

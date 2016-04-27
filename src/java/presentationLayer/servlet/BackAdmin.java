@@ -44,8 +44,6 @@ public class BackAdmin extends HttpServlet {
         
         session.setAttribute("customerId", String.valueOf(customerId));
         
-        System.out.println(session.getAttribute("admin"));
-        
         rd = request.getRequestDispatcher("viewSingleCustomer.jsp");
         rd.forward(request, response);
         

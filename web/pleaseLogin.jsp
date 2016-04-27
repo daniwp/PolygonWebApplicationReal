@@ -11,8 +11,10 @@
         <div class="col-md-2 col-md-offset-4">
             <a href="index.jsp" class="btn btn-primary btn-lg">Back</a>
         </div>
+        <% if (session.getAttribute("loggedIn") == null) { %>
         <div class="col-md-2">
             <a href="login.jsp" class="btn btn-primary btn-lg">Login</a>
         </div>
+        <% }%>
     </div>
 </div>

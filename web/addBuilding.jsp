@@ -2,6 +2,7 @@
 <%@page import="serviceLayer.entity.Customer"%>
 <jsp:include page="header.jsp" />
 
+<% if (session.getAttribute("loggedIn") != null) { %>
 <%
     if (session.getAttribute("customer") != null) {
         session.setAttribute("customerId", ((Customer) session.getAttribute("customer")).getCustomerId());
@@ -118,6 +119,8 @@
         </form>
     </div>
 </div>
-
+<% } else {%>
+<jsp:include page="pleaseLogin.jsp" />
+<% }%>
 
 <jsp:include page="footer.jsp" />

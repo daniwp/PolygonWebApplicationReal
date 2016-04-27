@@ -4,7 +4,8 @@
 <%@page import="dataAccessLayer.mapper.MapperFacade"%>
 <jsp:include page="header.jsp" />
 
-<%  // Retrieves the customer object from the session 
+<%
+// Retrieves the customer object from the session 
     if (session.getAttribute("customer") != null) {
         Customer customer = (Customer) session.getAttribute("customer");
         customer = new ControllerFacade().getCustomerByCustomerId(customer.getCustomerId());
@@ -53,6 +54,8 @@
             </div>
         </div>
         <br>
+        <% } else {%>
+        <jsp:include page="pleaseLogin.jsp" />
         <% }%>
     </div>
 </div>

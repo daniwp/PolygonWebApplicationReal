@@ -504,6 +504,8 @@
         <% }
             }%>
     </div>
+    <% } else {%>
+    <jsp:include page="pleaseLogin.jsp" />
     <% }%>
 
     <jsp:include page="footer.jsp" />

@@ -47,15 +47,17 @@
                         <input type="hidden" name="buildingId" value="<%=building.getBuildingId()%>">
                         <button style="margin-left: 5px" class="btn btn-success pull-left" type="submit"><i class="fa fa-fw fa-pencil-square-o"></i> Edit</button>
                     </form>
-                    <form action="DeleteCustomer" method="POST">
+                    <form action="deletebuilding" method="POST">
                         <input type="hidden" name="buildingId" value="<%=building.getBuildingId()%>">
-                        <button class="btn btn-danger pull-right" type="submit" onClick="return confirm('Are you sure you want to delete this building and all attached files? You can not retrieve the data once deleted!')><i class="fa fa-fw fa-ban"></i> Delete</button>
+                        <button class="btn btn-danger pull-right" type="submit" onClick="return confirm('Are you sure you want to delete this building and all attached files? You can not retrieve the data once deleted!')"><i class="fa fa-fw fa-ban"></i> Delete</button>
                     </form>
                 </div>
             </div>
 
             <% }
-                }%>
+            } else {%>
+            <jsp:include page="pleaseLogin.jsp" />
+            <% }%>
         </div>
     </div>
 </div>

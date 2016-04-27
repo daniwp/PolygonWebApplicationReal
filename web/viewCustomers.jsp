@@ -53,8 +53,10 @@
                 </div>
             </div>
 
-            <% }
-                }%>
+            <% } %>
+            <% } else {%>
+            <jsp:include page="pleaseLogin.jsp" />
+            <% }%>
         </div>
     </div>
 </div>

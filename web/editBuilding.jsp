@@ -108,7 +108,7 @@
                 </div>
             </div>
             <br>
-            <a class="pull-left btn btn-primary" href="viewSingleCustomer.jsp"><i class="fa fa-fw fa-angle-double-left"></i> Back</a>
+            <a class="pull-left btn btn-primary" href="viewSingleBuilding.jsp"><i class="fa fa-fw fa-angle-double-left"></i> Back</a>
             <input type="hidden" name="buildingId" value="<%= session.getAttribute("buildingId")%>">
             <button type="submit" class="btn btn-primary col-md-4 col-md-offset-4 ">Save changes</button>
             <br><br>

@@ -200,7 +200,7 @@
                 for (Checkup checkup : checkups) {%>
 
             <div class="row">
-                <div class="col-md-12">
+                <div style="height: 50px;" class="col-md-12">
                     <div class="col-md-3">
                         <p>Request date: <strong><%= checkup.getDate()%></strong></p>
                     </div>

@@ -20,7 +20,7 @@
         <div class="col-md-12">
             <a href="viewBuildings.jsp">
                 <div class="col-md-4">
-                    <div style="padding:36px 10px 0 10px; height: 170px" class="col-md-12 well">
+                    <div style="padding:36px 10px 50px 10px; height: 100%" class="col-md-12 well">
                         <div href="viewBuildings.jsp" class="col-md-4">
                             <i style="color: #009fe3" class="fa fa-building-o fa-5x" aria-hidden="true"></i>
                         </div>
@@ -33,7 +33,7 @@
             </a>
             <a href="addBuilding.jsp">
                 <div class="col-md-4 ">
-                    <div style="padding:36px 10px 0 10px; height: 170px" class="col-md-12 well">
+                    <div style="padding:36px 10px 50px 10px; height: 100%" class="col-md-12 well">
                         <div class="col-md-4">
                             <i style="color: #009fe3" class="fa fa-plus-square-o fa-5x" aria-hidden="true"></i>
                         </div>
@@ -46,7 +46,7 @@
             </a>
             <a href="viewProfile.jsp" >
                 <div class="col-md-4">
-                    <div style="padding:36px 10px 0 10px; height: 170px" class="col-md-12 well">
+                    <div style="padding:36px 10px 50px 10px; height: 100%" class="col-md-12 well">
                         <div class="col-md-4">
                             <i style="color: #009fe3" class="fa fa-user fa-5x" aria-hidden="true"></i>
                         </div>
@@ -61,7 +61,7 @@
     </div>
     <div style="margin: 0px;" class="row">
         <div class="col-md-12">
-            <div style="padding:36px 10px 0 10px; height: 340px" class="col-md-12 well">
+            <div style="padding:36px 10px 50px 10px; height: 100%" class="col-md-12 well">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="col-md-3">
                         <i style="color: #009fe3" class="fa fa-life-ring fa-5x" aria-hidden="true"></i>
@@ -85,7 +85,7 @@
         <div class="col-md-12">
             <a href="viewPendingCheckups.jsp">
                 <div class="col-md-6">
-                    <div style="padding:36px 10px 0 10px; height: 170px" class="col-md-12 well">
+                    <div style="padding:36px 10px 50px 10px; height: 100%" class="col-md-12 well">
                         <div class="col-md-4">
                             <i style="color: #009fe3" class="fa fa-calendar-check-o fa-5x" aria-hidden="true"></i>
                         </div>
@@ -99,7 +99,7 @@
             </a>
             <a href="viewCustomers.jsp">
                 <div class="col-md-6">
-                    <div style="padding:36px 10px 0 10px; height: 170px" class="col-md-12 well">
+                    <div style="padding:36px 10px 50px 10px; height: 100%" class="col-md-12 well">
                         <div class="col-md-4">
                             <i style="color: #009fe3" class="fa fa-users fa-5x" aria-hidden="true"></i>
                         </div>
@@ -117,7 +117,7 @@
         <div class="col-md-12">
             <a href="createCustomer.jsp">
                 <div class="col-md-6">
-                    <div style="padding:36px 10px 0 10px; height: 170px" class="col-md-12 well">
+                    <div style="padding:36px 10px 50px 10px; height: 100%" class="col-md-12 well">
                         <div class="col-md-4">
                             <i style="color: #009fe3" class="fa fa-user-plus fa-5x" aria-hidden="true"></i>
                         </div>
@@ -131,7 +131,7 @@
             </a>
             <a href="createAdmin.jsp">
                 <div class="col-md-6">
-                    <div style="padding:36px 10px 0 10px; height: 170px" class="col-md-12 well">
+                    <div style="padding:36px 10px 50px 10px; height: 100%" class="col-md-12 well">
                         <div class="col-md-4">
                             <i style="color: #009fe3" class="fa fa-user-md fa-5x" aria-hidden="true"></i>
                         </div>

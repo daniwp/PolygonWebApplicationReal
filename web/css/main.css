@@ -59,7 +59,7 @@ table {
 }
 
 .section-hero .hero h1 {
-    color: #f7f7f7;
+    color: #009fe3;
     margin-top: 0;
 }
 
@@ -69,8 +69,8 @@ table {
 
 .section-hero .hero .btn-clear {
     background-color: transparent;
-    border: 2px solid #f7f7f7;
-    color: #f7f7f7;
+    border: 2px solid #009fe3;
+    color: #009fe3;
 }
 
 .section-hero .hero {

@@ -28,22 +28,6 @@ public class BuildingControllerTest {
     public BuildingControllerTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-        BuildingController buildingController = new BuildingController();
-    }
-
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of addBuilding method, of class BuildingController.
@@ -98,11 +82,8 @@ public class BuildingControllerTest {
     public void testGetBuildingByBuildingId() {
         System.out.println("Testing the getBuildingByBuildingId(int buildingId) method");
         int buildingId = 1;
-        BuildingController instance = new BuildingController();
-        Building expResult = null;
-        Building result = instance.getBuildingByBuildingId(buildingId);
 
-        assertNotNull(result);
+        assertNotNull(buildingController.getBuildingByBuildingId(buildingId));
     }
 
     /**

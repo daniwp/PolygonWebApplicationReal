@@ -4,10 +4,14 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-md-offset-8 hero">
-                <h1>Lorem ipsum dolor sit</h1>
-                <p>Sed elit mauris, placerat nec hendrerit quis, fringilla nec mi. Curabitur non fermentum risus, at blandit est. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer et feugiat orci, at faucibus nisl. Ut fermentum lacinia pretium. Mauris luctus aliquam viverra. Aliquam id tortor quam. In vitae ex at nibh porta ultrices.</p>
-                <button class="btn btn-clear">Learn more</button>
+            <div class="col-md-7 col-md-offset-7 hero">
+                <h1>Integritet, Kompetence og Empati</h1>
+                <p>Polygon er blandt de største aktører inden for skadeservice og specialrengøring i Danmark. Polygon var blandt de første virksomheder i Danmark, som gik aktivt ind i egentlig skadeservice. Vi er således branchens pioner med mere end 50 års erfaring.
+                    Polygon er en serviceorienteret beredskabsvirksomhed, der kan tilkaldes 24 timer i døgnet, 7 dage om ugen, hele året rundt. Vi har 9 afdelinger fordelt over hele landet, hvilket sætter os i stand til at være fremme ved indsatsstedet med meget kort varsel.
+                    Polygon er en del af en global virksomhed med omkring 2.900 medarbejdere fordelt på 13 lande, hvis ressourcer vi har mulighed for at trække på, såfremt det skulle være nødvendigt.
+                    Firmaets styrke ligger i den akkumulerede viden og den veluddannede og meget ansvarsbevidste medarbejderstab, som opererer via en velstyret organisation med et stærkt beredskab. Polygon har desuden et meget tæt og tillidsfuldt samarbejde med landets største forsikringsselskaber samt beredskaber.</p>
+                <br>
+                <a href="login.jsp"><button class="btn btn-clear">Login</button></a>
             </div>
         </div>
     </div>
@@ -62,7 +66,7 @@
     <div style="margin: 0px;" class="row">
         <div class="col-md-12">
             <div style="padding:36px 10px 50px 10px; height: 100%" class="col-md-12 well">
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-10 col-md-offset-1 border">
                     <div class="col-md-3">
                         <i style="color: #009fe3" class="fa fa-life-ring fa-5x" aria-hidden="true"></i>
                     </div>
@@ -92,7 +96,7 @@
                         <div class="col-md-8">
                             <h4 class="border" style="color: grey">Pending Checkups</h4>
                             <p>Here you can view all requested Checkups</p>
-                            <br>
+                            <br><br>
                         </div>
                     </div>
                 </div>
